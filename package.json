@@ -1,0 +1,26 @@
+{
+  "name": "jornal-no-palco",
+  "version": "0.0.3",
+  "description": "http://www.jornalnopalco.com.br",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cravoley/jornalnopalco.git"
+  },
+  "main": "gulpfile.js",
+  "author": "Valdo Raya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cravoley/jornalnopalco/issues"
+  },
+  "homepage": "https://github.com/cravoley/jornalnopalco#readme",
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-cli": "1.2.1",
+    "gulp-concat": "2.6.0",
+    "gulp-minify-css": "1.2.4",
+    "gulp-nodemon": "2.0.6",
+    "gulp-sass": "2.3.1",
+    "gulp-uglify": "1.5.3",
+    "treet": "^0.1.0"
+  }
+}
