@@ -49,7 +49,8 @@ gulp.task('sass-dev', function () {
 				outputStyle: 'expanded',
 				sourceComments: true
 			}
-		)).pipe(minifyCss(
+		))
+		.pipe(minifyCss(
 			{
 				"benchmark": true,
 				"compatibility": 'ie8',

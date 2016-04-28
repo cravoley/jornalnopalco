@@ -1,8 +1,55 @@
-body{
-  background-color: #fff;
-  background-color: #fff;
-  background-color: #fff;
+header, nav, a, img, li {
+  transition: all 1s;
+  -moz-transition: all 1s; /* Firefox 4 */
+  -webkit-transition: all 1s; /* Safari and Chrome */
+  -o-transition: all 1s; /* Opera */
 }
-area{
-  background-color: #fff;
+
+body {
+  min-height: 2000px;
+}
+
+header {
+  background: #000;
+  border-bottom: 1px solid #aaaaaa;
+  float: left;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  &.largeMenu {
+    height: 150px;
+    .logo {
+      img {
+        max-width: 432px;
+      }
+    }
+    nav{
+      margin-top: 20px;
+    }
+  }
+  &.smallMenu {
+    height: 50px;
+    .logo {
+      float: left;
+      img {
+        max-width: 200px;
+      }
+    }
+    nav{
+      margin-top: 5px;
+    }
+  }
+
+  .logo {
+    float: left;
+    margin-right: 20px;
+  }
+
+  nav {
+    float: left;
+  }
+
+  .center-block {
+    float: none;
+  }
 }
