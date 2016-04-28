@@ -6,13 +6,14 @@ var minifyCss = require('gulp-clean-css');
 var googlecdn = require('gulp-google-cdn');
 var sass = require('gulp-sass');
 var del = require('del');
+var bower = require('gulp-bower');
 
 
 var devTasks = ['clean', 'compress-js-dev', 'sass-dev'];
 var prodTasks = ['clean', 'compress-js', 'sass', 'minify-css', 'cdn'];
 
 
-gulp.task('default', ['dev'], function () {
+gulp.task('default', ['bower', 'dev'], function () {
 });
 gulp.task('clean', function () {
 	return del([
@@ -58,6 +59,10 @@ gulp.task('sass-dev', function () {
 		))
 		//.pipe(concat('all.css'))
 		.pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('bower', function () {
+	return bower({cmd: 'update'});
 });
 
 // prod
