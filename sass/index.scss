@@ -2,21 +2,20 @@ $orange: #F58634;
 $orange_selected: #E46437;
 
 header, nav, a, img, li {
-  transition: height 1s;
-  -moz-transition: height 1s; /* Firefox 4 */
-  -webkit-transition: height 1s; /* Safari and Chrome */
-  -o-transition: height 1s; /* Opera */
+  transition: height 0.4s ease;
+  -moz-transition: height 0.4s ease; /* Firefox 4 */
+  -webkit-transition: height 0.4s ease; /* Safari and Chrome */
+  -o-transition: height 0.4s ease; /* Opera */
 }
 
 img {
-  transition: all 1s;
-  -moz-transition: all 1s; /* Firefox 4 */
-  -webkit-transition: all 1s; /* Safari and Chrome */
-  -o-transition: all 1s; /* Opera */
+  transition: all 0.4s;
+  -moz-transition: all 0.4s; /* Firefox 4 */
+  -webkit-transition: all 0.4s; /* Safari and Chrome */
+  -o-transition: all 0.4s; /* Opera */
 }
-
-body {
-  min-height: 2000px;
+body{
+  padding-top: 150px;
 }
 
 header {
@@ -29,7 +28,6 @@ header {
 
   /* large and small menu */
   &.largeMenu {
-    height: 150px;
     .logo {
       margin-top: 2%;
       img {
@@ -64,14 +62,6 @@ header {
   }
   /* // large and small menu */
 
-  /* large and small menu responsiveness */
-  @media (min-width: 992px) {
-    .logo {
-      img {
-        float: right;
-      }
-    }
-  }
 
   @media (min-width: 768px) {
     &.largeMenu {
@@ -101,8 +91,20 @@ header {
       }
     }
   }
+  /* large and small menu responsiveness */
+  @media (min-width: 992px) {
+    &.largeMenu {
+      height: 150px;
+      .logo {
+        img {
+          float: right;
+        }
+      }
+    }
+  }
   @media (max-width: 768px) {
     &.largeMenu {
+      height: 150px;
           nav{
             .navbar-toggle {
               top:90px
