@@ -1,4 +1,14 @@
+$orange: #F58634;
+$orange_selected: #E46437;
+
 header, nav, a, img, li {
+  transition: height 1s;
+  -moz-transition: height 1s; /* Firefox 4 */
+  -webkit-transition: height 1s; /* Safari and Chrome */
+  -o-transition: height 1s; /* Opera */
+}
+
+img {
   transition: all 1s;
   -moz-transition: all 1s; /* Firefox 4 */
   -webkit-transition: all 1s; /* Safari and Chrome */
@@ -16,40 +26,179 @@ header {
   width: 100%;
   position: fixed;
   z-index: 10;
+
+  /* large and small menu */
   &.largeMenu {
     height: 150px;
     .logo {
+      margin-top: 2%;
       img {
-        max-width: 432px;
+        //max-width: 432px;
       }
     }
-    nav{
-      margin-top: 20px;
+    nav {
+      margin-top: 4%;
+      a {
+        font-size: 16px;
+        padding: 12px 18px;
+      }
     }
   }
+
   &.smallMenu {
     height: 50px;
     .logo {
       float: left;
+      margin-top: 2px;
       img {
         max-width: 200px;
       }
     }
-    nav{
+    nav {
       margin-top: 5px;
+      margin-bottom: 0;
+      .navbar-toggle {
+        top: 0;
+      }
+    }
+  }
+  /* // large and small menu */
+
+  /* large and small menu responsiveness */
+  @media (min-width: 992px) {
+    .logo {
+      img {
+        float: right;
+      }
     }
   }
 
+  @media (min-width: 768px) {
+    &.largeMenu {
+      height: 210px;
+      nav {
+        a {
+          font-size: 14px;
+          padding: 10px 15px;
+        }
+      }
+    }
+    &.smallMenu {
+      .logo {
+        width: 30%;
+        padding: 0;
+      }
+      nav {
+        width: 70%;
+        padding: 0;
+        .container-fluid {
+          padding: 0;
+        }
+        a {
+          font-size: 13px;
+          padding: 8px 10px;
+        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    &.largeMenu {
+          nav{
+            .navbar-toggle {
+              top:90px
+            }
+          }
+    }
+
+    &.smallMenu {
+      .logo{
+        img{
+          float: left;
+        }
+      }
+    }
+  }
+  /* // large and small menu responsiveness */
+
   .logo {
     float: left;
-    margin-right: 20px;
+    //margin-right: 20px;
   }
 
   nav {
     float: left;
+    .nav-pills {
+      li.active {
+        a {
+          background-color: $orange_selected;
+          //color: #000;
+        }
+        a:hover {
+          background-color: $orange;
+        }
+      }
+      a {
+        color: #CCC;
+      }
+      a:hover {
+        background-color: $orange;
+        color: #000;
+      }
+    }
   }
 
   .center-block {
     float: none;
+  }
+  .navbar-collapse.collapse.in, .navbar-collapse.collapsing {
+    float: left;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 75%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #000;
+    ul {
+      li {
+        width: 100%;
+        a {
+          font-size: 16px;
+          padding: 12px 18px;
+        }
+      }
+    }
+  }
+
+  .navbar-toggle {
+    border-color: #FFF;
+    float: left;
+    position: fixed;
+    right: 5%;
+    top: 5%;
+    background-color: #000;
+    &.collapsed {
+      //float: none;
+      //position: relative;
+      //left: auto;
+      //top: auto;
+    }
+    .icon-bar {
+      background-color: #fff;
+    }
+  }
+
+  // nav bar
+  .navbar-collapse::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  .navbar-collapse::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar-collapse::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
   }
 }
