@@ -1,0 +1,20 @@
+header, nav, a, img, li {
+  transition: height 0.4s ease;
+  -moz-transition: height 0.4s ease; /* Firefox 4 */
+  -webkit-transition: height 0.4s ease; /* Safari and Chrome */
+  -o-transition: height 0.4s ease; /* Opera */
+}
+
+img {
+  transition: all 0.4s;
+  -moz-transition: all 0.4s; /* Firefox 4 */
+  -webkit-transition: all 0.4s; /* Safari and Chrome */
+  -o-transition: all 0.4s; /* Opera */
+}
+
+body {
+  transition: padding 0.5s;
+  -moz-transition: padding 0.5s; /* Firefox 4 */
+  -webkit-transition: padding 0.5s; /* Safari and Chrome */
+  -o-transition: padding 0.5s; /* Opera */
+}

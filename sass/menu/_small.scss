@@ -1,0 +1,38 @@
+body.smallMenu {
+  padding-top: 50px;
+  header {
+    height: 50px;
+    .logo {
+      float: left;
+      margin-top: 2px;
+      img {
+        max-width: 200px;
+      }
+    }
+    nav {
+      margin-top: 5px;
+      margin-bottom: 0;
+      .navbar-toggle {
+        top: 0;
+      }
+    }
+    @media (min-width: 768px) {
+      .logo {
+        width: 30%;
+        padding: 0;
+      }
+      nav {
+        width: 70%;
+        padding: 0;
+        .container-fluid {
+          padding: 0;
+        }
+        a {
+          font-size: 13px;
+          padding: 8px 10px;
+        }
+      }
+    }
+  }
+  /* // large and small menu */
+}

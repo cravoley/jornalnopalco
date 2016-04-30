@@ -1,206 +1,26 @@
-$orange: #F58634;
-$orange_selected: #E46437;
+@import "config";
 
-header, nav, a, img, li {
-  transition: height 0.4s ease;
-  -moz-transition: height 0.4s ease; /* Firefox 4 */
-  -webkit-transition: height 0.4s ease; /* Safari and Chrome */
-  -o-transition: height 0.4s ease; /* Opera */
+@import "annimation";
+
+body {
+  padding-top: 120px;
+  background-color: $background_color;
 }
-
-img {
-  transition: all 0.4s;
-  -moz-transition: all 0.4s; /* Firefox 4 */
-  -webkit-transition: all 0.4s; /* Safari and Chrome */
-  -o-transition: all 0.4s; /* Opera */
-}
-body{
-  padding-top: 150px;
-}
-
-header {
-  background: #000;
-  border-bottom: 1px solid #aaaaaa;
-  float: left;
-  width: 100%;
-  position: fixed;
-  z-index: 10;
-
-  /* large and small menu */
-  &.largeMenu {
-    .logo {
-      margin-top: 2%;
-      img {
-        //max-width: 432px;
-      }
-    }
-    nav {
-      margin-top: 4%;
-      a {
-        font-size: 16px;
-        padding: 12px 18px;
-      }
-    }
-  }
-
-  &.smallMenu {
-    height: 50px;
-    .logo {
-      float: left;
-      margin-top: 2px;
-      img {
-        max-width: 200px;
-      }
-    }
-    nav {
-      margin-top: 5px;
-      margin-bottom: 0;
-      .navbar-toggle {
-        top: 0;
-      }
-    }
-  }
-  /* // large and small menu */
+@import 'menu/common';
+@import "menu/large";
+@import "menu/small";
 
 
-  @media (min-width: 768px) {
-    &.largeMenu {
-      height: 210px;
-      nav {
-        a {
-          font-size: 14px;
-          padding: 10px 15px;
-        }
-      }
-    }
-    &.smallMenu {
-      .logo {
-        width: 30%;
-        padding: 0;
-      }
-      nav {
-        width: 70%;
-        padding: 0;
-        .container-fluid {
-          padding: 0;
-        }
-        a {
-          font-size: 13px;
-          padding: 8px 10px;
-        }
-      }
-    }
-  }
-  /* large and small menu responsiveness */
-  @media (min-width: 992px) {
-    &.largeMenu {
-      height: 150px;
-      .logo {
-        img {
-          float: right;
-        }
-      }
-    }
-  }
-  @media (max-width: 768px) {
-    &.largeMenu {
-      height: 150px;
-          nav{
-            .navbar-toggle {
-              top:90px
-            }
-          }
-    }
 
-    &.smallMenu {
-      .logo{
-        img{
-          float: left;
-        }
-      }
-    }
-  }
-  /* // large and small menu responsiveness */
 
-  .logo {
-    float: left;
-    //margin-right: 20px;
-  }
 
-  nav {
-    float: left;
-    .nav-pills {
-      li.active {
-        a {
-          background-color: $orange_selected;
-          //color: #000;
-        }
-        a:hover {
-          background-color: $orange;
-        }
-      }
-      a {
-        color: #CCC;
-      }
-      a:hover {
-        background-color: $orange;
-        color: #000;
-      }
-    }
-  }
-
-  .center-block {
-    float: none;
-  }
-  .navbar-collapse.collapse.in, .navbar-collapse.collapsing {
-    float: left;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 75%;
-    height: 100%;
-    overflow-y: auto;
-    background-color: #000;
-    ul {
-      li {
-        width: 100%;
-        a {
-          font-size: 16px;
-          padding: 12px 18px;
-        }
-      }
-    }
-  }
-
-  .navbar-toggle {
-    border-color: #FFF;
-    float: left;
-    position: fixed;
-    right: 5%;
-    top: 5%;
-    background-color: #000;
-    &.collapsed {
-      //float: none;
-      //position: relative;
-      //left: auto;
-      //top: auto;
-    }
-    .icon-bar {
-      background-color: #fff;
-    }
-  }
-
-  // nav bar
-  .navbar-collapse::-webkit-scrollbar {
-    width: 1px;
-  }
-
-  .navbar-collapse::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3);
-  }
-
-  .navbar-collapse::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
-  }
+// actual content
+div.content {
+  border-right: 1px solid rgb(255, 255, 255);
+  border-right: 1px solid rgba(0, 0, 0, .2);
+  border-left: 1px solid rgb(255, 255, 255);
+  border-left: 1px solid rgba(0, 0, 0, .2);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+  padding-top: 20px;
 }
