@@ -1,3 +1,4 @@
+
 body.largeMenu {
   header {
     .logo {
@@ -12,43 +13,10 @@ body.largeMenu {
         padding: 12px 18px;
       }
     }
-    @media (min-width: 768px) {
-      height: 165px;
-      nav {
-        .navigation {
-          width: 572px;
-          margin: 10px auto 0 auto;
-        }
-        a {
-          font-size: 14px;
-          padding: 10px 15px;
-        }
-      }
-    }
-    @media (min-width: 992px) {
-      height: 120px;
-      .logo {
-        img {
-          float: right;
-        }
-      }
-      nav {
-        margin-top: 30px;
-        .navigation {
-          //width: 572px;
-          //margin: 10px auto 0 auto;
-          float: left;
-        }
-      }
-    }
-    @media (max-width: 768px) {
-      height: 150px;
-      nav {
-        .navbar-toggle {
-          top: 90px
-        }
-      }
-    }
   }
 }
+
+@import "responsive/768px";
+@import "responsive/992px";
+@import "responsive/767px";
 

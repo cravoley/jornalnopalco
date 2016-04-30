@@ -1,0 +1,13 @@
+@media (max-width: 767px) {
+  body.largeMenu {
+    padding-top: 150px;
+    header {
+      height: 150px;
+      nav {
+        .navbar-toggle {
+          top: 90px
+        }
+      }
+    }
+  }
+}
