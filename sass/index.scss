@@ -1,18 +1,15 @@
 @import "config";
-
 @import "annimation";
 
 body {
   background-color: $background_color;
 }
+
 @import 'menu/common';
 @import "menu/large";
 @import "menu/small";
 
 @import "event/cover";
-
-
-
 
 // actual content
 div.content {

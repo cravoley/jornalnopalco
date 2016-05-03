@@ -1,6 +1,62 @@
-section {
-  .border {
-    border: 1px solid;
+//section {
+.border {
+  border: 1px solid #690101;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.events {
+  .title {
+    margin-top: 0;
+  }
+  h2 {
+    padding: 10px 20px;
+  }
+  ul {
+    padding: $padding_events_cover;
+  }
+
+  .theater {
+    .title {
+      background-color: #F5F5F5;
+    }
+  }
+  .show {
+    .title {
+      background-color: rgba(52, 148, 52, 0.43);
+      color: #FFF;
+    }
+  }
+  .dance {
+    .title {
+      background-color: rgba(154, 45, 45, 0.63);
+      color: #FFF;
+    }
+  }
+  .literature {
+    .title {
+      background-color: rgba(154, 45, 45, 0.63);
+      color: #FFF;
+    }
+  }
+  .exhibition {
+    .title {
+      background-color: rgba(154, 45, 45, 0.63);
+      color: #FFF;
+    }
+  }
+  .others {
+    .title {
+      background-color: rgba(154, 45, 45, 0.63);
+      color: #FFF;
+    }
+  }
+
+  .more {
+    padding: $padding_events_cover;
+    float: right;
   }
 
 }
+
+//}
