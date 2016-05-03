@@ -49,7 +49,7 @@ gulp.task('sass-dev', function () {
 				outputStyle: 'expanded',
 				sourceComments: true
 			}
-		))
+		).on('error', sass.logError))
 		.pipe(minifyCss(
 			{
 				"benchmark": true,
