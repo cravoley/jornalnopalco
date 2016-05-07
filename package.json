@@ -3,29 +3,36 @@
   "version": "0.0.3",
   "description": "http://www.jornalnopalco.com.br",
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cravoley/jornalnopalco.git"
+	"type": "git",
+	"url": "git+https://github.com/cravoley/jornalnopalco.git"
   },
   "main": "gulpfile.js",
   "author": "Valdo Raya",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cravoley/jornalnopalco/issues"
+	"url": "https://github.com/cravoley/jornalnopalco/issues"
+  },
+  "scripts": {
+	"dev": "webpack-dev-server --inline --hot --colors --port 3000",
+	"gulp": "gulp",
+	"bower": "bower"
   },
   "homepage": "https://github.com/cravoley/jornalnopalco#readme",
   "devDependencies": {
-    "bower": "^1.7.9",
-    "del": "2.2.0",
-    "gulp": "3.9.1",
-    "gulp-bower": "0.0.13",
-    "gulp-clean-css": "2.0.6",
-    "gulp-cli": "1.2.1",
-    "gulp-concat": "2.6.0",
-    "gulp-debug": "^2.1.2",
-    "gulp-google-cdn": "2.1.0",
-    "gulp-nodemon": "2.0.6",
-    "gulp-sass": "2.3.1",
-    "gulp-uglify": "1.5.3",
-    "treet": "^0.1.0"
+	"bower": "1.7.9",
+	"del": "2.2.0",
+	"gulp": "3.9.1",
+	"gulp-bower": "0.0.13",
+	"gulp-clean-css": "2.0.6",
+	"gulp-cli": "1.2.1",
+	"gulp-concat": "2.6.0",
+	"gulp-debug": "2.1.2",
+	"gulp-google-cdn": "2.1.0",
+	"gulp-nodemon": "2.0.6",
+	"gulp-sass": "2.3.1",
+	"gulp-uglify": "1.5.3",
+	"treet": "0.1.0",
+	"webpack": "1.13.0",
+	"webpack-dev-server": "1.14.1"
   }
 }
