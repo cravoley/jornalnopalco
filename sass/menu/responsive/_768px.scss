@@ -1,16 +1,18 @@
 @media (min-width: 768px) {
-  body.largeMenu {
+  body {
     padding-top: 165px;
-    header {
-      height: 165px;
-      nav {
-        .navigation {
-          width: 578px;
-          margin: 10px auto 0 auto;
-        }
-        a {
-          font-size: 14px;
-          padding: 10px 15px;
+    &.largeMenu {
+      header {
+        height: 165px;
+        nav {
+          .navigation {
+            width: 578px;
+            margin: 10px auto 0 auto;
+          }
+          a {
+            font-size: 14px;
+            padding: 10px 15px;
+          }
         }
       }
     }

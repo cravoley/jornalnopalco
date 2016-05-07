@@ -3,6 +3,7 @@
 
 body {
   background-color: $background_color;
+  //padding-top: 165px;
 }
 
 @import 'menu/common';
@@ -20,4 +21,10 @@ div.content {
   -webkit-background-clip: padding-box; /* for Safari */
   background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
   padding-top: 20px;
+  padding-bottom: 20px;
+  min-height: 100%;
+  overflow: hidden;
 }
+
+
+@import "footer/common";

@@ -1,19 +1,21 @@
 @media (min-width: 992px) {
-  body.largeMenu {
+  body {
     padding-top: 120px;
-    header {
-      height: 120px;
-      .logo {
-        img {
-          float: right;
+    &.largeMenu {
+      header {
+        height: 120px;
+        .logo {
+          img {
+            float: right;
+          }
         }
-      }
-      nav {
-        margin-top: 30px;
-        .navigation {
-          //width: 572px;
-          //margin: 10px auto 0 auto;
-          float: left;
+        nav {
+          margin-top: 30px;
+          .navigation {
+            //width: 572px;
+            //margin: 10px auto 0 auto;
+            float: left;
+          }
         }
       }
     }

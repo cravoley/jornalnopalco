@@ -1,0 +1,22 @@
+body{padding-bottom: 70px}
+
+footer {
+  background-color: #000;
+  padding-top: 15px;
+  color: $background_color;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  ul {
+    a.glyphicon {
+      width: 40px;
+      height: 40px;
+    }
+    .twitter a {
+      background-image: url("../../img/icon/twitter_new.png");
+    }
+    .facebook a {
+      background-image: url("../../img/icon/facebook_new.png");
+    }
+  }
+}
