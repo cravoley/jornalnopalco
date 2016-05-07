@@ -18,7 +18,7 @@
                  ?>
             </ul>
             <div class="more pull-right">
-                <a href="#">Ver mais</a>
+                <a href="eventos.php">Ver mais</a>
             <div>
         </div>
     </div>
