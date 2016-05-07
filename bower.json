@@ -3,20 +3,22 @@
   "description": "http://www.jornalnopalco.com.br",
   "main": "gulpfile.js",
   "authors": [
-    "Valdo Raya"
+	"Valdo Raya"
   ],
   "license": "ISC",
   "homepage": "https://github.com/cravoley/jornalnopalco",
   "private": true,
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+	"**/.*",
+	"node_modules",
+	"bower_components",
+	"test",
+	"tests"
   ],
   "dependencies": {
-    "jquery": "2.2.3",
-    "bootstrap": "3.3.6"
+	"jquery": "2.2.3",
+	"jquery-ui": "1.11.4",
+	"bootstrap": "3.3.6",
+	"bootstrap-datepicker": "1.6.1"
   }
 }
