@@ -1,0 +1,32 @@
+.place-filter{
+    height: 240px;
+    overflow-y: auto;
+    // nav bar
+
+}
+.place-filter::-webkit-scrollbar {
+  width: 3px;
+}
+
+.place-filter::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.place-filter::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid 000;
+}
+
+.eventlist{
+    .image{
+        margin-right: 15px;
+    }
+    li {
+        overflow: hidden;
+        border-top: 1px dashed;
+        padding-top: 10px;
+        &:first-child{
+            border-top:none;
+        }
+    }
+}
