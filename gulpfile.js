@@ -99,7 +99,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('dev', devTasks, function () {
-	gulp.watch(['css/**/*.css', 'js/**/*.js', 'sass/**/*.scss'], devTasks);
+	gulp.watch(['css/**/*.css', 'sass/**/*.scss'], devTasks);
 });
 
 gulp.task('prod', prodTasks, function () {

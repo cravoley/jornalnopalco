@@ -34,6 +34,7 @@
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<script src="dist/js/all.js"></script>
+<!-- <script src="dist/js/all.js"></script> -->
+<script src="http://localhost:3000/assets/bundle.js"></script>
 </body>
 </html>

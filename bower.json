@@ -19,6 +19,6 @@
 	"jquery": "2.2.3",
 	"jquery-ui": "1.11.4",
 	"bootstrap": "3.3.6",
-	"bootstrap-datepicker": "1.6.1"
+	"bootstrap-datepicker": "1.6.0"
   }
 }
