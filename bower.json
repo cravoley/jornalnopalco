@@ -1,7 +1,6 @@
 {
   "name": "jornal-no-palco",
   "description": "http://www.jornalnopalco.com.br",
-  "main": "gulpfile.js",
   "authors": [
 	"Valdo Raya"
   ],

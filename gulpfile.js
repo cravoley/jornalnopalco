@@ -7,13 +7,14 @@ var googlecdn = require('gulp-google-cdn');
 var sass = require('gulp-sass');
 var del = require('del');
 var bower = require('gulp-bower');
+var webpack = require('gulp-webpack');
 
 
 var devTasks = ['clean', 'compress-js-dev', 'sass-dev'];
 var prodTasks = ['clean', 'compress-js', 'sass', 'minify-css', 'cdn'];
 
 
-gulp.task('default', ['bower', 'dev'], function () {
+gulp.task('default', ['bower', 'dev-css','dev-js'], function () {
 });
 gulp.task('clean', function () {
 	return del([
@@ -27,18 +28,8 @@ gulp.task('clean', function () {
 //dev
 gulp.task("compress-js-dev", function () {
 	return gulp.src('js/*.js')
-		.pipe(uglify(
-			{
-				"compress": false,
-				"preserveComments": "all",
-				"output": {
-					"beautify": true,
-					"comments": true,
-					"bracketize": true
-				}
-			}
-		))
-		.pipe(concat('all.js'))
+		.pipe(webpack(require('./webpack.config.js')))
+		// .pipe(concat('bundle.js'))
 		.pipe(gulp.dest('dist/js'));
 });
 
@@ -98,9 +89,14 @@ gulp.task('sass', function () {
 		.pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('dev', devTasks, function () {
-	gulp.watch(['css/**/*.css', 'sass/**/*.scss'], devTasks);
+gulp.task('dev-css', function () {
+	return gulp.watch(['css/**/*.css', 'sass/**/*.scss'], ['sass-dev']);
 });
+
+gulp.task('dev-js', function () {
+	return gulp.watch(['js/**/*.js'], ['compress-js-dev']);
+});
+
 
 gulp.task('prod', prodTasks, function () {
 	cssOptions = {};
