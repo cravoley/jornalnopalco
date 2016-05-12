@@ -31,7 +31,7 @@
                 <div class="collapse navbar-collapse navigation" id="awdawdawdaw">
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active"><a href="#">Home</a></li>
-                        <li role="presentation"><a href="eventos.php">Eventos</a></li>
+                        <li role="presentation"><a href="<?php echo get_site_url().'/evento';?>">Eventos</a></li>
                         <li role="presentation"><a href="#">Galerias</a></li>
                         <li role="presentation"><a href="#">Notícias</a></li>
                         <li role="presentation"><a href="#">Colunas</a></li>
