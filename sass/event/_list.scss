@@ -1,16 +1,14 @@
 .filter{
     .place-filter{
-        height: 240px;
+        max-height: 240px;
         overflow-y: auto;
-        .selected {
-            label {
-                width: 90%;
-                padding:10px;
-                border:1px dashed;
-            }
-            label.removed {
-                opacity: 0.5;
-            }
+        label.selected {
+            width: 90%;
+            padding:10px;
+            border:1px dashed;
+        }
+        label.removed {
+            opacity: 0.5;
         }
     }
 
@@ -25,7 +23,10 @@
     .place-filter::-webkit-scrollbar-thumb {
       background-color: darkgrey;
       outline: 1px solid 000;
-}
+    }
+    .btn[disabled]{
+        opacity: 0.5;
+    }
 }
 
 .eventlist{
@@ -36,8 +37,25 @@
         overflow: hidden;
         border-top: 1px dashed;
         padding-top: 10px;
+        a {
+            color:rgb(0,0,0);
+        }
+        a:hover{
+            color:rgba(0,0,0,0.7);
+            img{
+                -webkit-transform:scale(1.25); /* Safari and Chrome */
+                -moz-transform:scale(1.25); /* Firefox */
+                -ms-transform:scale(1.25); /* IE 9 */
+                -o-transform:scale(1.25); /* Opera */
+                 transform:scale(1.25);
+            }
+        }
         &:first-child{
             border-top:none;
+        }
+        h2{
+            font-size: 18px;
+            margin-top: 10px;
         }
     }
 }
