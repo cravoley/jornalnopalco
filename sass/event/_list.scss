@@ -1,20 +1,31 @@
-.place-filter{
-    height: 240px;
-    overflow-y: auto;
-    // nav bar
+.filter{
+    .place-filter{
+        height: 240px;
+        overflow-y: auto;
+        .selected {
+            label {
+                width: 90%;
+                padding:10px;
+                border:1px dashed;
+            }
+            label.removed {
+                opacity: 0.5;
+            }
+        }
+    }
 
-}
-.place-filter::-webkit-scrollbar {
-  width: 3px;
-}
+    .place-filter::-webkit-scrollbar {
+      width: 3px;
+    }
 
-.place-filter::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
-}
+    .place-filter::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+    }
 
-.place-filter::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid 000;
+    .place-filter::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      outline: 1px solid 000;
+}
 }
 
 .eventlist{

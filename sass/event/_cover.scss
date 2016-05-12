@@ -6,6 +6,21 @@
 }
 
 .events {
+    li{
+        width: 100%;
+        overflow: hidden;
+        time{
+            float:left;
+            font-size:14px;
+            line-height: 100%;
+        }
+        h3{
+            float:left;
+            font-size:14px;
+            margin: 0;
+            line-height: 100%;
+        }
+    }
   .title {
     margin-top: 0;
   }
@@ -16,7 +31,7 @@
     padding: $padding_events_cover;
   }
 
-  .theater {
+  .teatro {
     .title {
       background-color: #F5F5F5;
     }
@@ -27,25 +42,25 @@
       color: #FFF;
     }
   }
-  .dance {
+  .danca {
     .title {
       background-color: rgba(154, 45, 45, 0.63);
       color: #FFF;
     }
   }
-  .literature {
+  .literatura {
     .title {
       background-color: rgba(154, 45, 45, 0.63);
       color: #FFF;
     }
   }
-  .exhibition {
+  .exposicao {
     .title {
       background-color: rgba(154, 45, 45, 0.63);
       color: #FFF;
     }
   }
-  .others {
+  .outros {
     .title {
       background-color: rgba(154, 45, 45, 0.63);
       color: #FFF;
@@ -55,6 +70,9 @@
   .more {
     padding: $padding_events_cover;
     float: right;
+  }
+  .empty{
+      padding:20px 10px;
   }
 
 }
