@@ -22,19 +22,17 @@
                 <li class="facebook">
                     <a class="glyphicon" href="https://www.facebook.com/jornalnopalco" target="_blank"><span class="sr-only">Facebook</span></a>
                 </li>
-                <li>
-                    <!-- TODO -->
-                    <a href="http://www.twitter.com/jornalnopalco" target="_blank">Google+</a>
-                </li>
             </ul>
         </div>
     </div>
 </footer>
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo get_template_directory_uri();?>/bower_components/jquery/dist/jquery.js"></script>
+<script src="<?php echo get_template_directory_uri();?>/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?php echo get_template_directory_uri();?>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?php echo get_template_directory_uri();?>/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- <script src="dist/js/all.js"></script> -->
-<script src="http://localhost:3000/assets/bundle.js"></script>
+<!-- TODO -->
+<!-- <script src="<?php echo get_template_directory_uri();?>/dist/bundle.js"></script> -->
+<script src="<?php echo get_template_directory_uri();?>/dist/js/bundle.js"></script>
 </body>
 </html>
