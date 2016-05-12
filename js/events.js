@@ -1,30 +1,62 @@
 (function($){
     $(document).ready(function () {
-        var selected = [];
+        var toFilter = [];
+        var toUnfilter = [];
         var filterBlock = $(".filter");
+        var filterButton = $(filterBlock).find("input.update");
         $(filterBlock).find(".place-filter").find("li").find("label").click(function(e){
             var targetTag = e.target.tagName;
             if(targetTag == "INPUT") return; // prevent extra events fired
 
-            var place = $(this).data("place");
-            console.log(selected, place);
+            var place = $(this).data("place").toString(); //assure we are handling only with strings
+            console.log(toUnfilter, toFilter, place);
             if(targetTag == "A" || targetTag == "i"){
-                selected = selected.filter((i)=>i.toString().toUpperCase() != place.toString().toUpperCase());
-                $(this).addClass("removed");
+                // unfiltering
+                if($(this).hasClass("removed")){
+                    toUnfilter = toUnfilter.filter((i)=>i.toUpperCase() != place.toUpperCase());
+                    $(this).removeClass("removed");
+                } else {
+                    toUnfilter.push(place);
+                    $(this).addClass("removed");
+                }
             } else {
-                // adding
+                // setting filter
+                if($(this).find("input[type='checkbox']").is(":checked")){
+                    toFilter = toFilter.filter((i)=>i.toUpperCase() != place.toUpperCase());
+                } else {
+                    toFilter.push(place);
+                }
             }
 
-            if(!changed){
-                $(filterBlock).find("button.update").attr("disabled",null);
-                changed = true;
-            }
-
-            if(place)
-                selected.push(place);
-            console.log(selected, place);
-            changed = true;
-            return true;
+            var disabled = (toFilter.length > 0 || toUnfilter.length > 0?null:"disabled");
+            filterButton.attr("disabled",disabled);
+        });
+        $(filterButton).click(function(e){
+            // disable form and triggers
+            $(filterBlock).css("opacity","0.5")
+                .find("input").attr("disabled","true");
+            var labels = $(filterBlock).find(".place-filter").find("li").find("label");
+            var toSearch = [];
+            $(labels).unbind("click")
+            // search all selected filters
+                .each(function(i,k){
+                    if($(this).hasClass("selected") && !$(this).hasClass("removed")){
+                        toSearch.push($(this).data("place").toString());
+                    } else {
+                        if($(this).find("input[type='checkbox']").is(":checked")){
+                            toSearch.push($(this).data("place").toString());
+                        }
+                    }
+                });
+            // length should always be greater than 0 but, who knows?
+            if(toSearch.length > 0){
+                var searchString = toSearch
+                    .map((i) => "place[]=" + i)
+                    .join("&");
+                    console.log(searchString);
+                window.location.search = searchString;
+            } else
+                window.location.search = "";
         });
 
 

@@ -1,6 +1,6 @@
 <?php
 
-    function getEventsQuery($category=null, $amount=10, $date=null, $place=null){
+    function getEventsQuery($category=null, $amount=10, $date=null, $place=array()){
         global $wpdb;
         $q = "SELECT
             {$wpdb->posts}.ID as id,
@@ -11,7 +11,7 @@
                 INNER JOIN {$wpdb->term_relationships} ON ({$wpdb->term_relationships}.object_id = {$wpdb->posts}.ID)
                 INNER JOIN {$wpdb->terms} ON ({$wpdb->term_relationships}.term_taxonomy_id = {$wpdb->terms}.term_id)":"";
 
-            $q.="                
+            $q.="
             WHERE 1=1
                 AND {$wpdb->posts}.post_type = 'evento'
                 AND ({$wpdb->posts}.post_status = 'publish')
@@ -30,8 +30,10 @@
             return sprintf($q, $amount);
     }
 
-    function addPlaceFilter(&$filters, $place){
+    function addPlaceFilter(&$filters,Array $place=array()){
         global $wpdb;
+        if(sizeof($place) == 0) return "";
+
         $base = " (
                     SELECT
                         {$wpdb->postmeta}.post_id
@@ -39,14 +41,17 @@
                         {$wpdb->postmeta}
                     WHERE
                         {$wpdb->postmeta}.meta_key = 'evento_place'
-                        AND {$wpdb->postmeta}.meta_value = '%s'
-                        AND {$wpdb->postmeta}.post_id = id
-                ) ";
-        if(!empty($place)){
-            $q = sprintf($base, $place);
-            array_push($filters, $q);
+                        AND {$wpdb->postmeta}.post_id = id";
+
+        $places = array();
+        foreach ($place as $key => $value) {
+            $places[] = $wpdb->prepare("{$wpdb->postmeta}.meta_value = '%s'", $value);
         }
-        return isset($q) ? $q : "";
+        $base .= " AND (" . implode(" OR ", $places) . ") ";
+        $base .= ")";
+        // echo $base;
+        array_push($filters, $base);
+        return $base;
     }
 
     function addDateFilter(&$filters, $date){
