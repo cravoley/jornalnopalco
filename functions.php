@@ -27,7 +27,7 @@
             GROUP BY {$wpdb->posts}.ID
             ORDER BY {$wpdb->postmeta}.meta_value
             ASC LIMIT %d";
-            return sprintf($q, $amount);
+            return $wpdb->prepare($q, $amount);
     }
 
     function addPlaceFilter(&$filters,Array $place=array()){
@@ -58,15 +58,18 @@
         global $wpdb;
         $base = " (
                     {$wpdb->postmeta}.meta_key LIKE('date_search_%%%%')
-                    AND YEAR(CAST({$wpdb->postmeta}.meta_value AS DATE)) %s
-                    AND MONTH(CAST({$wpdb->postmeta}.meta_value AS DATE)) %s
-                    AND DAY(CAST({$wpdb->postmeta}.meta_value AS DATE)) %s
+                    AND YEAR(CAST({$wpdb->postmeta}.meta_value AS DATE)) ". (empty($date) ? '>=':'=') . " %s
+                    AND MONTH(CAST({$wpdb->postmeta}.meta_value AS DATE)) ". (empty($date) ? '>=':'=') . " %s
+                    AND DAY(CAST({$wpdb->postmeta}.meta_value AS DATE)) ". (empty($date) ? '>=':'=') . " %s
                 ) ";
         if(empty($date)){
-            $q = sprintf($base, '>= YEAR(NOW())', '>= MONTH(NOW())','>= DAY(NOW())');
+            $q = $wpdb->prepare($base, 'YEAR(NOW())', 'MONTH(NOW())', 'DAY(NOW())');
             array_push($filters, $q);
         } else {
-            // TODO
+            if(is_int($date)){
+                $q = $wpdb->prepare($base, date("Y",$date), date("m",$date), date("d",$date));
+                array_push($filters, $q);
+            }
         }
         return $q;
     }
