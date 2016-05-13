@@ -2,7 +2,10 @@
 include_once("class/EventQueryBuilder.class.php");
 include_once("header.php");
 $selected = $_GET["place"];
+$selectedDate = $_GET["selectedDate"];
 if(empty($selected) || !is_array($selected)) $selected = array();
+if(empty($selectedDate)) {$selectedDate = null; $selectedDateOutput = null;}
+else { $selectedDate = strtotime($selectedDate); $selectedDateOutput = date('d/m/Y', $selectedDate); }
 ?>
 
 
@@ -12,7 +15,7 @@ if(empty($selected) || !is_array($selected)) $selected = array();
             <div class="row">
                 <div class="col-xs-12">
                     <div class="input-group date datepicker">
-                        <input type="text" class="form-control" placeholder="Data"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        <input type="text" value="<?php echo $selectedDateOutput?$selectedDateOutput:'';?>" class="form-control" placeholder="Data"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                     </div>
                 </div>
             </div>
@@ -76,7 +79,7 @@ if(empty($selected) || !is_array($selected)) $selected = array();
         <div class="col-xs-8 col-sm-10">
             <h1 class="center-block text-center">Eventos</h1>
             <?php
-            $q =  getEventsQuery(null, 10, null, $selected);
+            $q =  getEventsQuery(null, 10, $selectedDate, $selected);
             // echo $q;
             $results = $wpdb->get_results($q);
                 if(sizeof($results) > 0){
