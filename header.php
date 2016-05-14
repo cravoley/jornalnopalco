@@ -32,7 +32,7 @@
                     <ul class="nav nav-pills">
                         <li role="presentation" class="active"><a href="#">Home</a></li>
                         <li role="presentation"><a href="<?php echo get_site_url().'/evento';?>">Eventos</a></li>
-                        <li role="presentation"><a href="#">Galerias</a></li>
+                        <li role="presentation"><a href="<?php echo get_site_url().'/galeria';?>">Galerias</a></li>
                         <li role="presentation"><a href="#">Notícias</a></li>
                         <li role="presentation"><a href="#">Colunas</a></li>
                         <li role="presentation"><a href="#">E Agora?</a></li>
