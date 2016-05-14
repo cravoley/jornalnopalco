@@ -1,5 +1,5 @@
 <?php
-include_once("class/EventQueryBuilder.class.php");
+// include_once("class/EventQueryBuilder.class.php");
 include_once("header.php");
 $selected = $_GET["place"];
 $selectedDate = $_GET["selectedDate"];
