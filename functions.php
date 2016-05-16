@@ -27,6 +27,7 @@
             GROUP BY {$wpdb->posts}.ID
             ORDER BY {$wpdb->postmeta}.meta_value
             ASC LIMIT %d";
+            // echo $q;
             return $wpdb->prepare($q, $amount);
     }
 
@@ -63,7 +64,7 @@
                     AND DAY(CAST({$wpdb->postmeta}.meta_value AS DATE)) ". (empty($date) ? '>=':'=') . " %s
                 ) ";
         if(empty($date)){
-            $q = $wpdb->prepare($base, 'YEAR(NOW())', 'MONTH(NOW())', 'DAY(NOW())');
+            $q = sprintf($base, 'YEAR(NOW())', 'MONTH(NOW())', 'DAY(NOW())');
             array_push($filters, $q);
         } else {
             if(is_int($date)){
@@ -78,7 +79,49 @@
     function printNextEvents($category, $label='', $amount=6){
         global $wpdb;
 
+        //$query = new WP_Query( array( 'category_name' => 'staff' ) );
+        // 'post_type' => 'post',
+        // array( 'posts_per_page' => 3 )
+        // 'meta_query' => array(
+        // 'relation' => 'OR',
+	// 	array(
+	// 		'key'     => 'color',
+	// 		'value'   => 'blue',
+	// 		'compare' => 'NOT LIKE',
+	// 	),
+	// 	array(
+	// 		'key' => 'price',
+	// 		'value'   => array( 20, 100 ),
+	// 		'type'    => 'numeric',
+	// 		'compare' => 'BETWEEN',
+	// 	),
+	// ),
         if(empty($label)) $label = $category;
+
+        $filters = array();
+        // $filters['category_name'] = $category;
+        $filters['posts_per_page'] = $amount;
+        $today = date("Ymd");
+
+        $filters['meta_query'] = array('relation' => 'OR');
+        // TODO: deixar fixo
+        for ($i=0; $i < 10; $i++) {
+            array_push($filters['meta_query'],
+            array(
+                'key' => 'date_search_'.$i,
+                'value'   => $today,
+                'type'    => 'numeric',
+                'compare' => '>='
+            ));
+
+        }
+
+
+        $query = new WP_Query($filters);
+        // var_dump($query);
+        // var_dump($query->have_posts());
+
+
 
         $q = getEventsQuery($category, $amount);
 
