@@ -1,6 +1,7 @@
 
 <?php
 include_once("header.php");
+// TODO: FETCH JSON and show content from it
 ?>
 <div class="">
     <div class="container content">
