@@ -6,6 +6,8 @@ include_once("header.php");
 <div class="">
     <div class="container content">
 
+        <div id="content"></div>
+
         <div class="row events">
             <?php
             // 6 categorias:  Shows - teatro - Dança, literatura - Exposições - Outros
