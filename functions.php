@@ -64,7 +64,7 @@
                     AND DAY(CAST({$wpdb->postmeta}.meta_value AS DATE)) ". (empty($date) ? '>=':'=') . " %s
                 ) ";
         if(empty($date)){
-            $q = sprintf($base, 'YEAR(NOW())', 'MONTH(NOW())', 'DAY(NOW())');
+                $q = sprintf($base, 'YEAR(NOW())', 'MONTH(NOW())', 'DAY(NOW())');
             array_push($filters, $q);
         } else {
             if(is_int($date)){
