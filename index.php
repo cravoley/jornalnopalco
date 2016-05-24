@@ -1,7 +1,5 @@
-
 <?php
 include_once("header.php");
-// TODO: FETCH JSON and show content from it
 ?>
 <div class="">
     <div class="container content">
@@ -26,5 +24,11 @@ include_once("header.php");
 
     </div>
 </div>
+<script>
+    var configuration={
+        isSingle:'<?php echo is_single()?"true":"false";?>',
+        id:'<?php echo get_the_id();?>'
+    };
+</script>
 
 <?php include_once("footer.php"); ?>
