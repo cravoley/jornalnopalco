@@ -13,6 +13,9 @@ module.exports = {
 },
  plugins: [
      new webpack.HotModuleReplacementPlugin(),
+     new webpack.ProvidePlugin({
+            "React": "react",
+        })
  ],
  module: {
     loaders: [{
@@ -20,7 +23,7 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel',
       query: {
-        "presets": ["react", "es2015", "stage-0", "react-hmre"]
+        "presets": ["es2015","react", "stage-0", "react-hmre"]
       }
     }, {
       test: /\.json?$/,
