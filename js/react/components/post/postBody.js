@@ -1,4 +1,5 @@
 import React from 'react';
+import Util from '../../util';
 
 
 export default class PostComponent extends React.Component{
@@ -14,7 +15,7 @@ export default class PostComponent extends React.Component{
 
     render(){
         let data = new Date(this.props.post_date);
-        let formatedDate = ("0"+data.getDate()).slice(-2) + "/" +  ("0"+data.getMonth()).slice(-2)+ "/" + data.getFullYear();
+        let formatedDate = Util.formatDate(data);
         return(
             <div className="main col-sm-8 col-xs-12">
                 <time dateTime={data}>

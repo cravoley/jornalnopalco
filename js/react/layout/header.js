@@ -37,17 +37,17 @@ export default class Header extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {page:""};
+        this.state = {page:props.page || ""};
     }
 
     navigate(page){
         // call parent method
         this.setState({page:page});
-        this.props.navigate({page:page});
+        this.props.navigate({page:page, link:this.props.baseUrl+"/"+page});
     }
 
     render(){
-        var logoUrl = this.props.baseUrl.concat('/img/logo.png');
+        var logoUrl = this.props.templateUrl.concat('/img/logo.png');
         return(
             <header className="navbar-fixed-top">
                 <div className="container-fluid">
@@ -68,10 +68,10 @@ export default class Header extends React.Component {
                             <div className="collapse navbar-collapse navigation" id="awdawdawdaw">
                                 <ul className="nav nav-pills">
                                     <li role="presentation" className={this.state.page == "home" || this.state.page == "" ? "active":""}><a onClick={this.navigate.bind(this,'home')}>Home</a></li>
-                                    <li role="presentation" className={this.state.page == "event" ? "active":""}><a onClick={this.navigate.bind(this,'event')}>Eventos</a></li>
+                                    <li role="presentation" className={this.state.page == "evento" ? "active":""}><a onClick={this.navigate.bind(this,'evento')}>Eventos</a></li>
                                     <li role="presentation" className={this.state.page == "galeria" ? "active":""}><a onClick={this.navigate.bind(this,'galeria')}>Galerias</a></li>
                                     <li role="presentation" className={this.state.page == "post" ? "active":""}><a onClick={this.navigate.bind(this,'post')}>Notícias</a></li>
-                                    <li role="presentation" className={this.state.page == "colunas" ? "active":""}><a onClick={this.navigate.bind(this,'colunas')}>Colunas</a></li>
+                                    <li role="presentation" className={this.state.page == "coluna" ? "active":""}><a onClick={this.navigate.bind(this,'coluna')}>Colunas</a></li>
                                     <li role="presentation" className={this.state.page == "eagora" ? "active":""}><a onClick={this.navigate.bind(this,'eagora')}>E Agora?</a></li>
                                     <li role="presentation" className={this.state.page == "contato" ? "active":""}><a onClick={this.navigate.bind(this,'contato')}>Contato</a></li>
                                 </ul>

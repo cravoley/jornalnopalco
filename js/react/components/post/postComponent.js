@@ -8,12 +8,6 @@ export default class PostComponent extends React.Component{
         super(props);
     }
 
-    html(){
-        return {
-            "__html":this.props.content
-        }
-    }
-
     render(){
         return(
             <article>

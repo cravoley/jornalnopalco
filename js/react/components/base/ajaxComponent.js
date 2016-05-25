@@ -1,4 +1,5 @@
 import React from 'react';
+const PATH = "/jornalnopalco2";
 
 
 export default class AjaxComponent extends React.Component{
@@ -30,10 +31,12 @@ export default class AjaxComponent extends React.Component{
     }
 
     getEndpointUrl(endpoint){
-        if(!endpoint) throw "Endpoint undefined";
-
+        if(!endpoint) throw "Undefined endpoint";
+        if(endpoint == "wpjson"){
+            return PATH+"/wp-json/wp/v2/posts";
+        }
         let path = this.getEndpointPath(endpoint);
-        return "/jornalnopalco2".concat(path);
+        return PATH.concat(path);
     }
 
     getEndpointPath(endpoint){
@@ -44,6 +47,8 @@ export default class AjaxComponent extends React.Component{
                 break;
             case 'post':
                 return '/jpapi/post';
+            case 'evento':
+                return '/jpapi/event';
             default:
                 return "/";
 

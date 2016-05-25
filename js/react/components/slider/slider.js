@@ -13,15 +13,6 @@ export default class Slider extends AjaxComponent {
                 this.setState({items:items.posts});
             }
         });
-        //
-        // this.state = {
-        //     text:props.children,
-        //     count:0
-        // };
-        // this.clicka = this.clicka.bind(this);
-
-        // console.log(React);
-        //  ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
     }
 
     render(){
@@ -29,7 +20,7 @@ export default class Slider extends AjaxComponent {
             return (
                 <Slide
                     key={item.id}
-                    id={item.id} 
+                    id={item.id}
                     title={item.title}
                     link={item.link}
                     navigate={this.props.navigate}
@@ -37,13 +28,6 @@ export default class Slider extends AjaxComponent {
             );
         }.bind(this));
         return(
-            //  <ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionAppearTimeout={500}>
-            //     <div className="slider" onClick={this.clicka}>
-            //         THIS IS A SLIDER!!!!!
-            //         {this.state.text}
-            //         <div>Clicked {this.state.count} times</div>
-            //     </div>
-            // </ReactCSSTransitionGroup>
             <div>
                 {slider}
             </div>
