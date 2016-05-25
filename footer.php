@@ -1,4 +1,4 @@
-<footer>
+<!--<footer>
     <div class="container">
         <div class="col-xs-6 col-sm-3 pull-left">
             <p>
@@ -25,14 +25,14 @@
             </ul>
         </div>
     </div>
-</footer>
+</footer>-->
 <script src="<?php echo get_template_directory_uri();?>/bower_components/jquery/dist/jquery.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- <script src="dist/js/all.js"></script> -->
 <!-- TODO -->
-<!-- <script src="<?php echo get_template_directory_uri();?>/dist/bundle.js"></script> -->
-<script src="<?php echo get_template_directory_uri();?>/dist/js/bundle.js"></script>
+<!-- <script src="<?php echo get_template_directory_uri();?>/dist/js/bundle.js"></script> -->
+<script src="http://localhost:3000/assets/bundle.js"></script>
 </body>
 </html>
