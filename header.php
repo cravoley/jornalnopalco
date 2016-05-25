@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/dist/css/index.css">
 </head>
 <body class="largeMenu">
-
+<!--
 <header class="navbar-fixed-top">
     <div class="container-fluid">
         <div class="logo col-md-4 col-xs-12">
@@ -44,3 +44,4 @@
         </nav>
     </div>
 </header>
+-->
