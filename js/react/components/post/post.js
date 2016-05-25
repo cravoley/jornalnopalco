@@ -1,12 +1,13 @@
 import AjaxComponent from '../base/ajaxComponent';
-import LoadingComponent from '../generic/loading'
+import LoadingComponent from '../generic/loading';
+import PostComponent from './postComponent';
 
 export default class Post extends AjaxComponent {
     constructor(props){
         super(props);
-        this.loadApi('post', (err, items)=>{
+        this.loadApi('post', (err, item)=>{
             if(!err){
-                this.setState({items:items.posts});
+                this.setState({post:item, loading:false});
             }
         },
         {
@@ -16,8 +17,12 @@ export default class Post extends AjaxComponent {
         this.state = {loading:true, type:""};
     }
 
-    getElementByType(){
-        console.log(this.state);
+    getElementByType(post_type){
+        if(post_type == "evento"){
+            //TODO
+        } else if(post_type == "post"){
+            return <PostComponent {...this.state.post} />;
+        }
     }
 
     render(){
@@ -25,7 +30,7 @@ export default class Post extends AjaxComponent {
         if(this.state.loading == true){
             element = <LoadingComponent />;
         } else {
-            getElementByType();
+            element = this.getElementByType(this.state.post.post_type);
         }
         return(
             <div>

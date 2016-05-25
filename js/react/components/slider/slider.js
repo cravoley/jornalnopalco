@@ -12,7 +12,7 @@ export default class Slider extends AjaxComponent {
                 console.log(items.posts);
                 this.setState({items:items.posts});
             }
-        })
+        });
         //
         // this.state = {
         //     text:props.children,
@@ -27,9 +27,15 @@ export default class Slider extends AjaxComponent {
     render(){
         var slider = this.state.items.map(function(item){
             return (
-                <Slide key={item.id} title={item.title} link={item.link} />
+                <Slide
+                    key={item.id}
+                    id={item.id} 
+                    title={item.title}
+                    link={item.link}
+                    navigate={this.props.navigate}
+                    />
             );
-        });
+        }.bind(this));
         return(
             //  <ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionAppearTimeout={500}>
             //     <div className="slider" onClick={this.clicka}>
