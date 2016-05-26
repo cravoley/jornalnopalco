@@ -6,6 +6,8 @@ $selectedDate = $_GET["selectedDate"];
 if(empty($selected) || !is_array($selected)) $selected = array();
 if(empty($selectedDate)) {$selectedDate = null; $selectedDateOutput = null;}
 else { $selectedDate = strtotime($selectedDate); $selectedDateOutput = date('d/m/Y', $selectedDate); }
+// printNextEvents("show");
+// TODO: Build this with react.js
 ?>
 
 
