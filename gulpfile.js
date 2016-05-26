@@ -49,7 +49,7 @@ gulp.task('sass-dev', function () {
 				"keepBreaks": true
 			}
 		))
-		//.pipe(concat('all.css'))
+		// .pipe(concat('all.css'))
 		.pipe(gulp.dest('dist/css'));
 });
 
@@ -89,7 +89,7 @@ gulp.task('sass', function () {
 		.pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('dev-css', function () {
+gulp.task('dev-css', ['sass-dev'], function () {
 	return gulp.watch(['css/**/*.css', 'sass/**/*.scss'], ['sass-dev']);
 });
 
