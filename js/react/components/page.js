@@ -1,6 +1,7 @@
 import AjaxComponent from './base/ajaxComponent';
-import EventList from './events/list';
+import List from './list';
 import Contact from './form/contact'
+import Slider from "./slider/slider";
 
 export default class Page extends AjaxComponent {
 
@@ -10,18 +11,21 @@ export default class Page extends AjaxComponent {
 
     render(){
         let page = this.props.page;
-        if(page == "evento"){
-            return <EventList navigate={this.props.navigate} />
-        } else if(page == "galeria"){
+        switch (page) {
+            case 'evento':
+            case 'post':
+            case 'eagora':
+                return <List navigate={this.props.navigate} type={page} />
+                break;
+            case 'coluna':
+                // TODO
+                break;
+            case 'contato':
+                return <Contact />
+                break;
+            default:
+                return <Slider />
 
-        } else if(page == "post"){
-
-        } else if(page == "coluna"){
-
-        } else if(page == "eagora"){
-
-        } else if(page == "contato"){
-            return <Contact />
         }
     }
 }

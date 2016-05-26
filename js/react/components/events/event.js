@@ -14,18 +14,23 @@ export default class Event extends React.Component{
     }
 
     render(){
+        let img;
+        if(this.state.img){
+            img = <div className="image pull-left">
+                    <a onClick={this.navigate.bind(this, this.props)}>
+                        <img className="img-responsive" src={this.state.img} />
+                    </a>
+                </div>;
+            }
         return (
             <li>
                 <div>
-                    <div className="image pull-left">
-                        <a onClick={this.navigate.bind(this, this.props)}>
-                            <img src="http://lorempixel.com/400/200/" />
-                        </a>
-                    </div>
+                    {img}
                     <time dateTime={this.state.date}>
                         {Util.formatDate(new Date(this.state.date))}
                     </time>
-                        <h1>{this.state.title.rendered}</h1>
+                    <h1>{this.state.title}</h1>
+                    <h2>{this.state.place}</h2>
                 </div>
             </li>
         );

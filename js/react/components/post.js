@@ -1,6 +1,7 @@
 import AjaxComponent from './base/ajaxComponent';
 import LoadingComponent from './generic/loading';
 import PostComponent from './post/postComponent';
+import EventComponent from './events/eventComponent';
 
 export default class Post extends AjaxComponent {
     constructor(props){
@@ -19,7 +20,7 @@ export default class Post extends AjaxComponent {
 
     getElementByType(post_type){
         if(post_type == "evento"){
-            //TODO
+            return <EventComponent {...this.state.post} />;
         } else if(post_type == "post"){
             return <PostComponent {...this.state.post} />;
         }

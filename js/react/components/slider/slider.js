@@ -9,7 +9,6 @@ export default class Slider extends AjaxComponent {
         this.state = {items:[]};
         this.loadApi('cover', (err, items)=>{
             if(!err){
-                console.log(items.posts);
                 this.setState({items:items.posts});
             }
         });

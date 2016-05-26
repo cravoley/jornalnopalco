@@ -13,25 +13,41 @@ export default class App extends React.Component{
         super(props);
         this.state = props.configuration;
         this.navigate = this.navigate.bind(this);
+
+        window.onpopstate = function (e) {
+            if(e.state && e.state.state){
+                this.setState(e.state.state);
+            };
+        }.bind(this);
     }
 
     navigate(opts){
-        console.log(opts.link, opts.page);
+        let currentState = this.state;
+        if(opts.id){
+            currentState.id = opts.id;
+            currentState.isSingle  = true;
+            currentState.isPage  = false;
+            currentState.page  = null;
+        } else if(opts.page && opts.page != 'home'){
+            currentState.id = null;
+            currentState.isSingle  = false;
+            currentState.page  = opts.page;
+            currentState.isPage  = true;
+        } else {
+            currentState.id = null;
+            currentState.isSingle  = false;
+            currentState.page  = null;
+            currentState.isPage  = false;
+        }
+
         if(opts.link){
-            if(typeof history.pushState == "function"){
-                history.pushState(null, (opts.title ? opts.title:""), opts.link);
+            if(typeof window.history.pushState == "function"){
+                history.pushState({state:currentState}, null, opts.link);
             } else {
                 window.location = opts.link;
             }
         }
-        console.log(this);
-        if(opts.id){
-            this.setState({id:opts.id, isSingle:true});
-        } else if(opts.page && opts.page != 'home'){
-            this.setState({id:null, isSingle:false, page:opts.page, isPage:true})
-        } else {
-            this.setState({isSingle:false, isPage:false, page:null});
-        }
+        this.setState(currentState);
     }
 
     render(){
@@ -52,7 +68,6 @@ export default class App extends React.Component{
                 <Footer navigate={this.navigate}  />
             </div>
         )
-        ;
     }
 }
 
