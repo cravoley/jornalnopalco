@@ -7,15 +7,17 @@ export default class Page extends AjaxComponent {
 
     constructor(props){
         super(props);
+        this.state = {page:this.props.page};
+        console.log("OI", this.props.page);
     }
 
     render(){
-        let page = this.props.page;
+        let page = this.state.page;
         switch (page) {
             case 'evento':
             case 'post':
             case 'eagora':
-                return <List navigate={this.props.navigate} type={page} />
+                return <List navigate={this.props.navigate} type={this.state.page} />
                 break;
             case 'coluna':
                 // TODO

@@ -53,9 +53,9 @@ export default class App extends React.Component{
     render(){
         let element;
         if(this.state.isSingle == true){
-            element = <Post id={this.state.id} navigate={this.navigate} />
+            element = <Post key={this.state.id} id={this.state.id} navigate={this.navigate} />
         } else if(this.state.isPage == true){
-            element = <Page page={this.state.page} navigate={this.navigate} />
+            element = <Page key={this.state.page} page={this.state.page} navigate={this.navigate} />
         } else {
             element = <Slider layout="cover" navigate={this.navigate} />
         }

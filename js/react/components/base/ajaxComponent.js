@@ -49,6 +49,8 @@ export default class AjaxComponent extends React.Component{
                 return '/jpapi/post';
             case 'evento':
                 return '/jpapi/event';
+            case 'places':
+                return '/jpapi/places';
             default:
                 return "/";
 
