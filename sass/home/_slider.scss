@@ -1,0 +1,22 @@
+.slider {
+    .slide {
+        position: relative;
+        float: left;
+        .categories {
+            position: absolute;
+            top:5px;
+            left:0;
+            .category{
+                padding:5px;
+                margin: 5px;
+                background-color: #fff;
+            }
+        }
+
+        h1 {
+            position: absolute;
+            bottom: 0;
+            left:0;
+        }
+    }
+}

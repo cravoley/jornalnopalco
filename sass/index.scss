@@ -10,8 +10,12 @@ body {
 @import "menu/large";
 @import "menu/small";
 
+@import "home/slider";
+
 @import "event/cover";
 @import "event/list";
+
+@import "contact/form";
 
 // actual content
 div.content {
