@@ -14,7 +14,7 @@ var devTasks = ['clean', 'compress-js-dev', 'sass-dev'];
 var prodTasks = ['clean', 'compress-js', 'sass', 'minify-css', 'cdn'];
 
 
-gulp.task('default', ['bower', 'dev-css','dev-js'], function () {
+gulp.task('default', ['bower', 'dev-css'], function () {
 });
 gulp.task('clean', function () {
 	return del([
