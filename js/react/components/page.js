@@ -8,7 +8,6 @@ export default class Page extends AjaxComponent {
     constructor(props){
         super(props);
         this.state = {page:this.props.page};
-        console.log("OI", this.props.page);
     }
 
     render(){
@@ -23,7 +22,7 @@ export default class Page extends AjaxComponent {
                 // TODO
                 break;
             case 'contato':
-                return <Contact />
+                return <Contact baseUrl={this.props.baseUrl} />
                 break;
             default:
                 return <Slider />
