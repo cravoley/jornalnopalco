@@ -5,7 +5,6 @@ import Post from './components/post';
 import Page from './components/page'
 import Header from './layout/header';
 import Footer from './layout/footer';
-import Bootstrap from 'bootstrap';
 
 
 export default class App extends React.Component{
@@ -14,11 +13,11 @@ export default class App extends React.Component{
         this.state = props.configuration;
         this.navigate = this.navigate.bind(this);
 
-        window.onpopstate = function (e) {
-            if(e.state && e.state.state){
-                this.setState(e.state.state);
-            };
-        }.bind(this);
+        // Bind to StateChange Event
+        History.Adapter.bind(window,'statechange',() => { // Note: We are using statechange instead of popstate
+            var State = History.getState(); // Note: We are using History.getState() instead of event.state
+            this.setState(State.data);
+        });
     }
 
     navigate(opts){
@@ -41,11 +40,7 @@ export default class App extends React.Component{
         }
 
         if(opts.link){
-            if(typeof window.history.pushState == "function"){
-                history.pushState({state:currentState}, null, opts.link);
-            } else {
-                window.location = opts.link;
-            }
+            History.pushState(currentState, (opts.title || null), opts.link);
         }
         this.setState(currentState);
     }
@@ -53,11 +48,11 @@ export default class App extends React.Component{
     render(){
         let element;
         if(this.state.isSingle == true){
-            element = <Post key={this.state.id} id={this.state.id} navigate={this.navigate} />
+            element = <Post key={this.state.id} id={this.state.id} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
         } else if(this.state.isPage == true){
-            element = <Page key={this.state.page} page={this.state.page} navigate={this.navigate} />
+            element = <Page key={this.state.page} page={this.state.page} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
         } else {
-            element = <Slider layout="cover" navigate={this.navigate} />
+            element = <Slider layout="cover" navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
         }
         return(
             <div>

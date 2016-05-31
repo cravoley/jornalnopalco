@@ -25,7 +25,7 @@ export default class Page extends AjaxComponent {
                 return <Contact baseUrl={this.props.baseUrl} />
                 break;
             default:
-                return <Slider />
+                return <Slider navigate={this.props.navigate}  />
 
         }
     }

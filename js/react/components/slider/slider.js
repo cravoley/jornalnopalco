@@ -22,12 +22,15 @@ export default class Slider extends AjaxComponent {
                     id={item.id}
                     title={item.title}
                     link={item.link}
+                    img={item.img}
+                    type={item.type}
+                    categories={item.categories}
                     navigate={this.props.navigate}
                     />
             );
         }.bind(this));
         return(
-            <div>
+            <div className="slider">
                 {slider}
             </div>
         );

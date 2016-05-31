@@ -33,11 +33,11 @@ export default class Post extends AjaxComponent {
         } else {
             element = this.getElementByType(this.state.post.post_type);
         }
+
         return(
             <div>
                 {element}
             </div>
         )
-
     }
 }

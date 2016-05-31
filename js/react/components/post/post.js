@@ -2,9 +2,6 @@ import React from 'react';
 import Util from '../../util';
 
 
-/**
-*   Class used to display a post on list.js
-*/
 export default class Post extends React.Component{
 
     constructor(props){
@@ -20,7 +17,7 @@ export default class Post extends React.Component{
         let img;
         if(this.state.img){
             img = <div className="image pull-left">
-                    <a onClick={this.navigate.bind(this, this.props)}>
+                    <a onClick={this.navigate.bind(this, this.props)} href="javascript:void(0);">
                         <img className="img-responsive" src={this.state.img} />
                     </a>
                 </div>;
@@ -29,11 +26,13 @@ export default class Post extends React.Component{
             <li>
                 <div>
                     {img}
-                    <time dateTime={this.state.date}>
-                        {Util.formatDate(new Date(this.state.date))}
-                    </time>
-                    <h1>{this.state.title}</h1>
-                    <h2>{this.state.place}</h2>
+                    <a onClick={this.navigate.bind(this, this.props)} href="javascript:void(0);">
+                        <time dateTime={this.state.date}>
+                            {Util.formatDate(new Date(this.state.post_date))}
+                        </time>
+                        <h1>{this.state.title}</h1>
+                        <h2>{this.state.place}</h2>
+                    </a>
                 </div>
             </li>
         );
