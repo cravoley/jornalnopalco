@@ -182,4 +182,27 @@
             echo $out;
     }
 
+
+
+add_filter("image_send_to_editor", "filter_pasted_images", 2, 8);
+
+function filter_pasted_images($html, $id, $caption, $title, $align, $url, $size, $alt)
+{
+    if (preg_match('/(<a.*?)(class=".*">)/', $html)) {
+        $html = preg_replace('/(<a.*? class=")(.*?")(.*?\/?>)/', '$1 ' . "html5lightbox" . ' $2 data-group="articleContent" $3', $html);
+    } else {
+        $html = preg_replace('/(<a.*?)(.*?>)/', '$1 class="' . "html5lightbox" . '" data-group="articleContent" $2', $html);
+    }
+
+
+    if (preg_match('/<img.*? class=".*?".\/>/', $html)) {
+        $html = preg_replace('/(<img.*? class=")(.*?")(.*?\/?>)/', '$1' . "img-responsive" . ' $2 $3', $html);
+    } else {
+        $html = preg_replace('/(<img.*?).\/?>/', '$1 class="' . "img-responsive" . '" />', $html);
+    }
+
+    return $html;
+}
+
+
 ?>
