@@ -26,7 +26,8 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel',
       query: {
-        "presets": ["es2015","react", "stage-0", "react-hmre"]
+        "presets": ["es2015","react", "stage-0", "react-hmre"],
+         "plugins": ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
       }
     }, {
       test: /\.json?$/,
