@@ -50,6 +50,7 @@ export default class Header extends React.Component {
 
     render(){
         var logoUrl = this.props.templateUrl.concat('/img/logo.png');
+        let { page } = this.state;
         return(
             <header className="navbar-fixed-top">
                 <div className="container-fluid">
@@ -69,13 +70,13 @@ export default class Header extends React.Component {
                             </div>
                             <div className="collapse navbar-collapse navigation" id="awdawdawdaw">
                                 <ul className="nav nav-pills">
-                                    <li role="presentation" className={this.state.page == "home" || this.state.page == "" ? "active":""}><a onClick={this.navigate.bind(this,'home')} href="javascript:void(0);">Home</a></li>
-                                    <li role="presentation" className={this.state.page == "evento" ? "active":""}><a onClick={this.navigate.bind(this,'evento')} href="javascript:void(0);">Eventos</a></li>
-                                    <li role="presentation" className={this.state.page == "galeria" ? "active":""}><a onClick={this.navigate.bind(this,'galeria')} href="javascript:void(0);">Galerias</a></li>
-                                    <li role="presentation" className={this.state.page == "post" ? "active":""}><a onClick={this.navigate.bind(this,'post')} href="javascript:void(0);">Notícias</a></li>
-                                    <li role="presentation" className={this.state.page == "coluna" ? "active":""}><a onClick={this.navigate.bind(this,'coluna')} href="javascript:void(0);">Colunas</a></li>
-                                    <li role="presentation" className={this.state.page == "eagora" ? "active":""}><a onClick={this.navigate.bind(this,'eagora')} href="javascript:void(0);">E Agora?</a></li>
-                                    <li role="presentation" className={this.state.page == "contato" ? "active":""}><a onClick={this.navigate.bind(this,'contato')} href="javascript:void(0);">Contato</a></li>
+                                    <li role="presentation" className={page == "home" || page == "" ? "active":""}><a onClick={this.navigate.bind(this,'home')} href="javascript:void(0);">Home</a></li>
+                                    <li role="presentation" className={page == "evento" ? "active":""}><a onClick={this.navigate.bind(this,'evento')} href="javascript:void(0);">Eventos</a></li>
+                                    <li role="presentation" className={page == "galeria" ? "active":""}><a onClick={this.navigate.bind(this,'galeria')} href="javascript:void(0);">Galerias</a></li>
+                                    <li role="presentation" className={page == "post" ? "active":""}><a onClick={this.navigate.bind(this,'post')} href="javascript:void(0);">Notícias</a></li>
+                                    <li role="presentation" className={page == "coluna" || page == "colunistas" ? "active":""}><a onClick={this.navigate.bind(this,'colunistas')} href="javascript:void(0);">colunistas</a></li>
+                                    <li role="presentation" className={page == "eagora" ? "active":""}><a onClick={this.navigate.bind(this,'eagora')} href="javascript:void(0);">E Agora?</a></li>
+                                    <li role="presentation" className={page == "contato" ? "active":""}><a onClick={this.navigate.bind(this,'contato')} href="javascript:void(0);">Contato</a></li>
                                 </ul>
                             </div>
                         </div>

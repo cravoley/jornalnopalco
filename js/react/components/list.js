@@ -1,10 +1,11 @@
-import List from './base/listComponent';
-import Post from './post/post';
+import Colunista from './coluna/colunista';
 import Event from './events/event';
 import EventFilter from './events/filter';
+import AjaxComponent from './base/ajaxComponent';
 import LoadingComponent from './generic/loading';
+import Post from './post/post';
 
-export default class EventList extends List {
+export default class EventList extends AjaxComponent {
     constructor(props){
         super(props);
         this.state = {loading:true, list:[], type:props.type};
@@ -26,14 +27,17 @@ export default class EventList extends List {
     }
 
     renderPostList(){
-        if(this.state.loading == true){
+        let { type, loading } = this.state;
+        if(loading == true){
             return <LoadingComponent />
         } else {
             var postList = this.state.list.map((item) => {
-                if(this.state.type == "evento"){
+                if(type == "evento"){
                     return <Event key={item.id} content={item} navigate={this.props.navigate} />;
-                } else if(this.state.type == 'post'){
+                } else if(type == 'post'){
                     return <Post key={item.id} content={item} navigate={this.props.navigate} />;
+                } else if(type == "colunistas"){
+                    return <Colunista key={item.id} content={item} navigate={this.props.navigate} />;
                 }
                 // TODO: outros tipos de posts
             });

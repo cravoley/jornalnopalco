@@ -3,6 +3,8 @@ import List from './list';
 import Contact from './form/contact'
 import Slider from "./slider/slider";
 
+
+
 export default class Page extends AjaxComponent {
 
     constructor(props){
@@ -15,12 +17,15 @@ export default class Page extends AjaxComponent {
         switch (page) {
             case 'evento':
             case 'post':
+            case 'colunistas':
             case 'eagora':
                 return <List navigate={this.props.navigate} type={this.state.page} />
                 break;
             case 'coluna':
                 // TODO
                 break;
+            case 'colunistas':
+
             case 'contato':
                 return <Contact baseUrl={this.props.baseUrl} />
                 break;
