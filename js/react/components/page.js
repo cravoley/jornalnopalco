@@ -1,6 +1,7 @@
 import AjaxComponent from './base/ajaxComponent';
-import List from './list';
 import Contact from './form/contact'
+import List from './list';
+import ListaColunista from './coluna/listaColunista';
 import Slider from "./slider/slider";
 
 
@@ -19,13 +20,10 @@ export default class Page extends AjaxComponent {
             case 'post':
             case 'colunistas':
             case 'eagora':
-                return <List navigate={this.props.navigate} type={this.state.page} />
+                return <List navigate={this.props.navigate} type={this.state.page} opts={this.props.opts} />
                 break;
             case 'coluna':
-                // TODO
-                break;
-            case 'colunistas':
-
+                return <ListaColunista navigate={this.props.navigate} type={this.state.page} opts={this.props.opts} />
             case 'contato':
                 return <Contact baseUrl={this.props.baseUrl} />
                 break;

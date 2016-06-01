@@ -1,7 +1,8 @@
 import AjaxComponent from './base/ajaxComponent';
+import ColunaPostComponent from './coluna/colunaPostComponent';
+import EventComponent from './events/eventComponent';
 import LoadingComponent from './generic/loading';
 import PostComponent from './post/postComponent';
-import EventComponent from './events/eventComponent';
 
 export default class Post extends AjaxComponent {
     constructor(props){
@@ -19,11 +20,14 @@ export default class Post extends AjaxComponent {
     }
 
     getElementByType(post_type){
-        if(post_type == "evento"){
+        if("evento" == post_type){
             return <EventComponent {...this.state.post} />;
-        } else if(post_type == "post"){
+        } else if("post" == post_type){
             return <PostComponent {...this.state.post} />;
+        } else if("coluna" == post_type){
+            return <ColunaPostComponent {...this.state.post} colunista={this.props.opts.colunista} />;
         }
+
     }
 
     render(){

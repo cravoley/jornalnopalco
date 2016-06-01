@@ -5,11 +5,7 @@ const imgRegex = /<a.*?(href="(.*?(\.(jpg|png|bmp))")).*?>(<img .*? src="(.*?(\.
 
 
 export default class PostComponent extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {modalImage:null, modalDisplay:false};
-    }
-
+    
     html(){
         let { content } = this.props;
         // var img = [];

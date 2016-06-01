@@ -5,7 +5,7 @@ import AjaxComponent from './base/ajaxComponent';
 import LoadingComponent from './generic/loading';
 import Post from './post/post';
 
-export default class EventList extends AjaxComponent {
+export default class List extends AjaxComponent {
     constructor(props){
         super(props);
         this.state = {loading:true, list:[], type:props.type};

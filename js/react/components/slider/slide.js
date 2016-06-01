@@ -7,7 +7,8 @@ export default class Slide extends Navigable {
         super(props);
     }
 
-    navigate(props){
+    navigate(e){
+        e.preventDefault();
         let {id, link} = this.props;
         this.props.navigate({id, link});
     }
@@ -23,7 +24,7 @@ export default class Slide extends Navigable {
                     <img src={this.props.img} />
                     <div className="categories">{categories}</div>
                     <h1>
-                        <a onClick={this.navigate}>
+                        <a onClick={this.navigate} href={this.props.link}>
                         {this.props.title}
                         </a>
                     </h1>

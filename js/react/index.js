@@ -38,6 +38,7 @@ export default class App extends React.Component{
             currentState.page  = null;
             currentState.isPage  = false;
         }
+        currentState.opts = opts;
 
         if(opts.link){
             History.pushState(currentState, (opts.title || null), opts.link);
@@ -48,11 +49,11 @@ export default class App extends React.Component{
     render(){
         let element;
         if(this.state.isSingle == true){
-            element = <Post key={this.state.id} id={this.state.id} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
+            element = <Post key={this.state.id} opts={this.state.opts} id={this.state.id} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
         } else if(this.state.isPage == true){
-            element = <Page key={this.state.page} page={this.state.page} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
+            element = <Page key={this.state.page} opts={this.state.opts} page={this.state.page} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
         } else {
-            element = <Slider layout="cover" navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
+            element = <Slider layout="cover" opts={this.state.opts} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
         }
         return(
             <div>

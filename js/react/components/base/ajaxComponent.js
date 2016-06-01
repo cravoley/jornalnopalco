@@ -40,23 +40,24 @@ export default class AjaxComponent extends React.Component{
     }
 
     getEndpointPath(endpoint){
-
-        switch (endpoint) {
-            case "cover":
-                return '/jpapi/cover';
-                break;
-            case 'post':
-                return '/jpapi/post';
-            case 'evento':
-                return '/jpapi/event';
-            case 'places':
-                return '/jpapi/places';
-            case 'colunistas':
-                return '/jpapi/colunistas';
-            default:
-                return "/";
-
-        }
+        return '/jpapi/'+endpoint;
+        // switch (endpoint) {
+        //     case "cover":
+        //         return '/jpapi/cover';
+        //         break;
+        //     case 'post':
+        //         return '/jpapi/post';
+        //     case 'evento':
+        //         return '/jpapi/event';
+        //     case 'places':
+        //         return '/jpapi/places';
+        //     case 'colunistas':
+        //         return '/jpapi/colunistas';
+        //     case 'coluna'
+        //     default:
+        //         return "/";
+        //
+        // }
     }
 
     formatParameters(params){
