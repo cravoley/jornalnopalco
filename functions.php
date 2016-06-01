@@ -204,5 +204,21 @@ function filter_pasted_images($html, $id, $caption, $title, $align, $url, $size,
     return $html;
 }
 
+function get_author_nicename($author="", $metafield="user_nicename")
+{
+    if (empty($author)) $author = get_query_var("author");
+    if (in_the_loop()) {
+        $authorId = get_the_author_meta("ID");
+    } else if (!empty($author)) {
+        if (is_numeric($author)) {
+            $authorId = $author;
+        } else {
+            $a = get_user_by("slug", $author);
+            $authorId = $a->ID;
+        }
+    }
+    return get_the_author_meta($metafield, $authorId);
+}
+
 
 ?>
