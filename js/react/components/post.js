@@ -1,6 +1,7 @@
 import AjaxComponent from './base/ajaxComponent';
 import ColunaPostComponent from './coluna/colunaPostComponent';
 import EventComponent from './events/eventComponent';
+import GaleryPostComponent from './galery/galeryPostComponent';
 import LoadingComponent from './generic/loading';
 import PostComponent from './post/postComponent';
 
@@ -26,6 +27,8 @@ export default class Post extends AjaxComponent {
             return <PostComponent {...this.state.post} />;
         } else if("coluna" == post_type){
             return <ColunaPostComponent {...this.state.post} colunista={this.props.opts.colunista} />;
+        } else if("galeria" == post_type){
+            return <GaleryPostComponent {...this.state.post} />
         }
 
     }

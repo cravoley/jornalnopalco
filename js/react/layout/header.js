@@ -77,6 +77,8 @@ export default class Header extends React.Component {
                                     <li role="presentation" className={page == "coluna" || page == "colunistas" ? "active":""}><a onClick={this.navigate.bind(this,'colunistas')} href="javascript:void(0);">Colunistas</a></li>
                                     <li role="presentation" className={page == "eagora" ? "active":""}><a onClick={this.navigate.bind(this,'eagora')} href="javascript:void(0);">E Agora?</a></li>
                                     <li role="presentation" className={page == "contato" ? "active":""}><a onClick={this.navigate.bind(this,'contato')} href="javascript:void(0);">Contato</a></li>
+                                    <li role="presentation" className={page == "cinema" ? "active":""}><a onClick={this.navigate.bind(this,'cinema')} href="javascript:void(0);">Cinema</a></li>
+                                    <li role="presentation" className={page == "promocoes" ? "active":""}><a onClick={this.navigate.bind(this,'promocoes')} href="javascript:void(0);">Promoções</a></li>
                                 </ul>
                             </div>
                         </div>

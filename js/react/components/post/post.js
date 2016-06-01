@@ -28,7 +28,7 @@ export default class Post extends React.Component{
                 <div>
                     {img}
                     <a onClick={this.navigate.bind(this)} href={this.state.link}>
-                        <time dateTime={this.state.date}>
+                        <time dateTime={this.state.post_date}>
                             {Util.formatDate(new Date(this.state.post_date))}
                         </time>
                         <h1>{this.state.title}</h1>
