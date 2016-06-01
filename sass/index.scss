@@ -5,6 +5,9 @@ body {
   background-color: $background_color;
   //padding-top: 165px;
 }
+#html5-watermark {
+  display: none !important;
+}
 
 @import 'menu/common';
 @import "menu/large";
