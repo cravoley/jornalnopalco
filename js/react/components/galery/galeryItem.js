@@ -22,7 +22,7 @@ export default class GaleryItem extends Component {
                     </div>
         }
         return(
-            <div className="col-xs-4" onClick={this.navigate}>
+            <div className="col-xs-4 animated fadeInRightBig" onClick={this.navigate}>
                 {img                    }
                 <time dateTime={date}>
                     {Util.formatDate(new Date(date))}

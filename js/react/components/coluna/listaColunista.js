@@ -1,31 +1,46 @@
 import AjaxComponent from '../base/ajaxComponent';
+import InifiteScroll from '../infiniteScroll/infiniteScroll';
 import LoadingComponent from '../generic/loading';
-import PostList from './postList';
+import PostListItem from './postListItem';
 import Sidebar from './sidebar';
 
 
 export default class ListaColunista extends AjaxComponent {
     constructor(props){
         super(props);
-        this.state = {loading:true, list:[], type:props.type};
-        let { colunista } = this.props.opts;
-        this.loadPosts({colunista});
+        this.state = {loading:true, list:[]};
     }
 
-    loadPosts(filters){
-        this.loadApi(this.state.type, (err, data)=>{
-            // TODO: handle exception
-            if(err) throw err;
-            this.setState({list:data.posts, loading:false});
-        }, filters || {});
+    loadItems = (
+        {
+            callback=()=>{return;},
+            page=0
+        }) => {
+            this.loadApi(`${this.props.type}/${this.props.opts.colunista}/${page}`, (err, data)=>{
+                    let { full=false, posts=[] } = data || {};
+                    if(!err){
+                        let list= this.state.list.concat(posts);
+                        this.setState({list, loading:false});
+                        callback({hasMore:full});
+                    }
+                });
     }
 
     renderPostList(){
-        let { type, loading } = this.state;
+        let { type, loading, list } = this.state;
         if(loading == true){
-            return <LoadingComponent />
+            return;
         } else {
-            return <PostList colunista={this.props.opts.colunista} posts={this.state.list} navigate={this.props.navigate} />
+            let postList = list.map((post)=>{
+                return (<li key={post.id}>
+                    <PostListItem {...post} colunista={this.props.opts.colunista} navigate={this.props.navigate} />
+                </li>);
+            });
+            return <div class="col-sm-8 col-xs-12">
+                <ul>
+                    {postList.length > 0 ? postList : <li>Não existem posts</li>}
+                </ul>
+            </div>
         }
     }
 
@@ -33,7 +48,11 @@ export default class ListaColunista extends AjaxComponent {
 
         return(
             <div className="row">
-                {this.renderPostList()}
+                <div className="col-xs-12 col-sm-8">
+                    <InifiteScroll loadItemCallback={this.loadItems} page={0}>
+                        {this.renderPostList()}
+                    </InifiteScroll>
+                </div>
                 <Sidebar colunista={this.props.opts.colunista} />
             </div>
         );

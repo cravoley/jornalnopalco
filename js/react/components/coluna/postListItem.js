@@ -18,7 +18,7 @@ export default class PostListItem extends Component {
     render(){
         let { title, link, author, content, post_date } = this.props;
         return(
-            <div onClick={this.navigate.bind(this)}>
+            <div onClick={this.navigate.bind(this)} className="animated fadeInUp">
                 <time dateTime={post_date}>
                     {Util.formatDate(new Date(post_date))}
                 </time>

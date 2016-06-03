@@ -8,13 +8,10 @@ import PostComponent from './post/postComponent';
 export default class Post extends AjaxComponent {
     constructor(props){
         super(props);
-        this.loadApi('post', (err, item)=>{
+        this.loadApi(`post/post/${this.props.id}`, (err, item)=>{
             if(!err){
                 this.setState({post:item, loading:false});
             }
-        },
-        {
-            "id":this.props.id
         }
         );
         this.state = {loading:true, type:""};

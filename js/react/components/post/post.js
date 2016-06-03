@@ -25,7 +25,7 @@ export default class Post extends React.Component{
             }
         return (
             <li>
-                <div>
+                <div className="animated fadeInUp">
                     {img}
                     <a onClick={this.navigate.bind(this)} href={this.state.link}>
                         <time dateTime={this.state.post_date}>

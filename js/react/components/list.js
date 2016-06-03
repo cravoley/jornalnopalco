@@ -1,43 +1,72 @@
+import AjaxComponent from './base/ajaxComponent';
 import Colunista from './coluna/colunista';
 import Event from './events/event';
 import EventFilter from './events/filter';
-import AjaxComponent from './base/ajaxComponent';
+import InifiteScroll from './infiniteScroll/infiniteScroll';
 import LoadingComponent from './generic/loading';
 import Post from './post/post';
 
 export default class List extends AjaxComponent {
     constructor(props){
         super(props);
-        this.state = {loading:true, list:[], type:props.type};
-        this.loadPosts();
+        this.state = {list:[], loading:true, filters:{}};
+        // this.loadPosts();
         this.filter = this.filter.bind(this);
     }
 
-    loadPosts(filters){
-        this.loadApi(this.state.type, (err, data)=>{
-            // TODO: handle exception
-            if(err) throw err;
-            this.setState({list:data.posts, loading:false});
-        }, filters || {});
-    }
+    // loadPosts(filters){
+    //     this.loadApi(this.state.type, (err, data)=>{
+    //         // TODO: handle exception
+    //         if(err) throw err;
+    //         this.setState({list:data.posts, loading:false});
+    //     }, filters || {});
+    // }
 
     filter(filters){
-        this.setState({loading:true});
-        this.loadPosts(filters);
+        this.setState({filters, loading:true});
+        this.loadItems({clean:true, filters});
     }
 
+
+
+    loadItems = (
+        {
+            callback=()=>{return;},
+            page=0,
+            clean=false,
+            filters=this.state.filters
+        }) => {
+            this.loadApi(`${this.props.type}/page/${page}`,
+                (err, data)=> {
+                    let { full=false, posts=[] } = data || {};
+                    if(!err){
+                        let list;
+                        if(clean)
+                            list = posts;
+                        else
+                            list = this.state.list.concat(posts);
+                        this.setState({list, loading:false});
+                        callback({hasMore:full});
+                    }
+                },
+                filters);
+    }
+
+
+
     renderPostList(){
-        let { type, loading } = this.state;
+        let { type, navigate } = this.props;
+        let { loading, list } = this.state;
         if(loading == true){
-            return <LoadingComponent />
+            return;
         } else {
-            var postList = this.state.list.map((item) => {
+            var postList = list.map((item) => {
                 if(type == "evento"){
-                    return <Event key={item.id} content={item} navigate={this.props.navigate} />;
+                    return <Event key={item.id} content={item} navigate={navigate} />;
                 } else if(type == 'post'){
-                    return <Post key={item.id} content={item} navigate={this.props.navigate} />;
+                    return <Post key={item.id} content={item} navigate={navigate} />;
                 } else if(type == "colunistas"){
-                    return <Colunista key={item.id} content={item} navigate={this.props.navigate} />;
+                    return <Colunista key={item.id} content={item} navigate={navigate} />;
                 }
                 // TODO: outros tipos de posts
             });
@@ -54,13 +83,13 @@ export default class List extends AjaxComponent {
     }
 
     sidebar(){
-        if(this.state.type == "evento"){
+        if(this.props.type == "evento"){
             return <EventFilter filterCallback={this.filter} />
         }
     }
 
     hasSidebar(){
-        return (this.state.type == "evento");
+        return (this.props.type == "evento");
     }
 
     render(){
@@ -69,7 +98,9 @@ export default class List extends AjaxComponent {
             <div className="row">
                 {this.sidebar()}
                 <div className={this.hasSidebar() ? "col-xs-12 col-sm-8" : "col-xs-12" }>
-                    {this.renderPostList()}
+                    <InifiteScroll loadItemCallback={this.loadItems} loading={this.state.loading} page={0}>
+                        {this.renderPostList()}
+                    </InifiteScroll>
                 </div>
             </div>
         );
