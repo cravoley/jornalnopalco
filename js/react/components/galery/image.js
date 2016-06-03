@@ -18,7 +18,7 @@ export default class GalleryImage extends Component{
                     data-thumbnail={thumb}
                     data-description={title}
                     class="html5lightbox imageInside">
-                    <img class="img-responsive" src={thumb} alt={title}} />
+                    <img class="img-responsive" src={thumb} alt={title} />
                     <span class="thumbLabel sr-only">{title}</span>
                 </a>
                 </div>
