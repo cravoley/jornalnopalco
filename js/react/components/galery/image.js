@@ -5,6 +5,7 @@ export default class GalleryImage extends Component{
     constructor(props){
         super(props);
     }
+    
 
     render(){
         let { thumb, title, text, image } = this.props;

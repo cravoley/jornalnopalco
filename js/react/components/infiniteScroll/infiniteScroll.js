@@ -13,7 +13,7 @@ export default class InifiteScroll extends Component{
             data:[]
         };
         this.config = {
-            delay:500
+            delay:200
         };
         this.callLoadItems(this.state);
     }
@@ -111,7 +111,6 @@ export default class InifiteScroll extends Component{
         } else if(this.props.messageEmpty && this.state.isLoading == false){
             data = <div class="empty message">{this.props.messageEmpty}</div>
         }
-        console.log(data, this.state.isLoading);
         return(
             <div>
                 {!this.state.isLoading && <Waypoint onEnter={this._handleHeaderWaypoint} />}

@@ -14,6 +14,7 @@ export default class GaleryPostComponent extends AjaxComponent {
 
     componentDidMount(){
         $(".html5lightbox").html5lightbox();
+        console.log("mounted");
     }
 
     loadItems = ({callback, page}) => {
@@ -21,31 +22,20 @@ export default class GaleryPostComponent extends AjaxComponent {
             (err, data)=> {
                 let { full=false, pics=[] } = data || {};
                 if(!err){
-                    pics = this.state.pics.concat(pics);
-                    this.setState({pics});
-                    callback({hasMore:full});
+                    // pics = this.state.pics.concat(pics);
+                    // this.setState({pics});
+                    callback({hasMore:full, data:pics});
                 }
             });
     }
 
 
     render(){
-        let { pics } = this.state;
-        console.log(pics, this.state);
-        let images = pics.map((pic) => {
-            return <GalleryImage
-                    key={pic.id}
-                    thumb={pic.thumb}
-                    title={pic.captionTitle}
-                    text={pic.captionText}
-                    image={pic.image}
-                    />
-        });
         return(
             <article>
                 <h1>{this.props.title}</h1>
-                <InifiteScroll loadItemCallback={this.loadItems}>
-                {images}
+                <InifiteScroll loadData={this.loadItems} page={1} messageEmpty="Esta galeria de imagens ainda não possui fotos.">
+                    <GalleryImage />
                 </InifiteScroll>
             </article>
         )
