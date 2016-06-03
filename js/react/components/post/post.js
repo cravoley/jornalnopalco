@@ -6,20 +6,20 @@ export default class Post extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = props.content;
+        // this.state = props;
     }
 
     navigate(e){
         e.preventDefault();
-        this.props.navigate({id:this.state.id, link:this.state.link});
+        this.props.navigate({id:this.props.id, link:this.props.link});
     }
 
     render(){
         let img;
-        if(this.state.img){
+        if(this.props.img){
             img = <div className="image pull-left">
-                    <a onClick={this.navigate.bind(this)} href={this.state.link}>
-                        <img className="img-responsive" src={this.state.img} />
+                    <a onClick={this.navigate.bind(this)} href={this.props.link}>
+                        <img className="img-responsive" src={this.props.img} />
                     </a>
                 </div>;
             }
@@ -27,12 +27,12 @@ export default class Post extends React.Component{
             <li>
                 <div className="animated fadeInUp">
                     {img}
-                    <a onClick={this.navigate.bind(this)} href={this.state.link}>
-                        <time dateTime={this.state.post_date}>
-                            {Util.formatDate(new Date(this.state.post_date))}
+                    <a onClick={this.navigate.bind(this)} href={this.props.link}>
+                        <time dateTime={this.props.post_date}>
+                            {Util.formatDate(new Date(this.props.post_date))}
                         </time>
-                        <h1>{this.state.title}</h1>
-                        <h2>{this.state.place}</h2>
+                        <h1>{this.props.title}</h1>
+                        <h2>{this.props.place}</h2>
                     </a>
                 </div>
             </li>

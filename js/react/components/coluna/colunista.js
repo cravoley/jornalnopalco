@@ -10,24 +10,24 @@ export default class Colunista extends React.Component{
 
     navigate(e){
         e.preventDefault();
-        let { link, nice_name } = this.props.content;
+        let { link, nice_name } = this.props;
         this.props.navigate({link, page:"coluna", colunista: nice_name});
     }
 
     navigateLastPost = (e) => {
         e.preventDefault();
-        let { link, id} = this.props.content.lastPost || {};
-        this.props.navigate({link, id, colunista: this.props.content.nice_name});
+        let { link, id} = this.props.lastPost || {};
+        this.props.navigate({link, id, colunista: this.props.nice_name});
     }
 
     html = (content) => {return {"__html":content}};
 
     render(){
-        let { avatar, name, lastPost } = this.props.content;
+        let { avatar, name, lastPost } = this.props;
         let img;
         if(avatar){
             img = <div className="image pull-left">
-                    <a onClick={this.navigate.bind(this)} href={this.props.content.link}>
+                    <a onClick={this.navigate.bind(this)} href={this.props.link}>
                         <img className="img-responsive" src={avatar} />
                     </a>
                 </div>;
@@ -50,7 +50,7 @@ export default class Colunista extends React.Component{
             <li>
                 <div>
                     {img}
-                    <a href={this.props.content.link} onClick={this.navigate.bind(this)}>
+                    <a href={this.props.link} onClick={this.navigate.bind(this)}>
                         <h1>{name}</h1>
                     </a>
                     {post}

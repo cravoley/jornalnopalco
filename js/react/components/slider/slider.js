@@ -1,4 +1,5 @@
 import AjaxComponent from '../base/ajaxComponent';
+import Loading from '../generic/loading';
 import Slide from './slide';
 
 
@@ -6,10 +7,25 @@ export default class Slider extends AjaxComponent {
 
     constructor(props){
         super(props);
-        this.state = {items:[]};
+        this.state = {items:[], loading:true};
         this.loadApi('cover', (err, items)=>{
             if(!err){
-                this.setState({items:items.posts});
+                clearInterval(this.interval);
+                this.interval = setInterval(() => {
+                    // let { posts } = items || {};
+                    // console.log(posts);
+                    // console.log(items);
+                    if(items.posts.length > 0){
+                        let stateItems = this.state.items;
+                        let item = items.posts.shift();
+                        stateItems.push(item)
+                        // items.posts = posts;
+                        this.setState({items:stateItems});
+                    } else {
+                        clearInterval(this.interval);
+                        this.setState({loading:false});
+                    }
+                }, 500);
             }
         });
     }
@@ -19,12 +35,7 @@ export default class Slider extends AjaxComponent {
             return (
                 <Slide
                     key={item.id}
-                    id={item.id}
-                    title={item.title}
-                    link={item.link}
-                    img={item.img}
-                    type={item.type}
-                    categories={item.categories}
+                    {...item}
                     navigate={this.props.navigate}
                     />
             );
@@ -32,6 +43,7 @@ export default class Slider extends AjaxComponent {
         return(
             <div className="slider">
                 {slider}
+                {this.state.loading && <Loading />}
             </div>
         );
     }

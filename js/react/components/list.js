@@ -9,7 +9,7 @@ import Post from './post/post';
 export default class List extends AjaxComponent {
     constructor(props){
         super(props);
-        this.state = {list:[], loading:true, filters:{}};
+        this.state = {filters:{}, clean:false};
         // this.loadPosts();
         this.filter = this.filter.bind(this);
     }
@@ -23,8 +23,8 @@ export default class List extends AjaxComponent {
     // }
 
     filter(filters){
-        this.setState({filters, loading:true});
-        this.loadItems({clean:true, filters});
+        this.setState({filters, clean:true});
+        // this.loadItems({clean:true, filters});
     }
 
 
@@ -36,17 +36,18 @@ export default class List extends AjaxComponent {
             clean=false,
             filters=this.state.filters
         }) => {
+            console.log(filters);
             this.loadApi(`${this.props.type}/page/${page}`,
                 (err, data)=> {
                     let { full=false, posts=[] } = data || {};
                     if(!err){
-                        let list;
-                        if(clean)
-                            list = posts;
-                        else
-                            list = this.state.list.concat(posts);
-                        this.setState({list, loading:false});
-                        callback({hasMore:full});
+                        // let list;
+                        // if(clean)
+                        //     list = posts;
+                        // else
+                        //     list = this.state.list.concat(posts);
+                        // this.setState({data:list, loading:false});
+                        callback({hasMore:full, data:posts, clean});
                     }
                 },
                 filters);
@@ -92,15 +93,31 @@ export default class List extends AjaxComponent {
         return (this.props.type == "evento");
     }
 
-    render(){
+    getChildren(){
+        let { type } = this.props;
+        if(type == "evento"){
+            return <Event />;
+        } else if(type == 'post'){
+            return <Post />;
+        } else if(type == "colunistas"){
+            return <Colunista />;
+        }
+    }
 
+    render(){
         return(
             <div className="row">
                 {this.sidebar()}
                 <div className={this.hasSidebar() ? "col-xs-12 col-sm-8" : "col-xs-12" }>
-                    <InifiteScroll loadItemCallback={this.loadItems} loading={this.state.loading} page={0}>
-                        {this.renderPostList()}
-                    </InifiteScroll>
+                    <ul className="list-unstyled eventlist">
+                        <InifiteScroll
+                            clean={this.state.clean}
+                            loadData={this.loadItems}
+                            additionalProps={{navigate:this.props.navigate}}
+                            messageEmpty={`Nenhum ${this.props.type} encontrado para os termos buscados`}>
+                            {this.getChildren()}
+                        </InifiteScroll>
+                    </ul>
                 </div>
             </div>
         );

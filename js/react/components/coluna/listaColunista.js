@@ -11,6 +11,7 @@ export default class ListaColunista extends AjaxComponent {
         this.state = {loading:true, list:[]};
     }
 
+    // used by InifiteScroll
     loadItems = (
         {
             callback=()=>{return;},
@@ -19,29 +20,11 @@ export default class ListaColunista extends AjaxComponent {
             this.loadApi(`${this.props.type}/${this.props.opts.colunista}/${page}`, (err, data)=>{
                     let { full=false, posts=[] } = data || {};
                     if(!err){
-                        let list= this.state.list.concat(posts);
-                        this.setState({list, loading:false});
-                        callback({hasMore:full});
+                        // let list= this.state.list.concat(posts);
+                        // this.setState({list, loading:false});
+                        callback({hasMore:full, data:posts});
                     }
                 });
-    }
-
-    renderPostList(){
-        let { type, loading, list } = this.state;
-        if(loading == true){
-            return;
-        } else {
-            let postList = list.map((post)=>{
-                return (<li key={post.id}>
-                    <PostListItem {...post} colunista={this.props.opts.colunista} navigate={this.props.navigate} />
-                </li>);
-            });
-            return <div class="col-sm-8 col-xs-12">
-                <ul>
-                    {postList.length > 0 ? postList : <li>Não existem posts</li>}
-                </ul>
-            </div>
-        }
     }
 
     render(){
@@ -49,8 +32,8 @@ export default class ListaColunista extends AjaxComponent {
         return(
             <div className="row">
                 <div className="col-xs-12 col-sm-8">
-                    <InifiteScroll loadItemCallback={this.loadItems} page={0}>
-                        {this.renderPostList()}
+                    <InifiteScroll loadData={this.loadItems} additionalProps={{navigate:this.props.navigate}}>
+                        <PostListItem />
                     </InifiteScroll>
                 </div>
                 <Sidebar colunista={this.props.opts.colunista} />
