@@ -1,6 +1,8 @@
 import AjaxComponent from './base/ajaxComponent';
 import ColunaPostComponent from './coluna/colunaPostComponent';
 import EventComponent from './events/eventComponent';
+import EagoraComponent from './eagora/eagoraComponent';
+
 import GaleryPostComponent from './galery/galeryPostComponent';
 import LoadingComponent from './generic/loading';
 import PostComponent from './post/postComponent';
@@ -8,11 +10,11 @@ import PostComponent from './post/postComponent';
 export default class Post extends AjaxComponent {
     constructor(props){
         super(props);
-        this.loadApi(`post/post/${this.props.id}`, (err, item)=>{
-            if(!err){
-                this.setState({post:item, loading:false});
+        this.loadApi(`post/post/${this.props.id}`, (err, item)=> {
+                if(!err){
+                    this.setState({post:item, loading:false});
+                }
             }
-        }
         );
         this.state = {loading:true, type:""};
     }
@@ -26,9 +28,11 @@ export default class Post extends AjaxComponent {
             return <ColunaPostComponent {...this.state.post} colunista={this.props.opts.colunista} />;
         } else if("galeria" == post_type){
             return <GaleryPostComponent {...this.state.post} />
+        } else if("eagora" == post_type){
+            return <EagoraComponent {...this.state.post} templateUrl={this.props.templateUrl} />
         }
-
     }
+
 
     render(){
         var element;

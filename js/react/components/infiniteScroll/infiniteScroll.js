@@ -55,6 +55,7 @@ export default class InifiteScroll extends Component{
             }
         }, this.config.delay);
     }
+    
     componentWillUnmount(){
         clearInterval(this.interval);
     }

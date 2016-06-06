@@ -29,6 +29,10 @@ export default class Slider extends AjaxComponent {
             }
         });
     }
+    
+    componentWillUnmount(){
+        clearInterval(this.interval);
+    }
 
     render(){
         var slider = this.state.items.map(function(item){
