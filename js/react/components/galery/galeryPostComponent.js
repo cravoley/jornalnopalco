@@ -12,10 +12,14 @@ export default class GaleryPostComponent extends AjaxComponent {
         this.state = {pics:[]};
     }
 
-    componentDidMount(){
-        $(".html5lightbox").html5lightbox();
-        console.log("mounted");
-    }
+    // componentDidMount(){
+    //     $(".html5lightbox").html5lightbox();
+    //     // console.log(this.props.children);
+    // }
+    //
+    // componentDidUpdate(){
+    //     console.log("UP", this.props.children);
+    // }
 
     loadItems = ({callback, page}) => {
         this.loadApi(`galeria/${this.props.galeryId}/${page}`,

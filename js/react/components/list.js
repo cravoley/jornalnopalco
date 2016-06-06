@@ -36,7 +36,6 @@ export default class List extends AjaxComponent {
             clean=false,
             filters=this.state.filters
         }) => {
-            console.log(filters);
             this.loadApi(`${this.props.type}/page/${page}`,
                 (err, data)=> {
                     let { full=false, posts=[] } = data || {};
