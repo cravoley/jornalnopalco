@@ -37,7 +37,7 @@ export default class Header extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {page:props.page || ""};
+        this.state = {page:props.page || "", collapsed:"collapsed", displayMenu:""};
     }
 
     navigate(page){
@@ -46,11 +46,25 @@ export default class Header extends React.Component {
         this.setState({page});
         let linkPage = (page == "post") ? "noticias" : page;
         this.props.navigate({page:page, link:this.props.baseUrl+"/"+linkPage});
+        this.handleMenu(true);
+    }
+
+    handleMenu(hide){
+        if(hide === true){
+            this.setState({collapsed:"",displayMenu:""});
+        } else {
+            this.setState(
+                {
+                    collapsed:this.state.collapsed == "collapsed"?"":"collapsed",
+                    displayMenu:this.state.displayMenu == "in"?"":"in"
+                }
+            );
+        }
     }
 
     render(){
         var logoUrl = this.props.templateUrl.concat('/img/logo.png');
-        let { page } = this.state;
+        let { page, collapsed, displayMenu } = this.state;
         return(
             <header className="navbar-fixed-top">
                 <div className="container-fluid">
@@ -61,14 +75,14 @@ export default class Header extends React.Component {
                     <nav className="navbar col-md-8 col-xs-12">
                         <div className="">
                             <div className="navbar-header">
-                                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#awdawdawdaw" aria-expanded="false">
+                                <button type="button" className={`navbar-toggle ${collapsed}`} aria-expanded="false" onClick={this.handleMenu.bind(this)}>
                                     <span className="sr-only">Toggle navigation</span>
                                     <span className="icon-bar"></span>
                                     <span className="icon-bar"></span>
                                     <span className="icon-bar"></span>
                                 </button>
                             </div>
-                            <div className="collapse navbar-collapse navigation" id="awdawdawdaw">
+                            <div className={`collapse navbar-collapse navigation ${displayMenu}`} id="navigationMenu">
                                 <ul className="nav nav-pills">
                                     <li role="presentation" className={page == "home" || page == "" ? "active":""}><a onClick={this.navigate.bind(this,'home')} href="javascript:void(0);">Home</a></li>
                                     <li role="presentation" className={page == "evento" ? "active":""}><a onClick={this.navigate.bind(this,'evento')} href="javascript:void(0);">Eventos</a></li>
@@ -78,7 +92,7 @@ export default class Header extends React.Component {
                                     <li role="presentation" className={page == "eagora" ? "active":""}><a onClick={this.navigate.bind(this,'eagora')} href="javascript:void(0);">E Agora?</a></li>
                                     <li role="presentation" className={page == "contato" ? "active":""}><a onClick={this.navigate.bind(this,'contato')} href="javascript:void(0);">Contato</a></li>
                                     <li role="presentation" className={page == "cinema" ? "active":""}><a onClick={this.navigate.bind(this,'cinema')} href="javascript:void(0);">Cinema</a></li>
-                                    <li role="presentation" className={page == "promocoes" ? "active":""}><a onClick={this.navigate.bind(this,'promocoes')} href="javascript:void(0);">Promoções</a></li>
+                                    <li role="presentation" className={page == "cinema" ? "active":""}><a onClick={this.navigate.bind(this,'promocoes')} href="javascript:void(0);">Promoções</a></li>
                                 </ul>
                             </div>
                         </div>
