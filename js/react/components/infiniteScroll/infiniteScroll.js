@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Loading from '../generic/loading';
+import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 import Waypoint from 'react-waypoint';
 
 export default class InifiteScroll extends Component{
@@ -13,7 +14,7 @@ export default class InifiteScroll extends Component{
             data:[]
         };
         this.config = {
-            delay:200
+            delay:props.delay || 200
         };
         this.callLoadItems(this.state);
     }
@@ -55,7 +56,6 @@ export default class InifiteScroll extends Component{
             }
         }, this.config.delay);
     }
-    
     componentWillUnmount(){
         clearInterval(this.interval);
     }
@@ -116,7 +116,9 @@ export default class InifiteScroll extends Component{
             <div>
                 {!this.state.isLoading && <Waypoint onEnter={this._handleHeaderWaypoint} />}
                 <div className="clearfix"></div>
+                <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
                 {data}
+                </ReactCSSTransitionGroup>
                 <div className="clearfix"></div>
                 {!this.state.isLoading && <Waypoint onEnter={this._handleFooterWaypoint} />}
                 {this.state.isLoading && <Loading />}

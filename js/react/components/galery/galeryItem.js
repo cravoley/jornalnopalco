@@ -4,7 +4,6 @@ import Util from '../../util';
 export default class GaleryItem extends Component {
     constructor(props){
         super(props);
-        this.state = {loading:true, list:[], type:props.type};
     }
 
     navigate = (e) => {
@@ -14,18 +13,18 @@ export default class GaleryItem extends Component {
     }
 
     render(){
-        let { link, title, date, image } = this.props
+        let { link, title, post_date, thumb } = this.props
         let img;
-        if(image){
+        if(thumb){
             img = <div className="image pull-left">
-                        <img className="img-responsive" src={image} title={title} />
+                        <img className="img-responsive" src={thumb} title={title} />
                     </div>
         }
         return(
             <div className="col-xs-4 animated fadeInRightBig" onClick={this.navigate}>
                 {img                    }
-                <time dateTime={date}>
-                    {Util.formatDate(new Date(date))}
+                <time dateTime={post_date}>
+                    {Util.formatDate(new Date(post_date))}
                 </time>
                 <h1>
                     <a href={link}>

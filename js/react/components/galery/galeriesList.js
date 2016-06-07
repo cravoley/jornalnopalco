@@ -50,29 +50,6 @@ export default class GaleriesList extends AjaxComponent {
                 });
     }
 
-    renderPostList(){
-        let { loading } = this.state;
-        if(loading == true){
-            return <LoadingComponent />
-        } else {
-            var postList = this.state.tmp.map((item, count) => {
-                return <GaleryItem
-                    key={item.id}
-                    id={item.id}
-                    title={item.title}
-                    date={item.post_date}
-                    image={item.thumb}
-                    link={item.link}
-                    navigate={this.props.navigate} />
-            });
-            if(postList.length > 0){
-                return postList;
-            } else {
-                return <div className="noFound">Nenhum {this.props.type} encontrado para os termos buscados</div>;
-            }
-        }
-    }
-
     render(){
         return(
             <div className="row">

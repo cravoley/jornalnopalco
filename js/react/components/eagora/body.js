@@ -34,8 +34,7 @@ export default class PostComponent extends React.Component{
         let formatedDate = Util.formatDate(data);
         let { video, thumb } = this.props;
 
-        let player;
-        console.log(this.props.templateUrl);
+        let player;        
         if(thumb){
             player = <img src={thumb} />;
         } else {
@@ -49,9 +48,11 @@ export default class PostComponent extends React.Component{
                 <time dateTime={data}>
                     {formatedDate}
                 </time>
-                <a target="_blank" class="html5lightbox imageInside" href={video}>
-                    {player}
-                </a>
+                <div class="image">
+                    <a target="_blank" class="html5lightbox imageInside" href={video}>
+                        {player}
+                    </a>
+                </div>
 
                 <div className="body" dangerouslySetInnerHTML={this.html()} />
             </div>
