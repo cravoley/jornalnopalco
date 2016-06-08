@@ -2,7 +2,6 @@ import AjaxComponent from './base/ajaxComponent';
 import ColunaPostComponent from './coluna/colunaPostComponent';
 import EventComponent from './events/eventComponent';
 import EagoraComponent from './eagora/eagoraComponent';
-
 import GaleryPostComponent from './galery/galeryPostComponent';
 import LoadingComponent from './generic/loading';
 import PostComponent from './post/postComponent';
@@ -23,7 +22,7 @@ export default class Post extends AjaxComponent {
         if("evento" == post_type){
             return <EventComponent {...this.state.post} />;
         } else if("post" == post_type){
-            return <PostComponent {...this.state.post} />;
+            return <PostComponent {...this.state.post} navigate={this.props.navigate} />;
         } else if("coluna" == post_type){
             return <ColunaPostComponent {...this.state.post} colunista={this.props.opts.colunista} />;
         } else if("galeria" == post_type){
@@ -33,7 +32,6 @@ export default class Post extends AjaxComponent {
         }
     }
 
-
     render(){
         var element;
         if(this.state.loading == true){
@@ -42,10 +40,10 @@ export default class Post extends AjaxComponent {
             element = this.getElementByType(this.state.post.post_type);
         }
 
-        return(
-            <div>
-                {element}
+        return (
+            <div class={this.state.post?this.state.post.post_type:""}>
+            {element}
             </div>
-        )
+        );
     }
 }

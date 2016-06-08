@@ -75,7 +75,7 @@ export default class EventFilterComponent extends AjaxComponent {
                     <div className="row filter">
                         <div className="col-xs-12">
                             <h4 className="text-uppercase text-center">Local</h4>
-                            <ul>
+                            <ul className="list-unstyled place-filter">
                                 {places}
                             </ul>
                         </div>
