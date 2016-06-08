@@ -1,56 +1,21 @@
 @import "config";
+
+
 @import "annimation";
+/* generic rules */
+@import "generic/modal";
+@import "generic/generic";
 
-body {
-  background-color: $background_color;
-  //padding-top: 165px;
-}
-#html5-watermark {
-  display: none !important;
-}
+@import "contact/form";
+/* events */
+@import "event/cover";
+@import "event/list";
+/* footer */
+@import "home/slider";
+@import "post/news";
 
+/* header and footer */
+@import "footer/common";
 @import 'menu/common';
 @import "menu/large";
 @import "menu/small";
-
-@import "home/slider";
-
-@import "event/cover";
-@import "event/list";
-
-@import "contact/form";
-
-// actual content
-div.content {
-  border-right: 1px solid rgb(255, 255, 255);
-  border-right: 1px solid rgba(0, 0, 0, .2);
-  border-left: 1px solid rgb(255, 255, 255);
-  border-left: 1px solid rgba(0, 0, 0, .2);
-  -webkit-background-clip: padding-box; /* for Safari */
-  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
-  padding-top: 20px;
-  padding-bottom: 20px;
-  // min-height: 100%;
-  overflow: hidden;
-
-
-  div.thumb{
-      width: 160px;
-     height: 100px;
-     overflow: hidden;
-     a:hover{
-         img{
-             -webkit-transform:scale(1.25); /* Safari and Chrome */
-             -moz-transform:scale(1.25); /* Firefox */
-             -ms-transform:scale(1.25); /* IE 9 */
-             -o-transform:scale(1.25); /* Opera */
-              transform:scale(1.25);
-         }
-     }
-  }
-}
-
-
-@import "footer/common";
-
-@import "generic/modal";
