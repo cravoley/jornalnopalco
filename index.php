@@ -31,7 +31,7 @@ include_once("header.php");
     $configuration = array();
     $configuration["isSingle"] = is_single() ? true : false;
     $configuration["isPage"] = is_post_type_archive() ? true : get_post_type() == 'page' ? true : false;
-    $configuration["page"] = get_post_type() == 'page' ? get_post()->post_name : get_post_type();
+    $configuration["page"] = (get_post_type() == 'page' ? get_post()->post_name : $post_type);
     $configuration['templateUrl'] = get_template_directory_uri();
     $configuration['baseUrl'] = get_site_url();
     $configuration["id"] = get_the_id() ? get_the_id() : "";
