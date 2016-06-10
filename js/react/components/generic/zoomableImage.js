@@ -13,13 +13,13 @@ export default class ZoomableImage extends React.Component{
         let { thumb, fullImagePath, title } = this.props;
         if(thumb){
             return(
-            <a href={fullImagePath?fullImagePath:thumb}
-            data-description={title}
-            class="html5lightbox imageInside"
-            ref="html5lightbox">
-                <img class="img-responsive" src={thumb} alt={title} />
-                {title && <span class="thumbLabel sr-only">{title}</span>}
-            </a>);
+                <a href={fullImagePath?fullImagePath:thumb}
+                data-description={title}
+                class="html5lightbox imageInside"
+                ref="html5lightbox">
+                    <img class="img-responsive" src={thumb} alt={title} />
+                    {title && <span class="thumbLabel sr-only">{title}</span>}
+                </a>);
         }
         return null;
     }

@@ -29,7 +29,7 @@ export default class GaleryPostComponent extends AjaxComponent {
                     // pics = this.state.pics.concat(pics);
                     // this.setState({pics});
                     callback({hasMore:full, data:pics});
-                }
+                } else console.log(err);
             });
     }
 

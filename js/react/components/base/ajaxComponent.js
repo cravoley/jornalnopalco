@@ -18,16 +18,21 @@ export default class AjaxComponent extends React.Component{
             data:this.formatParameters(opts),
             dataType:"json",
             method:"GET",
-            success:function(data){
-                return callback(null, data);
-            }.bind(this),
+            // success:function(data){
+            //     return callback(null, data);
+            // }.bind(this),
             error:function(jqXHR, textStatus, error){
                 return callback({
                     message:textStatus,
                     error:error
                 });
             }.bind(this)
-        });
+        })
+            .then((data)=>callback(null, data),
+            (jqXHR, textStatus, error)=>callback({
+                message:textStatus,
+                error:error
+            }));
     }
 
     getEndpointUrl(endpoint){

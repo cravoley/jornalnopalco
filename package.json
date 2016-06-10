@@ -22,6 +22,10 @@
   },
   "homepage": "https://github.com/cravoley/jornalnopalco#readme",
   "dependencies": {
+    "axios": "0.12.0",
+    "classnames": "2.2.5",
+    "flux": "2.1.1",
+    "moment": "2.13.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-textarea-autosize": "4.0.2",
