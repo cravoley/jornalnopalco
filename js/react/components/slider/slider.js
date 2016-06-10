@@ -29,7 +29,7 @@ export default class Slider extends AjaxComponent {
             }
         });
     }
-    
+
     componentWillUnmount(){
         clearInterval(this.interval);
     }
@@ -40,7 +40,6 @@ export default class Slider extends AjaxComponent {
                 <Slide
                     key={item.id}
                     {...item}
-                    navigate={this.props.navigate}
                     />
             );
         }.bind(this));

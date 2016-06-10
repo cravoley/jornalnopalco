@@ -37,7 +37,6 @@ export default class GaleriesList extends AjaxComponent {
         }) => {
             this.loadApi(`${this.props.type}/page/${page}`,
                 (err, data)=> {
-                    console.log(err, data);
                     let { full=false, posts=[] } = data || {};
                     if(!err){
                         // let list;
@@ -47,8 +46,6 @@ export default class GaleriesList extends AjaxComponent {
                         //     list = this.state.list.concat(posts);
                         // this.setState({data:list, loading:false});
                         callback({hasMore:full, data:posts});
-                    } else {
-                        console.error(err);
                     }
                 });
     }

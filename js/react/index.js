@@ -1,76 +1,72 @@
+import EventPage from './pages/eventPage';
+import Footer from './layout/footer';
+import Header from './layout/header';
+import NavigationStore from './stores/navigationStore';
+import Post from './components/post';
+import properties from './stores/propertiesStore';
+import Page from './components/page'
 import React from 'react';
 import { render } from 'react-dom';
 import Slider from './components/slider/slider';
-import Post from './components/post';
-import Page from './components/page'
-import Header from './layout/header';
-import Footer from './layout/footer';
 
 
 export default class App extends React.Component{
     constructor(props){
         super(props);
-        this.state = props.configuration;
+        properties.setConfiguration(props.configuration);
+        let { id, page } = props.configuration;
+        this.state = {post:id, page};
         this.navigate = this.navigate.bind(this);
+    }
 
-        // Bind to StateChange Event
-        History.Adapter.bind(window,'statechange',() => { // Note: We are using statechange instead of popstate
-            var State = History.getState(); // Note: We are using History.getState() instead of event.state
-            this.setState(State.data);
-        });
+
+    componentWillMount(){
+        NavigationStore.on("navigate", this.navigate)
+    }
+
+    componentWillUnmount(){
+        NavigationStore.removeListener("navigate", this.navigate);
     }
 
     navigate(opts){
-        let currentState = this.state;
-        if(opts.id){
-            currentState.id = opts.id;
-            currentState.isSingle  = true;
-            currentState.isPage  = false;
-            currentState.page  = null;
-        } else if(opts.page && opts.page != 'home'){
-            currentState.id = null;
-            currentState.isSingle  = false;
-            currentState.page  = opts.page;
-            currentState.isPage  = true;
-        } else {
-            currentState.id = null;
-            currentState.isSingle  = false;
-            currentState.page  = null;
-            currentState.isPage  = false;
-        }
-        currentState.opts = opts;
-        let { refresh } = opts;
-        if(refresh){
-            console.log("REF");
-            currentState.key = Date.now();
-        }
-
-        if(opts.link){
-            History.pushState(currentState, (opts.title || null), opts.link);
-        }
-        this.setState(currentState);
+        let { post , page } = opts || {};
+        this.setState({post,page});
     }
 
     render(){
+
         let element;
         if(this.state.isSingle == true){
             element = <Post key={this.state.key} opts={this.state.opts} id={this.state.id} navigate={this.navigate} templateUrl={this.props.configuration.templateUrl} baseUrl={this.props.configuration.baseUrl} />
         } else if(this.state.isPage == true){
             element = <Page key={this.state.page} opts={this.state.opts} page={this.state.page} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
         } else {
-            element = <Slider layout="cover" opts={this.state.opts} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
+            element = <Slider layout="cover" opts={this.state.opts} />
         }
         return(
             <div>
-                <Header navigate={this.navigate} page={this.state.page} templateUrl={this.props.configuration.templateUrl} baseUrl={this.props.configuration.baseUrl}  />
+                <Header/>
                 <div className="container content">
-                    {element}
+                    {this.renderContent()}
                 </div>
                 <Footer navigate={this.navigate}  />
             </div>
         )
     }
+
+    renderContent(){
+        let { page, id } = this.state;
+        if(page){
+            switch (page) {
+                case "evento":
+                    return <EventPage />
+                    break;
+                default:
+
+            }
+        }
+    }
 }
 
 
-render(<App configuration={configuration} />, document.getElementById("content"));
+render(<App configuration={window.configuration} />, document.getElementById("content"));

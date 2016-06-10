@@ -1,16 +1,16 @@
-import React from 'react';
-import Navigable from '../base/navigableComponent';
+import { Component } from 'react';
+import { goToPost } from '../../actions/navigationActions';
 
 
-export default class Slide extends Navigable {
+export default class Slide extends Component {
     constructor(props){
         super(props);
     }
 
-    navigate(e){
+    navigate = (e) => {
         e.preventDefault();
-        let {id, link} = this.props;
-        this.props.navigate({id, link});
+        let {id, link, title} = this.props;
+        goToPost({post:id, link, title});
     }
 
     render(){

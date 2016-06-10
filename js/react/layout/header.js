@@ -30,23 +30,48 @@
         </nav>
     </div>
 </header>
-*/
+
+Cinema ->
+Lista de criticas
+-> Critica do filme -> Sessões (aba) -> trailer (aba)
+ */
 import React from 'react';
+import * as Navigate from '../actions/navigationActions';
+import NavigationStore from "../stores/navigationStore";
+import properties from "../stores/propertiesStore";
 
 export default class Header extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {page:props.page || "", collapsed:"collapsed", displayMenu:""};
+        this.changePage = this.changePage.bind(this);
     }
 
     navigate(page){
         // call parent method
         // this.setState({page:page});
-        this.setState({page});
+        // this.setState({page});
         let linkPage = (page == "post") ? "noticias" : page;
-        this.props.navigate({page:page, link:this.props.baseUrl+"/"+linkPage});
-        this.handleMenu(true);
+        // this.props.navigate({page:page, link:this.props.baseUrl+"/"+linkPage});
+        Navigate.goToPage({page, link:properties.baseUrl+"/"+linkPage, title:page});
+        properties.getConfiguration();
+    }
+
+    componentWillMount(){
+        NavigationStore.on("navigate", this.changePage);
+    }
+
+    componentWillUnmount(){
+        NavigationStore.removeListener("navigate", this.changePage);
+    }
+
+    changePage(props){
+        let { page } = props;
+        if(page){
+            this.setState({page});
+            this.handleMenu(true);
+        }
     }
 
     handleMenu(hide){
@@ -63,7 +88,7 @@ export default class Header extends React.Component {
     }
 
     render(){
-        var logoUrl = this.props.templateUrl.concat('/img/logo.png');
+        var logoUrl = properties.templateUrl.concat('/img/logo.png');
         let { page, collapsed, displayMenu } = this.state;
         return(
             <header className="navbar-fixed-top">

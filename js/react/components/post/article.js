@@ -17,8 +17,7 @@ export default class Article extends React.Component{
 
     loadNextPost({ currentPosition, previousPosition }){
         if(currentPosition == Waypoint.inside && previousPosition != null){
-            // console.log(this.props.id);
-            this.props.loadNextPost({currentPosition,previousPosition, id:this.props.id});
+            this.props.loadNextPost({currentPosition, previousPosition, id:this.props.id});
         }
     }
 
