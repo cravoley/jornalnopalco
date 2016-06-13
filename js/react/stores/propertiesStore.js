@@ -4,6 +4,7 @@ class Properties {
         this.state = props;
         this.baseUrl = props.baseUrl;
         this.templateUrl = props.templateUrl;
+        this.relativeUrl = props.baseRelativeUrl;
     }
 
     getConfiguration(){

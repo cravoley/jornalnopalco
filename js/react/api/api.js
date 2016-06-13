@@ -25,6 +25,11 @@ class Api {
         return this._fetchAPI(opts);
     }
 
+    getPlaces(opts){
+        opts.api = "places"
+        return this._fetchAPI(opts);
+    }
+
     _fetchAPI(args){
         let { callback=(err, data)=>false, filter={}, page=0, api } = args || {};
         $.ajax({

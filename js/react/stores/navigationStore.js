@@ -16,20 +16,27 @@ class NavigationStore extends EventEmitter{
         });
     }
 
+    init({page, post, isSingle, isPage}){
+        this.state.page = page;
+        this.state.post = post;
+        this.state.isSingle = isSingle;
+        this.state.isPage = isPage;
+    }
+
     goToPage({page, link, title}){
-        this._updateProps({page, link, title});
+        this.state.isSingle = false;
+        this.state.page = page;
+        this._updateProps({link, title});
     }
 
     goToPost({post, link, title}){
-        this._updateProps({post, link, title});
+        this.state.isSingle = true;
+        this.state.post = post;
+        this._updateProps({link, title});
     }
 
-    isPage(){
-        return this.state.page != null;
-    }
-
-    isSingle(){
-        return this.state.post != null;
+    getPage(){
+        return this.state.page;
     }
 
     handleEvents(props){
@@ -44,18 +51,17 @@ class NavigationStore extends EventEmitter{
         }
     }
 
-    _updateProps({page=null, post=null, link, title}){
-        this.state = {post,page};
+    _updateProps({link, title}){
         if(link){
             History.pushState(this.state, (title || null), link);
         } else {
             // if there ain't a link, force the emit event
-            this._emit({post, page});
+            this._emit();
         }
     }
 
-    _emit({post, page}){
-        this.emit("navigate", {post, page});
+    _emit(){
+        this.emit("navigate", this.state);
     }
 }
 const navigationStore = new NavigationStore();

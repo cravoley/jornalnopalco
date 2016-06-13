@@ -39,26 +39,23 @@ import React from 'react';
 import * as Navigate from '../actions/navigationActions';
 import NavigationStore from "../stores/navigationStore";
 import properties from "../stores/propertiesStore";
+import { Link } from 'react-router';
 
 export default class Header extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {page:props.page || "", collapsed:"collapsed", displayMenu:""};
+        this.state = {page:NavigationStore.getPage() || "", collapsed:"collapsed", displayMenu:""};
         this.changePage = this.changePage.bind(this);
     }
 
     navigate(page){
-        // call parent method
-        // this.setState({page:page});
-        // this.setState({page});
         let linkPage = (page == "post") ? "noticias" : page;
-        // this.props.navigate({page:page, link:this.props.baseUrl+"/"+linkPage});
         Navigate.goToPage({page, link:properties.baseUrl+"/"+linkPage, title:page});
-        properties.getConfiguration();
     }
 
     componentWillMount(){
+    console.log(properties);
         NavigationStore.on("navigate", this.changePage);
     }
 
@@ -87,6 +84,10 @@ export default class Header extends React.Component {
         }
     }
 
+    url(path){
+        return properties.relativeUrl+path;
+    }
+
     render(){
         var logoUrl = properties.templateUrl.concat('/img/logo.png');
         let { page, collapsed, displayMenu } = this.state;
@@ -109,15 +110,33 @@ export default class Header extends React.Component {
                             </div>
                             <div className={`collapse navbar-collapse navigation ${displayMenu}`} id="navigationMenu">
                                 <ul className="nav nav-pills">
-                                    <li role="presentation" className={page == "home" || page == "" ? "active":""}><a onClick={this.navigate.bind(this,'home')} href="javascript:void(0);">Home</a></li>
-                                    <li role="presentation" className={page == "evento" ? "active":""}><a onClick={this.navigate.bind(this,'evento')} href="javascript:void(0);">Eventos</a></li>
-                                    <li role="presentation" className={page == "galeria" ? "active":""}><a onClick={this.navigate.bind(this,'galeria')} href="javascript:void(0);">Galerias</a></li>
-                                    <li role="presentation" className={page == "post" ? "active":""}><a onClick={this.navigate.bind(this,'post')} href="javascript:void(0);">Notícias</a></li>
-                                    <li role="presentation" className={page == "coluna" || page == "colunistas" ? "active":""}><a onClick={this.navigate.bind(this,'colunistas')} href="javascript:void(0);">Colunistas</a></li>
-                                    <li role="presentation" className={page == "eagora" ? "active":""}><a onClick={this.navigate.bind(this,'eagora')} href="javascript:void(0);">E Agora?</a></li>
-                                    <li role="presentation" className={page == "contato" ? "active":""}><a onClick={this.navigate.bind(this,'contato')} href="javascript:void(0);">Contato</a></li>
-                                    <li role="presentation" className={page == "cinema" ? "active":""}><a onClick={this.navigate.bind(this,'cinema')} href="javascript:void(0);">Cinema</a></li>
-                                    <li role="presentation" className={page == "cinema" ? "active":""}><a onClick={this.navigate.bind(this,'promocoes')} href="javascript:void(0);">Promoções</a></li>
+                                    <li role="presentation" className={page == "home" || page == "" ? "active":""}>
+                                    <Link to={this.url("/")}>Home</Link>
+                                    </li>
+                                    <li role="presentation" className={page == "evento" ? "active":""}>
+                                        <Link to={this.url("/evento")}>Eventos</Link>
+                                    </li>
+                                    <li role="presentation" className={page == "galeria" ? "active":""}>
+                                        <Link to={this.url("/galeria")}>Galerias</Link>
+                                    </li>
+                                    <li role="presentation" className={page == "post" ? "active":""}>
+                                        <Link to={this.url("/noticias")}>Notícias</Link>
+                                    </li>
+                                    <li role="presentation" className={page == "coluna" || page == "colunistas" ? "active":""}>
+                                        <Link to={this.url("/colunistas")}>Colunistas</Link>
+                                    </li>
+                                    <li role="presentation" className={page == "eagora" ? "active":""}>
+                                        <Link to={this.url("/eagora")}>E agora?</Link>
+                                    </li>
+                                    <li role="presentation" className={page == "contato" ? "active":""}>
+                                        <Link to={this.url("/contato")}>Contato</Link>
+                                    </li>
+                                    <li role="presentation" className={page == "cinema" ? "active":""}>
+                                        <Link to={this.url("/cinema")}>Cinema</Link>
+                                    </li>
+                                    <li role="presentation" className={page == "promocoes" ? "active":""}>
+                                        <Link to={this.url("/promocoes")}>Promoções</Link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

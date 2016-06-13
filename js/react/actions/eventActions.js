@@ -1,20 +1,41 @@
-import api from '../api/api';
+
 import dispatcher from '../dispatcher';
 
-export function loadEvents({page=0, filter={}}){
-    dispatcher.dispatch({type:"EVENTS_LOADING"});
-    let callback = (err,data)=>{
-        dispatcher.dispatch({
-            type:"EVENTS_LOADED",
-            posts:data.posts,
-            full:data.full,
-            filter
-        })
-    }
-    api.getEvents({page, callback, filter});
+export function loadEvents(){
+    dispatcher.dispatch({type:"EVENTS_LOAD"});
 }
 
-export function filterEvents({page,filter}){
-    dispatcher.dispatch({type:"EVENTS_CLEAN"});
-    loadEvents({page,filter});
+export function clearFilter(){
+    dispatcher.dispatch({type:"EVENTS_CLEAR_FILTER"});
+}
+
+export function filterByDate({date}){
+    let formatedDate;
+    if(date != ""){
+        if(!(date instanceof Date)){
+            formatedDate = new Date(date);
+        }
+        formatedDate = date.getFullYear() + ("0"+(parseInt(date.getMonth())+1)).slice(-2) + ("0"+date.getDate()).slice(-2);
+        formatedDate = formatedDate;
+    }
+    dispatcher.dispatch({
+        type:"EVENTS_FILTER_DATE",
+        date,
+        formatedDate
+    });
+}
+
+export function filterByPlace({place=""}){
+    dispatcher.dispatch({
+        type:"EVENTS_FILTER_PLACE",
+        place,
+    });
+}
+
+
+export function filterByText(text){
+    dispatcher.dispatch({
+        type:"EVENTS_FILTER_TEXT",
+        text,
+    });
 }
