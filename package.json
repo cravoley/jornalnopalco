@@ -28,6 +28,7 @@
     "moment": "2.13.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-router": "2.4.1",
     "react-textarea-autosize": "4.0.2",
     "shrinkwrap": "0.4.0"
   },
