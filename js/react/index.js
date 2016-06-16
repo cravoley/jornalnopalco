@@ -10,29 +10,35 @@ import React from 'react';
 import { render } from 'react-dom';
 import Slider from './components/slider/slider';
 import { Router, Route, Link, browserHistory } from 'react-router'
+import EventListPage from './pages/eventListPage';
+import baseApp from './layout/app';
+
+class Simple extends React.Component{
+    render(){
+        return <div>oi</div>;
+    }
+}
 
 
 export default class App extends React.Component{
     constructor(props){
         super(props);
         properties.setConfiguration(props.configuration);
-        this.rootRoute = {
-            component: 'div',
-            childRoutes: [{
-                path: properties.relativeUrl || "/",
-                component: require('./layout/app'),
-                childRoutes: [
-                    require('./routes/event/eventRoute')
-                ]
-            }]
-        };
     }
 
 
 
     render(){
         return(
-            <Router history={browserHistory} routes={this.rootRoute} />
+            <Router history={browserHistory}>
+                <Route path={properties.relativeUrl || "/"} component={baseApp}>
+                    <Route path="evento" component={EventListPage}>
+
+                    </Route>
+                    <Route path="evento/:place/:year/:month/:day/:title">
+                    </Route>
+                </Route>
+            </Router>
         )
     }
 

@@ -1,8 +1,8 @@
 module.exports = {
-  path: 'evento',
+  path: '/evento',
   getComponent(nextState, cb) {
     require.ensure([], (require) => {
-      cb(null, require('./eventListPage'))
+      cb(null, require('./eventListPage').default)
     })
   }
 }
