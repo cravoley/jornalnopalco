@@ -26,6 +26,7 @@ export default class EventListPage extends Component{
     }
 
     componentWillUnmount(){
+        actions.clear();
         eventStore.removeListener("change", this.handleChange);
         eventStore.removeListener("loading", this.setLoading);
         eventStore.removeListener("changePlaces", this.handlePlacesChange);
@@ -49,11 +50,8 @@ export default class EventListPage extends Component{
 
     load(){
         setTimeout(()=>{
-            let { page } = this.state;
-            page++;
-            this.setState({page})
-            actions.loadEvents({page});}
-        , 1);
+            actions.loadEvents();}
+        , 0);
     }
 
     render(){

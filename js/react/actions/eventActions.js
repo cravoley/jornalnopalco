@@ -9,6 +9,10 @@ export function clearFilter(){
     dispatcher.dispatch({type:"EVENTS_CLEAR_FILTER"});
 }
 
+export function clear(){
+    dispatcher.dispatch({type:"EVENTS_CLEAR"});    
+}
+
 export function filterByDate({date}){
     let formatedDate;
     if(date != ""){

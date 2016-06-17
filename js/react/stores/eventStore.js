@@ -94,6 +94,9 @@ class EventStore extends EventEmitter{
             case "EVENTS_CLEAR_FILTER":
                 this.cleanFilter();
                 break;
+            case "EVENTS_CLEAR":
+                this.reset();
+                break;
             case "EVENTS_FILTER_DATE":
                 this.reset();
                 this.filter.selectedDate = props.formatedDate;

@@ -11,7 +11,17 @@ class Api {
     }
 
     getPosts(opts){
-        opts.api = "post";
+        if(opts.post_type)
+            opts.api = opts.post_type;
+        else {
+            opts.api = "post";
+        }
+        return this._fetchAPI(opts);
+    }
+
+    findPost(opts){
+        let { filter } = opts || {};
+        opts.api = `post/${filter.year}/${filter.month}/${filter.day}/${filter.slug}`;
         return this._fetchAPI(opts);
     }
 

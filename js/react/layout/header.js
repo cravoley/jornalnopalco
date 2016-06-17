@@ -111,7 +111,7 @@ export default class Header extends React.Component {
                             <div className={`collapse navbar-collapse navigation ${displayMenu}`} id="navigationMenu">
                                 <ul className="nav nav-pills">
                                     <li role="presentation">
-                                        <Link to={this.url("/home")} activeClassName="active">Home</Link>
+                                        <Link to={this.url("/")} activeClassName="active">Home</Link>
                                     </li>
                                     <li role="presentation">
                                         <Link to={this.url("/evento")} activeClassName="active">Eventos</Link>
