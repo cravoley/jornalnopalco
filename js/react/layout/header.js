@@ -110,32 +110,32 @@ export default class Header extends React.Component {
                             </div>
                             <div className={`collapse navbar-collapse navigation ${displayMenu}`} id="navigationMenu">
                                 <ul className="nav nav-pills">
-                                    <li role="presentation" className={page == "home" || page == "" ? "active":""}>
-                                    <Link to={this.url("/")}>Home</Link>
+                                    <li role="presentation">
+                                        <Link to={this.url("/home")} activeClassName="active">Home</Link>
                                     </li>
-                                    <li role="presentation" className={page == "evento" ? "active":""}>
-                                        <Link to={this.url("/evento")}>Eventos</Link>
+                                    <li role="presentation">
+                                        <Link to={this.url("/evento")} activeClassName="active">Eventos</Link>
                                     </li>
-                                    <li role="presentation" className={page == "galeria" ? "active":""}>
-                                        <Link to={this.url("/galeria")}>Galerias</Link>
+                                    <li role="presentation">
+                                        <Link to={this.url("/galeria")} activeClassName="active">Galerias</Link>
                                     </li>
-                                    <li role="presentation" className={page == "post" ? "active":""}>
-                                        <Link to={this.url("/noticias")}>Notícias</Link>
+                                    <li role="presentation">
+                                        <Link to={this.url("/noticias")} activeClassName="active">Notícias</Link>
                                     </li>
-                                    <li role="presentation" className={page == "coluna" || page == "colunistas" ? "active":""}>
-                                        <Link to={this.url("/colunistas")}>Colunistas</Link>
+                                    <li role="presentation">
+                                        <Link to={this.url("/colunistas")} activeClassName="active">Colunistas</Link>
                                     </li>
-                                    <li role="presentation" className={page == "eagora" ? "active":""}>
-                                        <Link to={this.url("/eagora")}>E agora?</Link>
+                                    <li role="presentation">
+                                        <Link to={this.url("/eagora")} activeClassName="active">E agora?</Link>
                                     </li>
-                                    <li role="presentation" className={page == "contato" ? "active":""}>
-                                        <Link to={this.url("/contato")}>Contato</Link>
+                                    <li role="presentation">
+                                        <Link to={this.url("/contato")} activeClassName="active">Contato</Link>
                                     </li>
-                                    <li role="presentation" className={page == "cinema" ? "active":""}>
-                                        <Link to={this.url("/cinema")}>Cinema</Link>
+                                    <li role="presentation">
+                                        <Link to={this.url("/cinema")} activeClassName="active">Cinema</Link>
                                     </li>
-                                    <li role="presentation" className={page == "promocoes" ? "active":""}>
-                                        <Link to={this.url("/promocoes")}>Promoções</Link>
+                                    <li role="presentation">
+                                        <Link to={this.url("/promocoes")} activeClassName="active">Promoções</Link>
                                     </li>
                                 </ul>
                             </div>

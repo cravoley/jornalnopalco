@@ -9,12 +9,12 @@ header {
   nav {
     float: left;
     .nav-pills {
-      li.active {
-        a {
+      li {
+        a.active {
           background-color: $orange_selected;
-          //color: #000;
+          color: #FFF;
         }
-        a:hover {
+        a.active:hover {
           background-color: $orange;
         }
       }
