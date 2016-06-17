@@ -10,10 +10,17 @@ module.exports = {
     publicPath: "/assets/",
     filename: "bundle.js"
 },
+resolve: {
+    extensions: ['', '.js', '.jsx'],
+    root: [
+      path.resolve('./js/react'),
+      'node_modules'
+    ]
+},
 plugins:[
     new webpack.DefinePlugin({
        'process.env.NODE_ENV': '"production"'
-    })    
+    })
 ],
  module: {
     loaders: [{
