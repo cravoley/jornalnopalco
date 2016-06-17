@@ -1,12 +1,8 @@
 import React from 'react';
 import Moment from 'moment'
-import ZoomableImage from 'components/zoomableImage';
+import Waypoint from "react-waypoint";
 
-
-export default class Event extends React.Component{
-    constructor(props){
-        super(props);
-    }
+export default class Article extends React.Component{
 
     html(){
         let { content } = this.props;
@@ -15,19 +11,28 @@ export default class Event extends React.Component{
         }
     }
 
+    componentDidMount(){
+        $(".html5lightbox").html5lightbox();
+    }
+
+    loadNextPost({ currentPosition, previousPosition }){
+        if(currentPosition == Waypoint.inside && previousPosition != null){
+            this.props.loadNextPost({currentPosition, previousPosition, id:this.props.id});
+        }
+    }
+
     render(){
         let data = new Date(this.props.post_date);
         let formatedDate = Moment(this.props.post_date).format("DD/MM/YYYY")
-        return (
-            <div>
+        return(
+            <div className="main">
                 <h1>{this.props.title}</h1>
                 <time dateTime={data}>
                     {formatedDate}
                 </time>
-                <ZoomableImage thumb={this.props.thumb} fullImagePath={this.props.image} />
                 <div className="body" dangerouslySetInnerHTML={this.html()} />
+                <Waypoint onEnter={this.loadNextPost.bind(this)} />
             </div>
         )
     }
-
 }

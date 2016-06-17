@@ -17,7 +17,7 @@ class PostStore extends EventEmitter {
             if(this.posts[year].hasOwnProperty(month)){
                 if(this.posts[year][month].hasOwnProperty(day)){
                     if(this.posts[year][month][day].hasOwnProperty(slug)){
-                        return this.emit("change", this.posts[year][month][day][slug]);
+                        return this.posts[year][month][day][slug];
                     }
                 } else {
                     this.posts[year][month][day] = [];
@@ -31,7 +31,7 @@ class PostStore extends EventEmitter {
             this.posts[year][month] = [];
             this.posts[year][month][day] = [];
         }
-        this._loadFromServer({day,month,year,slug});
+        return this._loadFromServer({day,month,year,slug});
     }
 
     _loadFromServer(params){
@@ -44,7 +44,7 @@ class PostStore extends EventEmitter {
             this.emit("change", data);
         }
         let opts = {callback, filter:params};
-        api.findPost(opts);
+        return api.findPost(opts);
     }
 
     handleEvents(props){

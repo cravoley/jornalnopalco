@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import ListComponent from './generic/list';
-import Loading from '../components/generic/loading';
+import ListComponent from 'components/list';
+import Loading from 'components/loading';
 import Waypoint from 'react-waypoint';
 
 export default class List extends Component {

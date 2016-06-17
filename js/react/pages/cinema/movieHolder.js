@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import properties from "../../stores/propertiesStore";
+import properties from "stores/propertiesStore";
 import { Link } from 'react-router';
 
 export default class MovieHolder extends Component{

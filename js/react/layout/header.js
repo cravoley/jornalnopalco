@@ -35,41 +35,18 @@ Cinema ->
 Lista de criticas
 -> Critica do filme -> Sessões (aba) -> trailer (aba)
  */
-import React from 'react';
-import * as Navigate from '../actions/navigationActions';
-import NavigationStore from "../stores/navigationStore";
+import { Component } from 'react';
 import properties from "../stores/propertiesStore";
 import { Link } from 'react-router';
 
-export default class Header extends React.Component {
+export default class Header extends Component {
 
     constructor(props){
         super(props);
-        this.state = {page:NavigationStore.getPage() || "", collapsed:"collapsed", displayMenu:""};
-        this.changePage = this.changePage.bind(this);
+        this.state = {};
     }
 
-    navigate(page){
-        let linkPage = (page == "post") ? "noticias" : page;
-        Navigate.goToPage({page, link:properties.baseUrl+"/"+linkPage, title:page});
-    }
 
-    componentWillMount(){
-    console.log(properties);
-        NavigationStore.on("navigate", this.changePage);
-    }
-
-    componentWillUnmount(){
-        NavigationStore.removeListener("navigate", this.changePage);
-    }
-
-    changePage(props){
-        let { page } = props;
-        if(page){
-            this.setState({page});
-            this.handleMenu(true);
-        }
-    }
 
     handleMenu(hide){
         if(hide === true){

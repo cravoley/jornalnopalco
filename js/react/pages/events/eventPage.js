@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Event from './event';
-import Post from '../posts/post';
+import Post from 'pages/news/news';
 
 
 export default class EventPage extends Component{
@@ -11,7 +11,7 @@ export default class EventPage extends Component{
 
     render(){
         return (
-            <Post {...this.props} />
+            <Event {...this.props} />
         );
     }
 

@@ -1,6 +1,6 @@
-import Navigable from '../components/base/navigableComponent';
+import { Component } from 'react';
 
-export default class Footer extends Navigable {
+export default class Footer extends Component {
 
     render(){
         return (

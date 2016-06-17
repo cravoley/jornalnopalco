@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterByPlace } from '../../actions/eventActions';
+import { filterByPlace } from 'actions/eventActions';
 
 export default class EventFilterComponent extends React.Component {
     constructor(props){

@@ -1,5 +1,4 @@
 import Moment from 'moment'
-import { goToPost } from '../../actions/navigationActions';
 import React from 'react';
 import { Link } from 'react-router';
 
@@ -10,11 +9,6 @@ export default class Event extends React.Component{
         super(props);
     }
 
-    navigate(e){
-        e.preventDefault();
-        // this.props.navigate({id:this.props.id, link:this.props.link});
-        goToPost({post:this.props.id, link:this.props.link});
-    }
 
     render(){
         let img;

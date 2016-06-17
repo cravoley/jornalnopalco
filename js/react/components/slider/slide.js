@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { goToPost } from '../../actions/navigationActions';
 
 
 export default class Slide extends Component {
@@ -9,8 +8,6 @@ export default class Slide extends Component {
 
     navigate = (e) => {
         e.preventDefault();
-        let {id, link, title} = this.props;
-        goToPost({post:id, link, title});
     }
 
     render(){

@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import * as actions from '../../actions/eventActions';
-import eventsStore from '../../stores/eventStore';
+import * as actions from 'actions/eventActions';
+import eventsStore from 'stores/eventStore';
 import Moment from 'moment'
 import PlaceFilter from './placeFilter';
 

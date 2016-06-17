@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import eventStore from '../stores/eventStore';
-import EventList from './events/eventList';
-import EventFilter from './events/eventFilter';
-import * as actions from '../actions/eventActions';
-import Loading from '../components/generic/loading';
+import eventStore from 'stores/eventStore';
+import EventList from './eventList';
+import EventFilter from './eventFilter';
+import * as actions from 'actions/eventActions';
+import Loading from 'components/loading';
 import Waypoint from 'react-waypoint';
 
 export default class EventListPage extends Component{
