@@ -1,4 +1,3 @@
-
 const PATH = "/jpapi";
 const PATH_DEV = "/jornalnopalco2/jpapi";
 
@@ -21,7 +20,8 @@ class Api {
 
     findPost(opts){
         let { filter } = opts || {};
-        opts.api = `post/${filter.year}/${filter.month}/${filter.day}/${filter.slug}`;
+        if(!filter.post_type) filter.post_type = "";
+        opts.api = `post/${filter.year}/${filter.month}/${filter.day}/${filter.slug}/${filter.post_type}`;
         return this._fetchAPI(opts);
     }
 

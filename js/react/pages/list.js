@@ -12,7 +12,7 @@ export default class List extends Component {
 
 
         let { posts, hasMore } = this.getStoreState();
-        this.state ={
+        this.state = {
             posts, hasMore,
             loading:posts.length == 0 ? true : false
         }
@@ -35,7 +35,7 @@ export default class List extends Component {
         }
     }
 
-    handleChange = (props)=>{
+    handleChange = (props) => {
         let { posts, hasMore } = this.getStoreState();
         this.setState({loading:false, posts, hasMore});
     }
@@ -47,7 +47,8 @@ export default class List extends Component {
         });
     }
 
-    load(){
+    load(a){
+        console.log(a);
         setTimeout(()=>{
             this.actions.loadPosts()
         }
@@ -55,7 +56,6 @@ export default class List extends Component {
     }
 
     render(){
-        console.log(this.state);
         return (
         <div className="row">
             <div className={"col-xs-12"}>
@@ -63,7 +63,8 @@ export default class List extends Component {
                     {this.props.children}
                 </ListComponent>
                 { this.state.loading && <Loading /> }
-                { !this.state.loading && this.state.hasMore && <Waypoint onEnter={this.load.bind(this)} />}
+                <div className="clearfix"></div>
+                { !this.state.loading && this.state.hasMore  && <Waypoint onEnter={this.load.bind(this)} />}
             </div>
         </div>);
     }

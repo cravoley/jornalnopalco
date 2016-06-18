@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import Article from './article';
-import * as actions from 'actions/postActions';
-import postStore from 'stores/postStore';
+import * as actions from 'actions/newsActions';
+import postStore from 'stores/newsStore';
 import Loading from 'components/loading';
 
 
@@ -10,11 +10,12 @@ export default class Post extends Component {
     constructor(props){
         super(props);
         this.state = {loading:true, post:{}};
+        actions.getPost(this.props.params);
+
     }
 
     componentWillMount(){
         postStore.on("change", this.handleChange);
-        postStore.getPost(this.props.params);
         // postStore.on("loading", this.setLoading);
     }
 

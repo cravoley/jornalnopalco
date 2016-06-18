@@ -3,15 +3,18 @@ import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher';
 
 
-class PostStore extends EventEmitter {
+class MoviesStore extends EventEmitter {
     constructor(){
         super();
         this.posts = [];
+        this.full = false;
+        this.page=0;
+        this.initial = true;
     }
 
+    // search for a single post
     getPost(params){
         let { day, month, year, slug } = params || {};
-        console.log("ES", params);
         if(!day || !month || !year || !slug) throw `Unable to find posts using ${params}`;
         if(this.posts.hasOwnProperty(year)){
             if(this.posts[year].hasOwnProperty(month)){
@@ -34,6 +37,7 @@ class PostStore extends EventEmitter {
         return this._loadFromServer({day,month,year,slug});
     }
 
+    // search and load single post from server
     _loadFromServer(params){
         this.emit("loading");
         let callback = (err,data) => {
@@ -47,10 +51,61 @@ class PostStore extends EventEmitter {
         return api.findPost(opts);
     }
 
-    handleEvents(props){
 
+
+
+    append({posts=[], full=false}){
+        this.posts = this.posts.concat(posts);
+        this.full = full;
+    }
+
+    hasMore(){
+        return this.full;
+    }
+
+    getPosts(){
+        if(this.initial){
+            this.initial = false;
+            this.loadPosts();
+        }
+        return this.posts;
+    }
+
+    // get posts for listing
+    loadPosts(){
+        this.emit("loading");
+        let callback = (err,data)=>{
+            let {posts, full } = data;
+            this.append({posts,full});
+            this.emit("change");
+        }
+        api.getPosts({page:this.page, callback, post_type:"post"});
+        this.page++;
+    }
+
+
+
+
+    reset(){
+        this.posts = [];
+        this.page = 0;
+        this.emit("loading");
+    }
+
+    handleEvents(props){
+        switch(props.type){
+            case "GALERY_LOAD":
+                this.reset();
+                this.emit("loading")
+                this.getPost(props.payload);
+                break;
+            case "GALERY_LIST_POST_LOAD":
+                // this.reset();
+                this.loadPosts();
+                break;
+        }
     }
 }
-const store = new PostStore();
+const store = new GaleriesStore();
 dispatcher.register(store.handleEvents.bind(store));
 export default store;

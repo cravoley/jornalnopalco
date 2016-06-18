@@ -31,7 +31,6 @@ export default class Article extends React.Component{
                     {formatedDate}
                 </time>
                 <div className="body" dangerouslySetInnerHTML={this.html()} />
-                <Waypoint onEnter={this.loadNextPost.bind(this)} />
             </div>
         )
     }

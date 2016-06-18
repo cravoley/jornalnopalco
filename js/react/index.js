@@ -5,10 +5,12 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute, IndexRedirect, Redirect } from 'react-router'
 
-import homeRoutes from 'routes/home';
+import contactRoutes from 'routes/contact';
 import eventRoutes from 'routes/event';
-import cinemaRoutes from 'routes/cinema';
-import newsRoutes from 'routes/news';
+import galeriesRoutes from 'routes/galeries';
+import homeRoutes from 'routes/home';
+import movieRoutes from 'routes/movie';
+import {newsRoutes, newsOpenRoutes} from 'routes/news';
 
 
 export default class App extends React.Component{
@@ -22,13 +24,16 @@ export default class App extends React.Component{
             childRoutes:[
                 homeRoutes,
                 eventRoutes,
-                cinemaRoutes,
+                movieRoutes,
                 newsRoutes,
-                {
-                    // fallback
-                    path:"*",
-                    indexRoute: { onEnter: (nextState, replace) => replace(properties.relativeUrl || "/") },
-                }
+                newsOpenRoutes,
+                contactRoutes,
+                galeriesRoutes,
+                // {
+                //     // fallback
+                //     path:"*",
+                //     indexRoute: { onEnter: (nextState, replace) => replace(properties.relativeUrl || "/") },
+                // }
             ]
         }
     }

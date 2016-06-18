@@ -40,7 +40,7 @@ export default class CinemaList extends Component{
     render(){
         let movies = this.state.movies.map((i)=>(
             <li key={i} className="animated fadeInRight">
-                <h2><Link to={`cinema/${i}`}>{`${i}`}</Link></h2>
+                <h2><Link to={`${properties.relativeUrl}/cinema/${i}`}>{`${i}`}</Link></h2>
             </li>
         ));
 
