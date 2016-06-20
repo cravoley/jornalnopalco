@@ -1,40 +1,20 @@
 import { Component } from 'react';
+import Cinema from './cinema';
+import Moment from 'moment'
 
 export default class MovieSession extends Component{
     render(){
+        let { cinemas } = this.props.movieSessions;
+        cinemas = cinemas.length > 0 ? <ul>{cinemas.map((cinema,i) => <Cinema key={i} {...cinema} />)}</ul> : <div>Não estão disponíveis informações sobre sessões de cinema para este filme</div>;
+
+
+        let date = Moment(this.props.movieSessions.updated).format("DD/MM/YYYY");
+
         return (
             <div>
                 <h2>Sessões de exibição</h2>
-                <ul className="list-unstyled">
-                    <li>
-                        <h3>Praia de belas</h3>
-                        <ul className="list-inline">
-                            <li>14:00</li>
-                            <li>16:00</li>
-                            <li>17:00</li>
-                            <li>18:00</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <h3>Iguatemi</h3>
-                        <ul className="list-inline">
-                            <li>14:00</li>
-                            <li>18:00</li>
-                            <li>22:00</li>
-                            <li>23:00</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <h3>Moinhos</h3>
-                        <ul className="list-inline">
-                            <li>8:00</li>
-                            <li>12:00</li>
-                            <li>13:00</li>
-                            <li>14:00</li>
-                        </ul>
-                    </li>
-                </ul>
-                <span>Informações atualizadas em 16/04/2016</span>
+                {cinemas}
+                <span>Informações atualizadas em {date}</span>
             </div>
         );
     }
