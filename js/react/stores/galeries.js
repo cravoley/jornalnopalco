@@ -90,7 +90,8 @@ class GaleriesStore extends EventEmitter {
 
 
     reset(){
-        this.posts = [];
+        this.postList.posts = [];
+        this.postList.page = 0;
         this.emit("loading");
     }
 

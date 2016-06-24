@@ -7,44 +7,44 @@ class MoviesStore extends EventEmitter {
     constructor(){
         super();
         this.posts = [];
-        this.full = false;
-        this.page=0;
-        this.initial = true;
+        this.postList = {
+            posts:[],
+            full:false,
+            page:0,
+            initial:true
+        };
     }
 
     // search for a single post
     getPost(params){
         let { day, month, year, slug } = params || {};
         if(!day || !month || !year || !slug) throw `Unable to find posts using ${params}`;
-        if(this.posts.hasOwnProperty(year)){
-            if(this.posts[year].hasOwnProperty(month)){
-                if(this.posts[year][month].hasOwnProperty(day)){
-                    if(this.posts[year][month][day].hasOwnProperty(slug)){
-                        return this.posts[year][month][day][slug];
-                    }
-                } else {
-                    this.posts[year][month][day] = [];
-                }
-            } else {
-                this.posts[year][month] = [];
-                this.posts[year][month][day] = [];
-            }
-        } else {
-            this.posts[year] = [];
-            this.posts[year][month] = [];
-            this.posts[year][month][day] = [];
-        }
-        return this._loadFromServer({day,month,year,slug});
+        // if(this.posts.hasOwnProperty(year)){
+        //     if(this.posts[year].hasOwnProperty(month)){
+        //         if(this.posts[year][month].hasOwnProperty(day)){
+        //             if(this.posts[year][month][day].hasOwnProperty(slug)){
+        //                 return this.posts[year][month][day][slug];
+        //             }
+        //         } else {
+        //             this.posts[year][month][day] = [];
+        //         }
+        //     } else {
+        //         this.posts[year][month] = [];
+        //         this.posts[year][month][day] = [];
+        //     }
+        // } else {
+        //     this.posts[year] = [];
+        //     this.posts[year][month] = [];
+        //     this.posts[year][month][day] = [];
+        // }
+        return this._loadFromServer({day,month,year,slug, post_type:'cinema'});
     }
 
     // search and load single post from server
     _loadFromServer(params){
         this.emit("loading");
         let callback = (err,data) => {
-            if(!err){
-                let {day,month,year,slug} = params || {};
-                this.posts[year][month][day][slug] = data;
-            }
+
             this.emit("change", data);
         }
         let opts = {callback, filter:params};
@@ -55,20 +55,20 @@ class MoviesStore extends EventEmitter {
 
 
     append({posts=[], full=false}){
-        this.posts = this.posts.concat(posts);
-        this.full = full;
+        this.postList.posts = this.postList.posts.concat(posts);
+        this.postList.full = full;
     }
 
     hasMore(){
-        return this.full;
+        return this.postList.full;
     }
 
     getPosts(){
-        if(this.initial){
-            this.initial = false;
+        if(this.postList.initial){
+            this.postList.initial = false;
             this.loadPosts();
         }
-        return this.posts;
+        return this.postList.posts;
     }
 
     // get posts for listing
@@ -79,33 +79,32 @@ class MoviesStore extends EventEmitter {
             this.append({posts,full});
             this.emit("change");
         }
-        api.getPosts({page:this.page, callback, post_type:"post"});
-        this.page++;
+        api.getPosts({page:this.postList.page, callback, post_type:"cinema"});
+        this.postList.page++;
     }
 
 
 
 
     reset(){
-        this.posts = [];
-        this.page = 0;
+        this.postList.posts = [];
+        this.postList.page = 0;
         this.emit("loading");
     }
 
     handleEvents(props){
         switch(props.type){
-            case "GALERY_LOAD":
-                this.reset();
+            case "MOVIE_LOAD":
                 this.emit("loading")
                 this.getPost(props.payload);
                 break;
-            case "GALERY_LIST_POST_LOAD":
+            case "MOVIE_LIST_POST_LOAD":
                 // this.reset();
                 this.loadPosts();
                 break;
         }
     }
 }
-const store = new GaleriesStore();
+const store = new MoviesStore();
 dispatcher.register(store.handleEvents.bind(store));
 export default store;

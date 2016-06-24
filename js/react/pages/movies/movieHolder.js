@@ -9,6 +9,7 @@ export default class MovieHolder extends Component{
     }
 
     render(){
+        // TODO: fetch backend for the movie information.
 
         let data = {...this.props};
         data.videoId = "u9Dg-g7t2l4";

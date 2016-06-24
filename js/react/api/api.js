@@ -25,6 +25,13 @@ class Api {
         return this._fetchAPI(opts);
     }
 
+    findMovie(opts){
+        let { filter } = opts || {};
+        if(!filter.post_type) filter.post_type = "";
+        opts.api = `post/${filter.year}/${filter.month}/${filter.day}/${filter.slug}/${filter.post_type}`;
+        return this._fetchAPI(opts);
+    }
+
     getPost(opts){
         opts.api = `post/post/${opts.id}`;
         return this._fetchAPI(opts);
@@ -47,11 +54,11 @@ class Api {
             data:filter,
             dataType:"json",
             method:"GET",
-            success:(data) => callback(null, data),
+            success:(data) => callback(null, data || {}),
             error:(jqXHR, textStatus, error) => callback({
                     message:textStatus,
                     error:error
-                })
+                }, {})
         });
     }
 
