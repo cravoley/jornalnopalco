@@ -16,9 +16,9 @@ export default class GenericList extends Component {
             data = <div class="empty message">{this.props.messageEmpty}</div>
         }
         return (
-            <div>
+            <ul className="list-unstyled">
                 {data}
-            </div>
+            </ul>
         );
     }
 }

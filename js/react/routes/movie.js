@@ -11,10 +11,10 @@ const route = {
     indexRoute:{component:MovieList},
     childRoutes:[
         {
-            path:":movie",
+            path:":year/:month/:day/:slug",
             component:MovieHolder,
             // redirect to currentURL/critica
-            indexRoute: { onEnter: (nextState, replace) => replace(nextState.location.pathname+'/critica') },
+            indexRoute: { onEnter: (nextState, replace) => replace(nextState.location.pathname+'critica') },
             childRoutes:[
                 {
                     path:"critica",

@@ -11,17 +11,17 @@ export default class PostEntry extends React.Component{
 
     render(){
         let img;
-        if(this.props.img){
+        if(this.props.thumb){
             img = (
                 <div className="image pull-left">
                     <Link to={this.props.link}>
-                        <img className="img-responsive" src={this.props.img} />
+                        <img className="img-responsive" src={this.props.thumb} />
                     </Link>
                 </div>);
             }
         let date = Moment(this.props.date).format("DD/MM/YYYY");
         return (
-            <li>
+            <li className="clearfix">
                 <div className="animated fadeInUp">
                     {img}
                     <Link to={this.props.link}>

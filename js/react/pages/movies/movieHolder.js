@@ -1,16 +1,46 @@
 import { Component } from 'react';
+import { getPost } from 'actions/moviesActions';
+import Loading from 'components/loading';
 import properties from "stores/propertiesStore";
+import store from 'stores/movies';
 import { Link } from 'react-router';
 
 export default class MovieHolder extends Component{
 
+    constructor(props){
+        super(props);
+        this.state = {loading:true, post:{}};
+        getPost(this.props.params);
+        console.log(this.props);
+
+    }
+
+    componentWillMount(){
+        store.on("change", this.handleChange);
+        // postStore.on("loading", this.setLoading);
+    }
+
+    componentWillUnmount(){
+        // actions.clear();
+        store.removeListener("change", this.handleChange);
+        // postStore.removeListener("loading", this.setLoading);
+    }
+
+    handleChange = (props)=>{
+        // let { posts, hasMore } = this.getStoreState();
+        this.setState({loading:false, post:props});
+    }
+
     link = (target)=>{
-        return `${properties.relativeUrl}/cinema/${this.props.params.movie}/${target}`;
+        target = `/${target}`;
+        // console.log(this.props.location.pathname.replace(/\/\w+$/i, target));
+        return this.props.location.pathname.replace(/\/\w+$/i, target);
+        // return `${properties.relativeUrl}/cinema/${this.props.params.slug}/${target}`;
     }
 
     render(){
         // TODO: fetch backend for the movie information.
-
+                                            console.log(this.state.post);
         let data = {...this.props};
         data.videoId = "u9Dg-g7t2l4";
         data.review = "<div>REVIEW"+
@@ -82,20 +112,28 @@ export default class MovieHolder extends Component{
                     }
                 ]
         };
+
+        let { post } = this.state;
+
         let children = React.Children.map(this.props.children, (children)=> {
-            return React.cloneElement(children, data);
+            return React.cloneElement(children, post);
 
         });
-        return (
-            <div>
-                <h1>Filme {this.props.params.movie}</h1>
-                <Link to={this.link("critica")} activeClassName="active"><button>Critica</button></Link>
-                <Link to={this.link("session")} activeClassName="active"><button>Sessões</button></Link>
-                <Link to={this.link("sinopse")} activeClassName="active"><button>Sinopse</button></Link>
-                <Link to={this.link("ficha")} activeClassName="active"><button>Ficha técnica</button></Link>
-                <Link to={this.link("trailer")} activeClassName="active"><button>Trailer</button></Link>
-                {children}
-            </div>
-        );
+
+        if(this.state.loading){
+            return <Loading />
+        } else {
+            return (
+                <div>
+                    <h1>{post.title}</h1>
+                    <Link to={this.link("critica")} activeClassName="active"><button>Critica</button></Link>
+                    <Link to={this.link("session")} activeClassName="active"><button>Sessões</button></Link>
+                    <Link to={this.link("sinopse")} activeClassName="active"><button>Sinopse</button></Link>
+                    <Link to={this.link("ficha")} activeClassName="active"><button>Ficha técnica</button></Link>
+                    <Link to={this.link("trailer")} activeClassName="active"><button>Trailer</button></Link>
+                    {children}
+                </div>
+            );
+        }
     }
 }
