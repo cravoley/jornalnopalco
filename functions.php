@@ -221,4 +221,12 @@ function get_author_nicename($author="", $metafield="user_nicename")
 }
 
 
+
+
+$postFormats = array('gallery', 'image', 'video', 'audio');
+add_theme_support('post-formats', $postFormats);
+add_theme_support('post-thumbnails');
+add_theme_support('menus');
+add_theme_support('automatic-feed-links');
+
 ?>
