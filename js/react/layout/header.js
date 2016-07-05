@@ -36,88 +36,60 @@ Lista de criticas
 -> Critica do filme -> Sessões (aba) -> trailer (aba)
  */
 import { Component } from 'react';
-import properties from "../stores/propertiesStore";
 import { Link } from 'react-router';
+import Logo from './logo';
+import Menu from './menu';
+import properties from "../stores/propertiesStore";
 
 export default class Header extends Component {
 
     constructor(props){
         super(props);
-        this.state = {};
+        this.state = {
+            menuType:"large"
+        };
     }
 
 
 
-    handleMenu(hide){
-        if(hide === true){
-            this.setState({collapsed:"",displayMenu:""});
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll = (event) => {
+        let scrollTop = event.srcElement.body.scrollTop;
+        // console.log(scrollTop);
+        if(scrollTop > 100){
+            this.setState({
+                menuType:"navbar-fixed-top"
+            });
         } else {
-            this.setState(
-                {
-                    collapsed:this.state.collapsed == "collapsed"?"":"collapsed",
-                    displayMenu:this.state.displayMenu == "in"?"":"in"
-                }
-            );
+            this.setState({
+                menuType:"large"
+            });
         }
     }
+
+
 
     url(path){
         return properties.relativeUrl+path;
     }
 
+
     render(){
-        var logoUrl = properties.templateUrl.concat('/img/logo.png');
-        let { page, collapsed, displayMenu } = this.state;
+        var logoUrl = properties.templateUrl.concat('/img/logo_preto.png');
         return(
-            <header className="navbar-fixed-top">
-                <div className="container-fluid">
-                    <div className="logo col-md-4 col-xs-12">
-                        <span className="sr-only"><h1>Jornal no Palco</h1></span>
-                        <img className="center-block img-responsive" src={logoUrl} title="Jornal no Palco" />
+            <header>
+                <div className="container">
+                    {this.state.menuType == 'large' && <Logo logoUrl={logoUrl} url={this.url} />}
+                    <div className="row">
+                        <Menu menuType={this.state.menuType} />
                     </div>
-                    <nav className="navbar col-md-8 col-xs-12">
-                        <div className="">
-                            <div className="navbar-header">
-                                <button type="button" className={`navbar-toggle ${collapsed}`} aria-expanded="false" onClick={this.handleMenu.bind(this)}>
-                                    <span className="sr-only">Toggle navigation</span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div className={`collapse navbar-collapse navigation ${displayMenu}`} id="navigationMenu">
-                                <ul className="nav nav-pills">
-                                    <li role="presentation">
-                                        <Link to={this.url("/")} activeClassName="active">Home</Link>
-                                    </li>
-                                    <li role="presentation">
-                                        <Link to={this.url("/evento")} activeClassName="active">Eventos</Link>
-                                    </li>
-                                    <li role="presentation">
-                                        <Link to={this.url("/galeria")} activeClassName="active">Galerias</Link>
-                                    </li>
-                                    <li role="presentation">
-                                        <Link to={this.url("/noticias")} activeClassName="active">Notícias</Link>
-                                    </li>
-                                    <li role="presentation">
-                                        <Link to={this.url("/colunistas")} activeClassName="active">Colunistas</Link>
-                                    </li>
-                                    <li role="presentation">
-                                        <Link to={this.url("/eagora")} activeClassName="active">E agora?</Link>
-                                    </li>
-                                    <li role="presentation">
-                                        <Link to={this.url("/contato")} activeClassName="active">Contato</Link>
-                                    </li>
-                                    <li role="presentation">
-                                        <Link to={this.url("/cinema")} activeClassName="active">Cinema</Link>
-                                    </li>
-                                    <li role="presentation">
-                                        <Link to={this.url("/promocoes")} activeClassName="active">Promoções</Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
                 </div>
             </header>
         )

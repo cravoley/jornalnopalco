@@ -58,7 +58,8 @@ class NewsStore extends EventEmitter {
 
 
     append({posts=[], full=false}){
-        this.postList.posts = this.posts.concat(posts);
+        // console.log(this.postList)
+        this.postList.posts = this.postList.posts.concat(posts);
         this.postList.full = full;
     }
 

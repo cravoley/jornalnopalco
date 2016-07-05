@@ -2,7 +2,8 @@
 body.largeMenu {
   header {
     .logo {
-      margin-top: 5px;
+    //   margin-top: 5px;
+    margin-bottom: 15px;
       img {
         //max-width: 432px;
       }
@@ -10,7 +11,7 @@ body.largeMenu {
     nav {
       a {
         font-size: 16px;
-        padding: 12px 18px;
+        // padding: 12px 18px;
       }
     }
   }

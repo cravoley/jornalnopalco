@@ -1,17 +1,26 @@
 @media (min-width: 768px) {
   body {
-    padding-top: 165px;
+    padding-top: 156px;
     &.largeMenu {
       header {
-        height: 165px;
+        // height: 165px;
         nav {
+            &.navbar{
+                background-color: $background_menu;
+                min-height: 30px;
+            }
+
+            .searchBar{
+                padding:6px 15px;
+                float: left;
+            }
           .navigation {
-            width: 578px;
-            margin: 10px auto 0 auto;
+            // width: 578px;
+            // margin: 10px auto 0 auto;
           }
           a {
             font-size: 14px;
-            padding: 10px 15px;
+            // padding: 10px 15px;
           }
         }
       }

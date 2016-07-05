@@ -1,17 +1,21 @@
 header {
-  background: #000;
-  border-bottom: 1px solid #aaaaaa;
-  float: left;
+  // background: #000;
+  // border-bottom: 1px solid #aaaaaa;
+  // float: left;
   width: 100%;
   position: fixed;
+  top: 0;
   z-index: 10;
 
   nav {
     float: left;
+    &.navbar{
+        margin-bottom: 0;
+    }
     .nav-pills {
       li {
         a.active {
-          background-color: $orange_selected;
+          background-color: $menu_selected;
           color: #FFF;
         }
         a.active:hover {
@@ -19,6 +23,7 @@ header {
         }
       }
       a {
+        //   padding:10px 0;
         color: #CCC;
       }
       a:hover {
@@ -36,11 +41,11 @@ header {
     float: left;
     position: fixed;
     left: 0;
-    top: 0;
-    width: 75%;
+    top: 90px;
+    // width: 75%;
     height: 100%;
     overflow-y: auto;
-    background-color: #000;
+    background-color:  $background_menu;
     ul {
       li {
         width: 100%;
@@ -56,8 +61,8 @@ header {
     border-color: #FFF;
     float: left;
     position: fixed;
-    right: 5%;
-    top: 5%;
+    left: 30px;
+    top: 30px;
     background-color: #000;
     &.collapsed {
       //float: none;
