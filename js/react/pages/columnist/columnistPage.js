@@ -11,7 +11,6 @@ export default class ColumnistsPage extends Component {
         super(props);
         this.state = {loading:true, post:{}};
         actions.getPost(this.props.params);
-
     }
 
     componentWillMount(){
