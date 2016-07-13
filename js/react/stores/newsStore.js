@@ -13,6 +13,27 @@ class NewsStore extends EventEmitter {
             page:0,
             initial:true
         };
+        this.latestPost = [];
+        this.coverPosts = [];
+        // this.loadLatest();
+    }
+
+    loadCover(){
+        let callback = (err, data) => {
+            if(!err)
+                this.coverPosts = data.posts || [];
+            this.emit("coverLoaded");
+        };
+        return api.getCover({callback});
+    }
+
+    loadLatest(){
+        let callback = (err, data) =>{
+            if(!err)
+                this.latestPost = data.posts || [];
+            this.emit("loadedLatest");
+        }
+        return api.getPosts({page:0, callback, post_type:"post"});
     }
 
     // search for a single post

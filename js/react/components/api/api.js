@@ -15,6 +15,11 @@ class Api {
         return this._fetchAPI(opts);
     }
 
+    getCover(opts){
+        opts.api = "cover";
+        return this._fetchAPI(opts);
+    }
+
     getPost(opts){
         opts.api = `post/post/${opts.id}`;
         return this._fetchAPI(opts);

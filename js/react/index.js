@@ -5,12 +5,14 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute, IndexRedirect, Redirect } from 'react-router'
 
+import { columnistRoutes, columnistOpenRoutes} from 'routes/columnist';
 import contactRoutes from 'routes/contact';
 import eventRoutes from 'routes/event';
 import galeriesRoutes from 'routes/galeries';
 import homeRoutes from 'routes/home';
 import movieRoutes from 'routes/movie';
 import {newsRoutes, newsOpenRoutes} from 'routes/news';
+
 
 
 export default class App extends React.Component{
@@ -29,6 +31,8 @@ export default class App extends React.Component{
                 newsOpenRoutes,
                 contactRoutes,
                 galeriesRoutes,
+                columnistRoutes,
+                columnistOpenRoutes,
                 // {
                 //     // fallback
                 //     path:"*",

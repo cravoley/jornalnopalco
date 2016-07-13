@@ -18,6 +18,18 @@ class Api {
         return this._fetchAPI(opts);
     }
 
+    getColumnists(opts){
+        opts.api = "colunistas";
+        return this._fetchAPI(opts);
+    }
+
+
+
+    getCover(opts){
+        opts.api = "cover";
+        return this._fetchAPI(opts);
+    }
+
     findPost(opts){
         let { filter } = opts || {};
         if(!filter.post_type) filter.post_type = "";

@@ -48,7 +48,6 @@ export default class List extends Component {
     }
 
     load(a){
-        console.log(a);
         setTimeout(()=>{
             this.actions.loadPosts()
         }

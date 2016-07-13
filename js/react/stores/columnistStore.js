@@ -3,9 +3,10 @@ import { EventEmitter } from 'events';
 import dispatcher from '../dispatcher';
 
 
-class GaleriesStore extends EventEmitter {
+class ColumnistStore extends EventEmitter {
     constructor(){
         super();
+        this.post_type = 'coluna';
         this.posts = [];
         this.postList = {
             posts:[],
@@ -13,31 +14,15 @@ class GaleriesStore extends EventEmitter {
             page:0,
             initial:true
         };
+        this.columnists = [];
+        // this.loadLatest();
     }
 
     // search for a single post
     getPost(params){
         let { day, month, year, slug } = params || {};
         if(!day || !month || !year || !slug) throw `Unable to find posts using ${params}`;
-        // if(this.posts.hasOwnProperty(year)){
-        //     if(this.posts[year].hasOwnProperty(month)){
-        //         if(this.posts[year][month].hasOwnProperty(day)){
-        //             if(this.posts[year][month][day].hasOwnProperty(slug)){
-        //                 return this.posts[year][month][day][slug];
-        //             }
-        //         } else {
-        //             this.posts[year][month][day] = [];
-        //         }
-        //     } else {
-        //         this.posts[year][month] = [];
-        //         this.posts[year][month][day] = [];
-        //     }
-        // } else {
-        //     this.posts[year] = [];
-        //     this.posts[year][month] = [];
-        //     this.posts[year][month][day] = [];
-        // }
-        return this._loadFromServer({day,month,year,slug, post_type:'galeria'});
+        return this._loadFromServer({day,month,year,slug, post_type:this.post_type});
     }
 
     // search and load single post from server
@@ -58,6 +43,7 @@ class GaleriesStore extends EventEmitter {
 
 
     append({posts=[], full=false}){
+        // console.log(this.postList)
         this.postList.posts = this.postList.posts.concat(posts);
         this.postList.full = full;
     }
@@ -67,7 +53,7 @@ class GaleriesStore extends EventEmitter {
     }
 
     getPosts(){
-        console.log(this);
+        console.log("LO");
         if(this.postList.initial){
             this.postList.initial = false;
             this.loadPosts();
@@ -83,11 +69,19 @@ class GaleriesStore extends EventEmitter {
             this.append({posts,full});
             this.emit("change");
         }
-        api.getPosts({page:this.postList.page, callback, post_type:"galeria"});
+        let filter = {};
+        if(this.columninst){
+            filter = { columninst:this.columninst };
+        }
+        console.log("F", filter);
+        api.getPosts({page:this.postList.page, callback, post_type:this.post_type, filter});
         this.postList.page++;
     }
 
-
+    setColuminst(slug){
+        console.log("SE", slug);
+        this.columninst = slug;
+    }
 
 
     reset(){
@@ -96,20 +90,34 @@ class GaleriesStore extends EventEmitter {
         this.emit("loading");
     }
 
+    getColumnists(){
+        if(this.columnists.length == 0){
+            this.emit("loading");
+            let callback = (err,data)=>{
+                let {posts, full } = data;
+                console.log(data);
+                this.columnists = data.posts;
+                // this.append({posts,full});
+                this.emit("change");
+            }
+            api.getColumnists({callback});
+        }
+        return this.columnists;
+    }
+
     handleEvents(props){
         switch(props.type){
-            case "GALERY_LOAD":
-                // this.reset();
+            case "COLUMN_POST_LOAD":
                 this.emit("loading")
                 this.getPost(props.payload);
                 break;
-            case "GALERY_LIST_POST_LOAD":
+            case "COLUMN_LIST_POST_LOAD":
                 // this.reset();
                 this.loadPosts();
                 break;
         }
     }
 }
-const store = new GaleriesStore();
+const store = new ColumnistStore();
 dispatcher.register(store.handleEvents.bind(store));
 export default store;
