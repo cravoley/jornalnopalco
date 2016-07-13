@@ -53,7 +53,6 @@ class ColumnistStore extends EventEmitter {
     }
 
     getPosts(){
-        console.log("LO");
         if(this.postList.initial){
             this.postList.initial = false;
             this.loadPosts();
@@ -73,13 +72,11 @@ class ColumnistStore extends EventEmitter {
         if(this.columninst){
             filter = { columninst:this.columninst };
         }
-        console.log("F", filter);
         api.getPosts({page:this.postList.page, callback, post_type:this.post_type, filter});
         this.postList.page++;
     }
 
     setColuminst(slug){
-        console.log("SE", slug);
         this.columninst = slug;
     }
 

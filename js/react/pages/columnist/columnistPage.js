@@ -1,12 +1,12 @@
 import { Component } from 'react';
-import Article from './article';
-import * as actions from 'actions/newsActions';
-import postStore from 'stores/newsStore';
+import Post from './post';
+import * as actions from 'actions/columnistActions';
+import postStore from 'stores/columnistStore';
 import Loading from 'components/loading';
 
 
 
-export default class Post extends Component {
+export default class ColumnistsPage extends Component {
     constructor(props){
         super(props);
         this.state = {loading:true, post:{}};
@@ -43,7 +43,7 @@ export default class Post extends Component {
         return (
             <div >
                 {this.state.loading && <Loading />}
-                {!this.state.loading && <Article {...this.state.post} />}
+                {!this.state.loading && <Post {...this.state.post} />}
             </div>
         );
     }
