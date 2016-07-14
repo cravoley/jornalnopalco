@@ -67,7 +67,6 @@ class GaleriesStore extends EventEmitter {
     }
 
     getPosts(){
-        console.log(this);
         if(this.postList.initial){
             this.postList.initial = false;
             this.loadPosts();

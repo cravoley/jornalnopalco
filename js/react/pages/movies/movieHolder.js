@@ -11,8 +11,6 @@ export default class MovieHolder extends Component{
         super(props);
         this.state = {loading:true, post:{}};
         getPost(this.props.params);
-        console.log(this.props);
-
     }
 
     componentWillMount(){
@@ -33,14 +31,12 @@ export default class MovieHolder extends Component{
 
     link = (target)=>{
         target = `/${target}`;
-        // console.log(this.props.location.pathname.replace(/\/\w+$/i, target));
         return this.props.location.pathname.replace(/\/\w+$/i, target);
         // return `${properties.relativeUrl}/cinema/${this.props.params.slug}/${target}`;
     }
 
     render(){
         // TODO: fetch backend for the movie information.
-                                            console.log(this.state.post);
         let data = {...this.props};
         data.videoId = "u9Dg-g7t2l4";
         data.review = "<div>REVIEW"+

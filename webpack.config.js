@@ -1,6 +1,5 @@
 var path = require("path");
 var webpack = require("webpack");
-console.log(path.resolve('./js/react'));
 module.exports = {
   entry: {
     app: [

@@ -8,12 +8,10 @@ export default class MovieTrailer extends Component {
         // let p = {};
         // p.videoId = youtubeParser(props.videoLink);
         // this.props = p;
-        // console.log(props);
     }
 
     componentDidMount(){
         $(this.refs.html5lightbox).html5lightbox();
-        // console.log(this.refs, this.refs.html5lightbox);
 
     }
 

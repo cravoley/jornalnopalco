@@ -62,7 +62,6 @@ export default class Header extends Component {
 
     handleScroll = (event) => {
         let scrollTop = event.srcElement.body.scrollTop;
-        // console.log(scrollTop);
         if(scrollTop > 100){
             this.setState({
                 menuType:"navbar-fixed-top"

@@ -8,7 +8,6 @@ export default class GalleryImage extends Component{
 
     componentDidMount(){
         $(this.refs.html5lightbox).html5lightbox();
-        // console.log(this.refs, this.refs.html5lightbox);
 
     }
 
