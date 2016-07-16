@@ -1,0 +1,33 @@
+// starts inside .post
+
+@mixin background_by_category($category, $color, $color_stop, $shadow_color) {
+
+    &.#{$category}{
+        .color, .title {
+            background: $color; /* For browsers that do not support gradients */
+            background: -webkit-linear-gradient($color, $color_stop); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient($color, $color_stop); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient($color, $color_stop); /* For Firefox 3.6 to 15 */
+            background: linear-gradient($color, $color_stop); /* Standard syntax */
+            // background: linear-gradient(direction, color-stop1, color-stop2, ...);
+        }
+
+        .title{
+            h1{
+                text-shadow: 0 0 10px $shadow_color,
+                0 0 25px $shadow_color,
+                0 0 50px $shadow_color,
+                0 0 55px $shadow_color,
+                0 0 75px $shadow_color,
+                0 0 80px $shadow_color,
+                0 0 90px $shadow_color;
+            }
+        }
+    }
+
+}
+
+@include background_by_category('sem_categoria', #0D0, #000, #000);
+@include background_by_category('musica', #000, #000, #FFF);
+@include background_by_category('teatro', #000, #FFF, #000);
+@include background_by_category('cinema', rgb(0,0,0), #FFF, #000);

@@ -1,76 +1,57 @@
+import baseApp from 'layout/app';
+import HomePage from 'pages/home';
+import properties from 'stores/propertiesStore';
 import React from 'react';
 import { render } from 'react-dom';
-import Slider from './components/slider/slider';
-import Post from './components/post';
-import Page from './components/page'
-import Header from './layout/header';
-import Footer from './layout/footer';
+import { Router, Route, Link, browserHistory, IndexRoute, IndexRedirect, Redirect } from 'react-router'
+
+import { columnistRoutes, columnistOpenRoutes} from 'routes/columnist';
+import contactRoutes from 'routes/contact';
+import eventRoutes from 'routes/event';
+import galeriesRoutes from 'routes/galeries';
+import homeRoutes from 'routes/home';
+import movieRoutes from 'routes/movie';
+import {newsRoutes, newsOpenRoutes} from 'routes/news';
+import searchRoute from 'routes/search';
+
 
 
 export default class App extends React.Component{
     constructor(props){
         super(props);
-        this.state = props.configuration;
-        this.navigate = this.navigate.bind(this);
-
-        // Bind to StateChange Event
-        History.Adapter.bind(window,'statechange',() => { // Note: We are using statechange instead of popstate
-            var State = History.getState(); // Note: We are using History.getState() instead of event.state
-            this.setState(State.data);
-        });
+        properties.setConfiguration(props.configuration);
+        this.route = {
+            path:properties.relativeUrl || "/",
+            component:baseApp,
+            indexRoute: { component:HomePage },
+            childRoutes:[
+                homeRoutes,
+                eventRoutes,
+                movieRoutes,
+                newsRoutes,
+                newsOpenRoutes,
+                contactRoutes,
+                galeriesRoutes,
+                columnistRoutes,
+                columnistOpenRoutes,
+                searchRoute
+                // {
+                //     // fallback
+                //     path:"*",
+                //     indexRoute: { onEnter: (nextState, replace) => replace(properties.relativeUrl || "/") },
+                // }
+            ]
+        }
     }
 
-    navigate(opts){
-        let currentState = this.state;
-        if(opts.id){
-            currentState.id = opts.id;
-            currentState.isSingle  = true;
-            currentState.isPage  = false;
-            currentState.page  = null;
-        } else if(opts.page && opts.page != 'home'){
-            currentState.id = null;
-            currentState.isSingle  = false;
-            currentState.page  = opts.page;
-            currentState.isPage  = true;
-        } else {
-            currentState.id = null;
-            currentState.isSingle  = false;
-            currentState.page  = null;
-            currentState.isPage  = false;
-        }
-        currentState.opts = opts;
-        let { refresh } = opts;
-        if(refresh){
-            console.log("REF");
-            currentState.key = Date.now();
-        }
 
-        if(opts.link){
-            History.pushState(currentState, (opts.title || null), opts.link);
-        }
-        this.setState(currentState);
-    }
 
     render(){
-        let element;
-        if(this.state.isSingle == true){
-            element = <Post key={this.state.key} opts={this.state.opts} id={this.state.id} navigate={this.navigate} templateUrl={this.props.configuration.templateUrl} baseUrl={this.props.configuration.baseUrl} />
-        } else if(this.state.isPage == true){
-            element = <Page key={this.state.page} opts={this.state.opts} page={this.state.page} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
-        } else {
-            element = <Slider layout="cover" opts={this.state.opts} navigate={this.navigate} baseUrl={this.props.configuration.baseUrl} />
-        }
         return(
-            <div>
-                <Header navigate={this.navigate} page={this.state.page} templateUrl={this.props.configuration.templateUrl} baseUrl={this.props.configuration.baseUrl}  />
-                <div className="container content">
-                    {element}
-                </div>
-                <Footer navigate={this.navigate}  />
-            </div>
+            <Router history={browserHistory} routes={this.route} />
         )
     }
 }
 
 
-render(<App configuration={configuration} />, document.getElementById("content"));
+render(<App configuration={window.configuration} />, document.getElementById("content"));

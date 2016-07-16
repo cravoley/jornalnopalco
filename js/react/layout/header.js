@@ -30,73 +30,65 @@
         </nav>
     </div>
 </header>
-*/
-import React from 'react';
 
-export default class Header extends React.Component {
+Cinema ->
+Lista de criticas
+-> Critica do filme -> Sessões (aba) -> trailer (aba)
+ */
+import { Component } from 'react';
+import { Link } from 'react-router';
+import Logo from './logo';
+import Menu from './menu';
+import properties from "../stores/propertiesStore";
+
+export default class Header extends Component {
 
     constructor(props){
         super(props);
-        this.state = {page:props.page || "", collapsed:"collapsed", displayMenu:""};
+        this.state = {
+            menuType:"large"
+        };
     }
 
-    navigate(page){
-        // call parent method
-        // this.setState({page:page});
-        this.setState({page});
-        let linkPage = (page == "post") ? "noticias" : page;
-        this.props.navigate({page:page, link:this.props.baseUrl+"/"+linkPage});
-        this.handleMenu(true);
+
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll);
     }
 
-    handleMenu(hide){
-        if(hide === true){
-            this.setState({collapsed:"",displayMenu:""});
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll = (event) => {
+        let scrollTop = event.srcElement.body.scrollTop;
+        if(scrollTop > 100){
+            this.setState({
+                menuType:"navbar-fixed-top"
+            });
         } else {
-            this.setState(
-                {
-                    collapsed:this.state.collapsed == "collapsed"?"":"collapsed",
-                    displayMenu:this.state.displayMenu == "in"?"":"in"
-                }
-            );
+            this.setState({
+                menuType:"large"
+            });
         }
     }
 
+
+
+    url(path){
+        return properties.relativeUrl+path;
+    }
+
+
     render(){
-        var logoUrl = this.props.templateUrl.concat('/img/logo.png');
-        let { page, collapsed, displayMenu } = this.state;
+        var logoUrl = properties.templateUrl.concat('/img/logo_preto.png');
         return(
-            <header className="navbar-fixed-top">
-                <div className="container-fluid">
-                    <div className="logo col-md-4 col-xs-12">
-                        <span className="sr-only"><h1>Jornal no Palco</h1></span>
-                        <img className="center-block img-responsive" src={logoUrl} title="Jornal no Palco" />
+            <header>
+                <div className="container">
+                    {this.state.menuType == 'large' && <Logo logoUrl={logoUrl} url={this.url} />}
+                    <div className="row">
+                        <Menu {...this.props} menuType={this.state.menuType} />
                     </div>
-                    <nav className="navbar col-md-8 col-xs-12">
-                        <div className="">
-                            <div className="navbar-header">
-                                <button type="button" className={`navbar-toggle ${collapsed}`} aria-expanded="false" onClick={this.handleMenu.bind(this)}>
-                                    <span className="sr-only">Toggle navigation</span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                </button>
-                            </div>
-                            <div className={`collapse navbar-collapse navigation ${displayMenu}`} id="navigationMenu">
-                                <ul className="nav nav-pills">
-                                    <li role="presentation" className={page == "home" || page == "" ? "active":""}><a onClick={this.navigate.bind(this,'home')} href="javascript:void(0);">Home</a></li>
-                                    <li role="presentation" className={page == "evento" ? "active":""}><a onClick={this.navigate.bind(this,'evento')} href="javascript:void(0);">Eventos</a></li>
-                                    <li role="presentation" className={page == "galeria" ? "active":""}><a onClick={this.navigate.bind(this,'galeria')} href="javascript:void(0);">Galerias</a></li>
-                                    <li role="presentation" className={page == "post" ? "active":""}><a onClick={this.navigate.bind(this,'post')} href="javascript:void(0);">Notícias</a></li>
-                                    <li role="presentation" className={page == "coluna" || page == "colunistas" ? "active":""}><a onClick={this.navigate.bind(this,'colunistas')} href="javascript:void(0);">Colunistas</a></li>
-                                    <li role="presentation" className={page == "eagora" ? "active":""}><a onClick={this.navigate.bind(this,'eagora')} href="javascript:void(0);">E Agora?</a></li>
-                                    <li role="presentation" className={page == "contato" ? "active":""}><a onClick={this.navigate.bind(this,'contato')} href="javascript:void(0);">Contato</a></li>
-                                    <li role="presentation" className={page == "cinema" ? "active":""}><a onClick={this.navigate.bind(this,'cinema')} href="javascript:void(0);">Cinema</a></li>
-                                    <li role="presentation" className={page == "cinema" ? "active":""}><a onClick={this.navigate.bind(this,'promocoes')} href="javascript:void(0);">Promoções</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
                 </div>
             </header>
         )

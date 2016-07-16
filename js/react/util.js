@@ -1,6 +1,7 @@
-module.exports={
-    formatDate: function(data){
-        if(data instanceof Date)
-            return ("0"+data.getDate()).slice(-2) + "/" +  ("0"+(parseInt(data.getMonth())+1)).slice(-2)+ "/" + data.getFullYear();
+export function youtubeParser(url){
+    var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match && match[2].length == 11) {
+        return match[2];
     }
-};
+}

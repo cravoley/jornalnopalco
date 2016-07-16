@@ -12,19 +12,11 @@ export default class ListaColunista extends AjaxComponent {
     }
 
     // used by InifiteScroll
-    loadItems = (
-        {
-            callback=()=>{return;},
-            page=0
-        }) => {
-            this.loadApi(`${this.props.type}/${this.props.opts.colunista}/${page}`, (err, data)=>{
-                    let { full=false, posts=[] } = data || {};
-                    if(!err){
-                        // let list= this.state.list.concat(posts);
-                        // this.setState({list, loading:false});
-                        callback({hasMore:full, data:posts});
-                    }
-                });
+    loadItems = ({callback=()=>{return;}, page=0}) => {
+        this.loadApi(`${this.props.type}/${this.props.opts.colunista}/${page}`, (err, data)=>{
+            let { full=false, posts=[] } = data || {};
+            callback({hasMore:full, data:posts});
+        });
     }
 
     render(){
