@@ -87,7 +87,7 @@ export default class Header extends Component {
                 <div className="container">
                     {this.state.menuType == 'large' && <Logo logoUrl={logoUrl} url={this.url} />}
                     <div className="row">
-                        <Menu menuType={this.state.menuType} />
+                        <Menu {...this.props} menuType={this.state.menuType} />
                     </div>
                 </div>
             </header>

@@ -3,6 +3,13 @@ import { Component } from 'react';
 export default class GenericList extends Component {
 
 
+    html(){
+        let { messageEmpty } = this.props;
+        return {
+            "__html": messageEmpty
+        }
+    }
+
     render(){
         let data;
         if(this.props.posts.length > 0){
@@ -13,7 +20,7 @@ export default class GenericList extends Component {
                     });
             });
         } else if(this.props.loading == false){
-            data = <div class="empty message">{this.props.messageEmpty}</div>
+            data = <div class="empty message" dangerouslySetInnerHTML={this.html()} />
         }
         return (
             <ul className="list-unstyled">

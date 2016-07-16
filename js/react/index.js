@@ -12,6 +12,7 @@ import galeriesRoutes from 'routes/galeries';
 import homeRoutes from 'routes/home';
 import movieRoutes from 'routes/movie';
 import {newsRoutes, newsOpenRoutes} from 'routes/news';
+import searchRoute from 'routes/search';
 
 
 
@@ -33,6 +34,7 @@ export default class App extends React.Component{
                 galeriesRoutes,
                 columnistRoutes,
                 columnistOpenRoutes,
+                searchRoute
                 // {
                 //     // fallback
                 //     path:"*",

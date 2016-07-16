@@ -1,12 +1,14 @@
 const PATH = "/jpapi";
 const PATH_DEV = "/jornalnopalco2/jpapi";
 
+import properties from "../stores/propertiesStore";
+
 class Api {
     constructor(){
     }
 
     getPath(){
-        return ("production" !== process.env.NODE_ENV) ? PATH_DEV : PATH;
+        return properties.relativeUrl + PATH;
     }
 
     getPosts(opts){
@@ -56,6 +58,11 @@ class Api {
 
     getPlaces(opts){
         opts.api = "places"
+        return this._fetchAPI(opts);
+    }
+
+    searchPosts(opts){
+        opts.api = "search";
         return this._fetchAPI(opts);
     }
 

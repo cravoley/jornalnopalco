@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Link } from 'react-router';
-import properties from "../stores/propertiesStore";
+import properties from "stores/propertiesStore";
+import Search from 'components/search/searchBox';
 
 
 export default class Menu extends Component {
@@ -44,10 +45,7 @@ export default class Menu extends Component {
                     </div>
                     <div className={`collapse navbar-collapse navigation ${displayMenu}`} id="navigationMenu">
                         <div className="searchBar col-md-2 col-sm-1 col-xs-12">
-                            <div className="input-group">
-                                <input type="text" placeholder="Buscar" className="form-control hidden-sm" />
-                                <div className="input-group-addon"><i className="fa fa-search"></i></div>
-                            </div>
+                            <Search {... this.props} />
                         </div>
                         <ul className="nav nav-pills col-md-10 col-sm-11 col-xs-12">
                             <li role="presentation" className="hidden-sm">
