@@ -92,7 +92,7 @@ class ColumnistStore extends EventEmitter {
             this.emit("loading");
             let callback = (err,data)=>{
                 let {posts, full } = data;
-                console.log(data);
+                // console.log(data);
                 this.columnists = data.posts;
                 // this.append({posts,full});
                 this.emit("change");
@@ -100,6 +100,16 @@ class ColumnistStore extends EventEmitter {
             api.getColumnists({callback});
         }
         return this.columnists;
+    }
+
+    loadColunistInfo(columnist){
+        if(!columnist) return;
+
+        // this.emit("loadingColunistInfo");
+        let callback = (err, data) => {
+            this.emit("loadedColunistInfo", data);
+        }
+        api.loadColunistInfo(columnist, callback);
     }
 
     handleEvents(props){
@@ -111,6 +121,9 @@ class ColumnistStore extends EventEmitter {
             case "COLUMN_LIST_POST_LOAD":
                 // this.reset();
                 this.loadPosts();
+                break;
+            case "COLUMN_AUTHOR_LOAD":
+                this.loadColunistInfo(props.payload);
                 break;
         }
     }

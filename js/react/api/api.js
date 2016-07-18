@@ -66,6 +66,11 @@ class Api {
         return this._fetchAPI(opts);
     }
 
+    loadColunistInfo(name, callback){
+        let opts = {api:`colunistas/info/${name}`, callback};
+        return this._fetchAPI(opts);
+    }
+
     _fetchAPI(args){
         let { callback=(err, data)=>false, filter={}, page=0, api } = args || {};
         $.ajax({

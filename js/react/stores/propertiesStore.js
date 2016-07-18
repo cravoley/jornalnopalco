@@ -5,6 +5,10 @@ class Properties {
         this.baseUrl = props.baseUrl;
         this.templateUrl = props.templateUrl;
         this.relativeUrl = props.baseRelativeUrl;
+        this.newsListPath = `${props.baseRelativeUrl}/noticias`;
+        this.eventListPath = `${props.baseRelativeUrl}/evento`;
+        this.galleryListPath = `${props.baseRelativeUrl}/galeria`;
+        this.moviesListPath = `${props.baseRelativeUrl}/cinema`;
     }
 
     getConfiguration(){

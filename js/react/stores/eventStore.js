@@ -85,6 +85,27 @@ class EventStore extends EventEmitter{
         this.loadEvents({});
     }
 
+
+    getPost(params){
+        let { day, month, year, slug } = params || {};
+        if(!day || !month || !year || !slug) throw `Unable to find posts using ${params}`;
+        return this._loadFromServer({day,month,year,slug, post_type:"evento"});
+    }
+
+    // search and load single post from server
+    _loadFromServer(params){
+        this.emit("loading");
+        let callback = (err,data) => {
+            // if(!err){
+            //     let {day,month,year,slug} = params || {};
+            //     this.posts[year][month][day][slug] = data;
+            // }
+            this.emit("change", data);
+        }
+        let opts = {callback, filter:params};
+        return api.findPost(opts);
+    }
+
     handleEvents(props){
         let { type } = props || {};
         switch (type) {
@@ -111,6 +132,10 @@ class EventStore extends EventEmitter{
                 this.reset();
                 this.filter.text = props.text;
                 this.loadEvents();
+                break;
+            case "EVENT_LOAD":
+                this.emit("loading")
+                this.getPost(props.payload);
                 break;
 
         }

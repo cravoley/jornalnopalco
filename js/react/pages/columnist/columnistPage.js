@@ -40,7 +40,7 @@ export default class ColumnistsPage extends Component {
         //     element = this.getElementByType(this.state.post.post_type);
         // }
         return (
-            <div >
+            <div >            
                 {this.state.loading && <Loading />}
                 {!this.state.loading && <Post {...this.state.post} />}
             </div>

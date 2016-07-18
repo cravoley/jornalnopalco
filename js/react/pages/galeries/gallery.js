@@ -4,6 +4,9 @@ import Image from './image';
 import Loading from 'components/loading';
 import store from 'stores/galeries';
 
+import Breadcrumb from 'components/breadcrumb/breadcrumb';
+import properties from 'stores/propertiesStore';
+
 export default class Gallery extends Component {
 
     constructor(props){
@@ -29,15 +32,22 @@ export default class Gallery extends Component {
     }
 
     render(){
+        let path = [
+            {name:"Galerias de fotos", link:properties.galleryListPath},
+            {name:this.state.post.title}
+        ];
         let pics = this.state.post.pics?this.state.post.pics.map((pic) => <Image key={pic.id} {...pic} />):"";
         return (
-            <div className="row">
-                <div className="col-xs-12">
-                    <h1>{this.state.post.title}</h1>
-                    {pics}
+            <div>
+                <Breadcrumb path={path} />
+                <div className="row">
+                    <div className="col-xs-12">
+                        <h1>{this.state.post.title}</h1>
+                        {pics}
+                    </div>
+                    <div className="clearfix"></div>
+                    { this.state.loading && <Loading />}
                 </div>
-                <div className="clearfix"></div>
-                { this.state.loading && <Loading />}
             </div>
         );
     }

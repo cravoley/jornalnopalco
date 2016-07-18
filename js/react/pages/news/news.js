@@ -11,7 +11,6 @@ export default class Post extends Component {
         super(props);
         this.state = {loading:true, post:{}};
         actions.getPost(this.props.params);
-
     }
 
     componentWillMount(){
@@ -25,7 +24,10 @@ export default class Post extends Component {
         // postStore.removeListener("loading", this.setLoading);
     }
 
-
+    componentWillReceiveProps(props){
+        this.setState({loading:true});
+        actions.getPost(props.params);
+    }
 
     handleChange = (props)=>{
         // let { posts, hasMore } = this.getStoreState();
