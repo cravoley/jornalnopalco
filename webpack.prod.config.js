@@ -22,7 +22,8 @@ resolve: {
 plugins:[
 	new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
-       'process.env.NODE_ENV': '"production"'
+       'process.env.NODE_ENV': '"production"',
+	'process.env.BABEL_ENV':'"production"'
    }),
    new webpack.ProvidePlugin({
           "React": "react",
@@ -47,7 +48,7 @@ plugins:[
       exclude: /node_modules/,
       loader: 'babel',
       query: {
-        "presets": ["es2015","react", "stage-0", "react-hmre"],
+        "presets": ["es2015","react", "stage-0"],
          "plugins": ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
       }
     }, {

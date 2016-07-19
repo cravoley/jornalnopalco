@@ -36,7 +36,7 @@ export default class Colunista extends React.Component{
             </div>
         }
         return (
-            <li>
+            <li className="clearfix">
                 <div>
                     {img}
                     <Link to={this.props.link}>
