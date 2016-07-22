@@ -14,13 +14,13 @@ export default class SearchEntry extends Component {
                     </Link>
                 </div>);
             }
-        let date = Moment(this.props.date).format("DD/MM/YYYY");
+        let date = Moment(this.props.post_date).format("DD/MM/YYYY");
         return (
             <li className="clearfix">
                 <div className="animated fadeInUp">
                     {img}
                     <Link to={this.props.link}>
-                        <time dateTime={this.props.date}>
+                        <time dateTime={this.props.post_date}>
                             {date}
                         </time>
                         <h1>{this.props.title}</h1>
