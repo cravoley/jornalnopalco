@@ -1,0 +1,59 @@
+.gallery.withThumb {
+  position: relative;
+  time {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: $orange;
+    padding: 4px 10px;
+    opacity: 0.7;
+    a {
+      color: #FFF;
+    }
+  }
+
+  h1 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    //opacity: 0.8;
+    background-color: $orange;
+    margin: 0;
+    display: none;
+    a {
+      padding: 4px 10px;
+      display: block;
+      color: #000;
+    }
+  }
+
+  div.image {
+    overflow: hidden;
+    height: 180px;
+    a:hover {
+      //padding: 4px;
+      img {
+        //padding: 4px;
+        //background-color: $orange;
+        -webkit-transform: scale(1.25); /* Safari and Chrome */
+        -moz-transform: scale(1.25); /* Firefox */
+        -ms-transform: scale(1.25); /* IE 9 */
+        -o-transform: scale(1.25); /* Opera */
+        transform: scale(1.25);
+      }
+    }
+  }
+}
+
+.gallery.withThumb:hover {
+  h1 {
+    display: block;
+  }
+}
+
+.gallery {
+  h1 {
+    font-size: 16px;
+  }
+  margin-bottom: 15px;
+}

@@ -1,11 +1,8 @@
 @import "config";
-
-
 @import "annimation";
 /* generic rules */
 @import "generic/modal";
 @import "generic/generic";
-
 @import "contact/form";
 /* events */
 @import "event/cover";
@@ -14,7 +11,6 @@
 @import "home/slider";
 @import "home/posts";
 @import "post/news";
-
 @import "cinema/cinema";
 /* header and footer */
 @import "footer/common";
@@ -22,3 +18,11 @@
 @import "menu/large";
 @import "menu/small";
 @import "component/latest";
+@import "gallery/list";
+@import "../node_modules/react-image-gallery/src/image-gallery";
+@import "column/columinst";
+
+.image-gallery-index {
+  left: 0;
+  right: auto;
+}

@@ -7,18 +7,20 @@ header {
   top: 0;
   z-index: 10;
 
+  background-color: #e5e5e5;
+
   nav {
     float: left;
     &.navbar{
         margin-bottom: 0;
     }
     .nav-pills {
-      li {
-        a.active {
+      li.active  {
+        a, a:focus{
           background-color: $menu_selected;
           color: #FFF;
         }
-        a.active:hover {
+        a:hover {
           background-color: $orange;
         }
       }

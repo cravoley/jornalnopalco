@@ -51,7 +51,7 @@ export default class ColumnistPage extends Component {
     render(){
         let columnists = this.state.columninsts.map((data, i)=> <Colunista key={i} {...data} />);
         return (
-            <div>
+            <div className="colunistas">
                 <ul className="list-unstyled">{columnists}</ul>
             </div>
         );

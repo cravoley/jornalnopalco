@@ -16,41 +16,45 @@ import searchRoute from 'routes/search';
 
 
 
-export default class App extends React.Component{
-    constructor(props){
-        super(props);
-        properties.setConfiguration(props.configuration);
-        this.route = {
-            path:properties.relativeUrl || "/",
-            component:baseApp,
-            indexRoute: { component:HomePage },
-            childRoutes:[
-                homeRoutes,
-                eventRoutes,
-                movieRoutes,
-                newsRoutes,
-                newsOpenRoutes,
-                contactRoutes,
-                galeriesRoutes,
-                columnistRoutes,
-                columnistOpenRoutes,
-                searchRoute
-                // {
-                //     // fallback
-                //     path:"*",
-                //     indexRoute: { onEnter: (nextState, replace) => replace(properties.relativeUrl || "/") },
-                // }
-            ]
-        }
-    }
+export default class App extends React.Component {
+	constructor(props) {
+		super(props);
+		properties.setConfiguration(props.configuration);
+
+		let basePath = properties.relativeUrl || "/";
+		if (process.env.NODE_ENV == "production")
+			basePath = "/";
+
+		this.route = {
+			path: basePath,
+			component: baseApp,
+			indexRoute: {component: HomePage},
+			childRoutes: [
+				homeRoutes,
+				eventRoutes,
+				movieRoutes,
+				newsRoutes,
+				newsOpenRoutes,
+				contactRoutes,
+				galeriesRoutes,
+				columnistRoutes,
+				columnistOpenRoutes,
+				searchRoute
+				// {
+				//     // fallback
+				//     path:"*",
+				//     indexRoute: { onEnter: (nextState, replace) => replace(properties.relativeUrl || "/") },
+				// }
+			]
+		}
+	}
 
 
-
-    render(){
-        return(
-            <Router history={browserHistory} routes={this.route} />
-        )
-    }
+	render() {
+		return (
+			<Router history={browserHistory} routes={this.route} />
+		)
+	}
 }
 
 

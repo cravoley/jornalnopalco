@@ -7,8 +7,6 @@ import store from 'stores/galeries';
 import Breadcrumb from 'components/breadcrumb/breadcrumb';
 import properties from 'stores/propertiesStore';
 
-import ImageGallery from 'react-image-gallery';
-
 export default class Gallery extends Component {
 
 	constructor(props) {
@@ -42,12 +40,7 @@ export default class Gallery extends Component {
 			{name: "Galerias de fotos", link: properties.galleryListPath},
 			{name: this.state.post.title}
 		];
-		let images = this.state.post.pics ? this.state.post.pics.map((pic, i) => ({
-			thumbnail: pic.thumb,
-			originalAlt: pic.title,
-			description: pic.text,
-			original: pic.image
-		})) : [];
+		let pics = this.state.post.pics ? this.state.post.pics.map((pic, i) => <Image key={pic.id} listIndex={i} {...pic} />) : "";
 		return (
 			<div>
 				<Breadcrumb path={path} />
@@ -57,15 +50,9 @@ export default class Gallery extends Component {
 						<h1>{this.state.post.title}</h1>
 					</div>
 				</div>
-				{ !this.state.loading && <ImageGallery
-					ref={i => this._imageGallery = i}
-					items={images}
-					slideInterval={2000}
-					showIndex={true}
-					autoPlay={true}
-					/>
-				}
-
+				<div className="row">
+					{pics}
+				</div>
 				<div className="clearfix"></div>
 				{ this.state.loading && <Loading />}
 			</div>

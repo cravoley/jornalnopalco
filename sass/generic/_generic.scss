@@ -21,9 +21,10 @@ div.content {
 
 
   div.thumb{
-      width: 160px;
+      //width: 160px;
      height: 100px;
      overflow: hidden;
+    margin-bottom: 10px;
      a:hover{
          img{
              -webkit-transform:scale(1.25); /* Safari and Chrome */

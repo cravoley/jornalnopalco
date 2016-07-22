@@ -32,7 +32,12 @@ export default class SearchBox extends Component {
     render(){
         return (
             <div className="input-group">
-                <input type="text" placeholder="Buscar" ref="searchText" defaultValue={this.props.params.searchQuery} className="form-control hidden-sm" onKeyUp={this.handleSearch} />
+                <input type="text"
+                       placeholder="Buscar"
+                       ref="searchText"
+                       defaultValue={this.props.params.searchQuery}
+                       className="form-control hidden-xs"
+                       onKeyUp={this.handleSearch} />
                 <div className="input-group-addon" onClick={this.handleSearch}><i className="fa fa-search"></i></div>
             </div>
         );

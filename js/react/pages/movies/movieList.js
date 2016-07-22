@@ -52,7 +52,7 @@ export default class CinemaList extends Component{
         //     </div>
         // );
         return (
-            <List actions={actions} store={store} messageEmpty="Não existem noticias">
+            <List actions={actions} store={store} messageEmpty="Não existem filmes cadastrados">
                 <ListEntry />
             </List>
         );

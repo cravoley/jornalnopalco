@@ -8,24 +8,29 @@ import store from 'stores/columnistStore';
 
 export default class ColumnistList extends Component {
 
-    constructor(props){
-        super(props);
-        store.setColuminst(props.params.columnist);
-    }
+	constructor(props) {
+		super(props);
+		store.setColuminst(props.params.columnist);
+	}
 
 
-    render(){
-        return (
-            <div className="row">
-                <div className="col-xs-12 col-sm-8">
-                    <List actions={actions} store={store} messageEmpty="Não existem colunistas cadastrados">
-                        <ListEntry />
-                    </List>
-                </div>
-                <div className="col-sm-4 hidden-xs">
-                    <ColumnistInfo name={this.props.params.columnist} />
-                </div>
-            </div>
-        );
-    }
+	render() {
+		let { columnist} = this.props.params;
+		return (
+			<div className="row columnPost">
+				<div className={"col-xs-12 "+(columnist?"col-sm-8":"")}>
+					<List actions={actions} store={store} messageEmpty="Não existem posts cadastrados">
+						<ListEntry />
+					</List>
+				</div>
+				{
+					columnist &&
+					<div className="col-sm-4 hidden-xs">
+						<ColumnistInfo name={this.props.params.columnist} />
+					</div>
+				}
+
+			</div>
+		);
+	}
 }
