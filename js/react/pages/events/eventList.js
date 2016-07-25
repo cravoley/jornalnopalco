@@ -9,7 +9,7 @@ export default class EventList extends Component{
         })
 
         return (
-            <div>
+            <div className="list">
                 {
                     this.props.loading || events.length > 0 ? <ul className="list-unstyled eventlist">{events}</ul> : "Não foi possível encontrar eventos com o filtro selecionado"
                 }

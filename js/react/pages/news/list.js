@@ -7,16 +7,18 @@ import store from 'stores/newsStore';
 
 export default class NewsList extends Component {
 
-    constructor(){
-        super();
-    }
+	constructor() {
+		super();
+	}
 
 
-    render(){
-        return (
-            <List actions={actions} store={store} messageEmpty="Não existem noticias">
-                <ListEntry />
-            </List>
-        );
-    }
+	render() {
+		return (
+			<div className="newsList">
+				<List actions={actions} store={store} messageEmpty="Não existem noticias">
+					<ListEntry />
+				</List>
+			</div>
+		);
+	}
 }

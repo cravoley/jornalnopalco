@@ -57,7 +57,7 @@ export default class List extends Component {
     render(){
         return (
         <div className="row">
-            <div className={"col-xs-12"}>
+            <div className="col-xs-12 list">
                 <ListComponent posts={this.state.posts} loading={this.state.loading} messageEmpty={this.props.messageEmpty}>
                     {this.props.children}
                 </ListComponent>

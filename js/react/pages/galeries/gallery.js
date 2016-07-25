@@ -57,7 +57,7 @@ export default class Gallery extends Component {
 						<h1>{this.state.post.title}</h1>
 					</div>
 				</div>
-				{ !this.state.loading && <ImageGallery
+				{ !this.state.loading && images.length > 0 && <ImageGallery
 					ref={i => this._imageGallery = i}
 					items={images}
 					slideInterval={2000}
@@ -65,6 +65,9 @@ export default class Gallery extends Component {
 					autoPlay={true}
 					/>
 				}
+
+
+				{!this.state.loading && images.length == 0 && <div>Esta galeria ainda não possui imagens</div>}
 
 				<div className="clearfix"></div>
 				{ this.state.loading && <Loading />}

@@ -48,9 +48,10 @@ export default class MovieHolder extends Component {
 			return <Loading />
 		} else {
 			return (
-				<div>
-					<h1>{post.title}</h1>
-
+				<article>
+					<header>
+						<h1>{post.title}</h1>
+					</header>
 					<div className="row">
 						<div className="col-xs-12">
 							<ul className=" nav nav-tabs">
@@ -63,11 +64,11 @@ export default class MovieHolder extends Component {
 						</div>
 					</div>
 					<div className=" row">
-						<div className=" col-xs-12">
+						<article className=" col-xs-12">
 							{children}
-						</div>
+						</article>
 					</div>
-				</div>
+				</article>
 			);
 		}
 	}

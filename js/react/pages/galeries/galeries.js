@@ -7,11 +7,13 @@ import store from 'stores/galeries';
 export default class Galeries extends Component {
 
 
-    render(){
-        return (
-            <List actions={actions} store={store} messageEmpty="Não existem galerias cadastradas">
-                <ListEntry />
-            </List>
-        );
-    }
+	render() {
+		return (
+			<div className="galeries">
+				<List actions={actions} store={store} messageEmpty="Não existem galerias cadastradas">
+					<ListEntry />
+				</List>
+			</div>
+		);
+	}
 }

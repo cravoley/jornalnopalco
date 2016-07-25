@@ -33,7 +33,7 @@ class ColumnistStore extends EventEmitter {
 			//     let {day,month,year,slug} = params || {};
 			//     this.posts[year][month][day][slug] = data;
 			// }
-			this.emit("change", data);
+			this.emit("postLoaded", data);
 		}
 		let opts = {callback, filter: params};
 		return api.findPost(opts);
@@ -108,7 +108,7 @@ class ColumnistStore extends EventEmitter {
 		// this.emit("loadingColunistInfo");
 		let callback = (err, data) => {
 			this.emit("loadedColunistInfo", data);
-		}
+		};
 		api.loadColunistInfo(columnist, callback);
 	}
 
