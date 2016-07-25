@@ -18,6 +18,7 @@
 @import "menu/large";
 @import "menu/small";
 @import "component/latest";
+@import "component/breadcrumb";
 @import "gallery/list";
 @import "../node_modules/react-image-gallery/src/image-gallery";
 @import "column/columinst";
@@ -25,4 +26,34 @@
 .image-gallery-index {
   left: 0;
   right: auto;
+}
+
+div.list {
+  h1 {
+    font-size: 26px;
+    font-family: $font_cursive;
+    font-weight: bold;
+  }
+  time {
+    font-size: 14px;
+  }
+}
+
+article {
+  .body {
+    text-align: justify;
+  }
+}
+
+a {
+  color: $orange_dark;
+}
+
+a:hover {
+  color: $orange_selected;
+  //font-weight: bold;
+}
+
+body {
+  font-family: $font_default;
 }

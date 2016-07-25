@@ -1,8 +1,32 @@
-.post{
-    .sidebar{
-        position: fixed;
-        li.currentPost{
-            background-color: #F99;
-        }
+.newsList {
+  li {
+    margin-bottom: 20px;
+  }
+}
+
+.post {
+  .sidebar {
+    position: fixed;
+    li.currentPost {
+      background-color: #F99;
     }
+  }
+  h1 {
+    font-size: 26px;
+    font-family: cursive;
+
+  }
+  h2 {
+    font-size: 22px;
+  }
+  time {
+    margin-bottom: 10px;
+    display: block;
+    span {
+      color: #666;
+    }
+    span.dateLabel {
+      font-weight: bold;
+    }
+  }
 }

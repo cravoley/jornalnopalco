@@ -43,19 +43,19 @@
         overflow: hidden;
         border-top: 1px dashed;
         padding-top: 10px;
-        a {
-            color:rgb(0,0,0);
-        }
-        a:hover{
-            color:rgba(0,0,0,0.7);
-            img{
-                -webkit-transform:scale(1.25); /* Safari and Chrome */
-                -moz-transform:scale(1.25); /* Firefox */
-                -ms-transform:scale(1.25); /* IE 9 */
-                -o-transform:scale(1.25); /* Opera */
-                 transform:scale(1.25);
-            }
-        }
+        //a {
+        //    color:rgb(0,0,0);
+        //}
+        //a:hover{
+        //    color:rgba(0,0,0,0.7);
+        //    img{
+        //        -webkit-transform:scale(1.25); /* Safari and Chrome */
+        //        -moz-transform:scale(1.25); /* Firefox */
+        //        -ms-transform:scale(1.25); /* IE 9 */
+        //        -o-transform:scale(1.25); /* Opera */
+        //         transform:scale(1.25);
+        //    }
+        //}
         &:first-child{
             border-top:none;
         }

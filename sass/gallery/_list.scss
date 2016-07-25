@@ -19,6 +19,7 @@
     //opacity: 0.8;
     background-color: $orange;
     margin: 0;
+    font-size: 18px;
     display: none;
     a {
       padding: 4px 10px;
@@ -54,6 +55,7 @@
 .gallery {
   h1 {
     font-size: 16px;
+    font-family: $font_default;
   }
   margin-bottom: 15px;
 }
