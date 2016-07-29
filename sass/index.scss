@@ -56,6 +56,14 @@ a:hover {
 
 body {
   font-family: $font_default;
+  background-image: url('../../img/bg.png');
+}
+
+.container{
+    background-color: #e5e5e5;
+}
+.container.content{
+    min-height: 100%;
 }
 
 .videoPlayer {
