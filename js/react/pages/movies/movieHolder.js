@@ -1,3 +1,4 @@
+import Breadcrumb from 'components/breadcrumb/breadcrumb';
 import { Component } from 'react';
 import { getPost } from 'actions/moviesActions';
 import Loading from 'components/loading';
@@ -44,11 +45,17 @@ export default class MovieHolder extends Component {
 
 		});
 
+		let path = [
+			{name: "Filmes", link: properties.moviesListPath},
+			{name: post.title}
+		];
+
 		if (this.state.loading) {
 			return <Loading />
 		} else {
 			return (
 				<article>
+					<Breadcrumb path={path} />
 					<header>
 						<h1>{post.title}</h1>
 					</header>

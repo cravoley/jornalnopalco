@@ -13,6 +13,7 @@ import homeRoutes from 'routes/home';
 import movieRoutes from 'routes/movie';
 import {newsRoutes, newsOpenRoutes} from 'routes/news';
 import searchRoute from 'routes/search';
+import eagoraRoute from 'routes/eagora';
 
 
 
@@ -39,7 +40,8 @@ export default class App extends React.Component {
 				galeriesRoutes,
 				columnistRoutes,
 				columnistOpenRoutes,
-				searchRoute
+				searchRoute,
+				eagoraRoute
 				// {
 				//     // fallback
 				//     path:"*",

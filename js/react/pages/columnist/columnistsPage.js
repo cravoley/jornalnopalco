@@ -2,58 +2,59 @@ import Colunista from './colunista';
 import { Component } from 'react';
 import * as actions from 'actions/columnistActions';
 import store from 'stores/columnistStore';
+import Loading from 'components/loading';
 
 export default class ColumnistPage extends Component {
 
-    constructor(){
-        super();
+	constructor() {
+		super();
 
 
-        let { columninsts } = this.getStoreState();
-        this.state = {
-            columninsts,
-            loading:columninsts.length == 0 ? true : false
-        }
-    }
+		let { columninsts } = this.getStoreState();
+		this.state = {
+			columninsts,
+			loading: columninsts.length == 0 ? true : false
+		}
+	}
 
-    componentWillMount(){
-        store.on("change", this.handleChange);
-        store.on("loading", this.setLoading);
-    }
+	componentWillMount() {
+		store.on("change", this.handleChange);
+		store.on("loading", this.setLoading);
+	}
 
-    componentWillUnmount(){
-        // actions.clear();
-        store.removeListener("change", this.handleChange);
-        store.removeListener("loading", this.setLoading);
-    }
+	componentWillUnmount() {
+		// actions.clear();
+		store.removeListener("change", this.handleChange);
+		store.removeListener("loading", this.setLoading);
+	}
 
-    getStoreState(){
-        return {
-            columninsts:store.getColumnists()
-        }
-    }
+	getStoreState() {
+		return {
+			columninsts: store.getColumnists()
+		}
+	}
 
-    handleChange = (props) => {
-        let { columninsts, hasMore } = this.getStoreState();
-        this.setState({loading:false, columninsts});
-    }
-
-
-
-    setLoading = ()=>{
-        this.setState({
-            loading:true,
-            columninsts:store.getColumnists()
-        });
-    }
+	handleChange = (props) => {
+		let { columninsts, hasMore } = this.getStoreState();
+		this.setState({loading: false, columninsts});
+	}
 
 
-    render(){
-        let columnists = this.state.columninsts.map((data, i)=> <Colunista key={i} {...data} />);
-        return (
-            <div className="colunistas">
-                <ul className="list-unstyled">{columnists}</ul>
-            </div>
-        );
-    }
+	setLoading = ()=> {
+		this.setState({
+			loading: true,
+			columninsts: store.getColumnists()
+		});
+	}
+
+
+	render() {
+		let columnists = this.state.columninsts.map((data, i)=> <Colunista key={i} {...data} />);
+		return (
+			<div className="colunistas">
+				{this.state.loading && <Loading />}
+				{!this.state.loading && <ul className="list-unstyled">{columnists}</ul>}
+			</div>
+		);
+	}
 }

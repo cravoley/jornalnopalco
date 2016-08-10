@@ -1,67 +1,67 @@
-.filter{
-    .place-filter{
+.filter {
+  .place-filter {
 
-        max-height: 240px;
-        overflow-y: auto;
-        label{
-            font-weight: normal;
-        }
-        label.selected {
-            // width: 90%;
-            // padding:10px;
-            // border:1px dashed;
-            font-weight: bold;
-        }
-        // label.removed {
-            // opacity: 0.5;
-        // }
+    max-height: 240px;
+    overflow-y: auto;
+    label {
+      font-weight: normal;
     }
+    label.selected {
+      // width: 90%;
+      // padding:10px;
+      // border:1px dashed;
+      font-weight: bold;
+    }
+    // label.removed {
+    // opacity: 0.5;
+    // }
+  }
 
-    .place-filter::-webkit-scrollbar {
-      width: 3px;
-    }
+  .place-filter::-webkit-scrollbar {
+    width: 3px;
+  }
 
-    .place-filter::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
-    }
+  .place-filter::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  }
 
-    .place-filter::-webkit-scrollbar-thumb {
-      background-color: darkgrey;
-      outline: 1px solid 000;
-    }
-    .btn[disabled]{
-        opacity: 0.5;
-    }
+  .place-filter::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid 000;
+  }
+  .btn[disabled] {
+    opacity: 0.5;
+  }
 }
 
-.eventlist{
-    .image{
-        margin-right: 15px;
-        overflow: hidden;
+.eventlist {
+  .image {
+    margin-right: 15px;
+    overflow: hidden;
+  }
+  li {
+    overflow: hidden;
+    border-top: 1px dashed;
+    padding-top: 10px;
+    //a {
+    //    color:rgb(0,0,0);
+    //}
+    //a:hover{
+    //    color:rgba(0,0,0,0.7);
+    //    img{
+    //        -webkit-transform:scale(1.25); /* Safari and Chrome */
+    //        -moz-transform:scale(1.25); /* Firefox */
+    //        -ms-transform:scale(1.25); /* IE 9 */
+    //        -o-transform:scale(1.25); /* Opera */
+    //         transform:scale(1.25);
+    //    }
+    //}
+    &:first-child {
+      border-top: none;
     }
-    li {
-        overflow: hidden;
-        border-top: 1px dashed;
-        padding-top: 10px;
-        //a {
-        //    color:rgb(0,0,0);
-        //}
-        //a:hover{
-        //    color:rgba(0,0,0,0.7);
-        //    img{
-        //        -webkit-transform:scale(1.25); /* Safari and Chrome */
-        //        -moz-transform:scale(1.25); /* Firefox */
-        //        -ms-transform:scale(1.25); /* IE 9 */
-        //        -o-transform:scale(1.25); /* Opera */
-        //         transform:scale(1.25);
-        //    }
-        //}
-        &:first-child{
-            border-top:none;
-        }
-        h2{
-            font-size: 18px;
-            margin-top: 10px;
-        }
+    h2 {
+      font-size: 18px;
+      margin-top: 10px;
     }
+  }
 }

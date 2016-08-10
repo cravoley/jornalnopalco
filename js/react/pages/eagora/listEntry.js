@@ -1,9 +1,14 @@
-import { Component } from 'react';
-import { Link } from 'react-router';
 import Moment from 'moment'
+import React from 'react';
+import { Link } from 'react-router';
 
 
-export default class SearchEntry extends Component {
+export default class PostEntry extends React.Component {
+
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		let img;
 		if (this.props.thumb) {
@@ -14,11 +19,11 @@ export default class SearchEntry extends Component {
 					</Link>
 				</div>);
 		}
-
+		//console.log(this.props);
 		let date = Moment(this.props.post_date).format("DD/MM/YYYY");
 		return (
-			<li className="clearfix">
-				<div className="animated fadeInUp">
+			<li>
+				<div className="animated fadeInUp row">
 					{img}
 					<div className={(img)?"col-xs-10 col-md-8":"col-xs12"}>
 						<time dateTime={this.props.post_date}>
@@ -30,9 +35,11 @@ export default class SearchEntry extends Component {
 						<h1><Link to={this.props.link}>{this.props.title}</Link></h1>
 
 						<h2><Link to={this.props.link}>{this.props.place}</Link></h2>
+
 					</div>
 				</div>
 			</li>
-		)
+		);
 	}
+
 }
