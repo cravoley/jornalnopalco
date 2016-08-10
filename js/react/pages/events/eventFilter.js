@@ -48,8 +48,10 @@ export default class EventFilter extends Component {
     }
 
     render(){
-        let { loading, filter } = this.props;
-        let places = this.props.places.map(
+        let { loading, filter, places=[] } = this.props;
+        // console.log("Pl", places, this.props);
+        if(!Array.isArray(places)) places = [];
+        places = places.map(
                 (place) => {
                     return <PlaceFilter key={place.id} name={place.place_name} name_sanitized={place.place_name_sanitized} selected={place.selected}  disabled={loading} />
                 }

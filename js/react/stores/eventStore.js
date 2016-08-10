@@ -25,8 +25,8 @@ class EventStore extends EventEmitter{
         if(typeof this.places == "undefined"){
             this.places = [];
             let callback = (err,data)=>{
-                this.places = data;
-                this.emit("changePlaces", {places:data});
+                this.places = data || [];
+                this.emit("changePlaces", {places:this.places});
             }
             api.getPlaces({callback});
         }
