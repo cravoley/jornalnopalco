@@ -1,21 +1,24 @@
 import { Component } from 'react';
 import * as actions from 'actions/newsActions';
 import List from 'pages/list';
+//import ListEntry from './listEntry';
 import ListEntry from './listEntry';
 import store from 'stores/newsStore';
 
 export default class NewsList extends Component {
 
-    constructor(){
-        super();
-    }
+	constructor() {
+		super();
+	}
 
 
-    render(){
-        return (
-            <List actions={actions} store={store} messageEmpty="Não existem noticias">
-                <ListEntry />
-            </List>
-        );
-    }
+	render() {
+		return (
+			<div className="newsList">
+				<List actions={actions} store={store} messageEmpty="Não existem noticias">
+					<ListEntry />
+				</List>
+			</div>
+		);
+	}
 }

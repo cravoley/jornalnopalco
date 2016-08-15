@@ -1,0 +1,12 @@
+.latestPosts {
+  border: 1px solid;
+  padding: 4px 20px;
+  .current {
+    color: $orange;
+  }
+
+  time{
+    display: inline;
+    font-size: 10px;
+  }
+}

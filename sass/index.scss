@@ -1,11 +1,8 @@
 @import "config";
-
-
 @import "annimation";
 /* generic rules */
 @import "generic/modal";
 @import "generic/generic";
-
 @import "contact/form";
 /* events */
 @import "event/cover";
@@ -14,10 +11,70 @@
 @import "home/slider";
 @import "home/posts";
 @import "post/news";
-
 @import "cinema/cinema";
 /* header and footer */
 @import "footer/common";
 @import 'menu/common';
 @import "menu/large";
 @import "menu/small";
+@import "component/latest";
+@import "component/breadcrumb";
+@import "gallery/list";
+@import "../node_modules/react-image-gallery/src/image-gallery";
+@import "column/columinst";
+
+.image-gallery-index {
+  left: 0;
+  right: auto;
+}
+
+div.list {
+  h1 {
+    font-size: 26px;
+    font-family: $font_cursive;
+    font-weight: bold;
+  }
+  time {
+    font-size: 14px;
+  }
+}
+
+article {
+  .body {
+    text-align: justify;
+  }
+}
+
+a {
+  color: $orange_dark;
+}
+
+a:hover {
+  color: $orange_selected;
+  //font-weight: bold;
+}
+
+body {
+  font-family: $font_default;
+  background-image: url('../../img/bg.png');
+}
+
+.container{
+    background-color: #e5e5e5;
+}
+.container.content{
+    min-height: 100%;
+}
+
+.videoPlayer {
+  position: relative;
+  .play {
+    position: absolute;
+    top: 0;
+    left: 0;
+    //background-color: #ccc;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6) url("../../img/play.gif") no-repeat center center;
+  }
+}

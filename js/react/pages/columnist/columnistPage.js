@@ -14,13 +14,13 @@ export default class ColumnistsPage extends Component {
     }
 
     componentWillMount(){
-        postStore.on("change", this.handleChange);
+        postStore.on("postLoaded", this.handleChange);
         // postStore.on("loading", this.setLoading);
     }
 
     componentWillUnmount(){
         // actions.clear();
-        postStore.removeListener("change", this.handleChange);
+        postStore.removeListener("postLoaded", this.handleChange);
         // postStore.removeListener("loading", this.setLoading);
     }
 
@@ -28,6 +28,7 @@ export default class ColumnistsPage extends Component {
 
     handleChange = (props)=>{
         // let { posts, hasMore } = this.getStoreState();
+        console.log("OI", props);
         this.setState({loading:false, post:props});
     }
 
@@ -40,7 +41,7 @@ export default class ColumnistsPage extends Component {
         //     element = this.getElementByType(this.state.post.post_type);
         // }
         return (
-            <div >
+            <div >            
                 {this.state.loading && <Loading />}
                 {!this.state.loading && <Post {...this.state.post} />}
             </div>

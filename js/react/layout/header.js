@@ -83,7 +83,7 @@ export default class Header extends Component {
     render(){
         var logoUrl = properties.templateUrl.concat('/img/logo_preto.png');
         return(
-            <header>
+            <header className="top-menu">
                 <div className="container">
                     {this.state.menuType == 'large' && <Logo logoUrl={logoUrl} url={this.url} />}
                     <div className="row">

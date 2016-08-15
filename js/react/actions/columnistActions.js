@@ -13,3 +13,10 @@ export function loadPosts(){
         type:"COLUMN_LIST_POST_LOAD",
     });
 }
+
+export function loadColunistInfo(params){
+    dispatcher.dispatch({
+        type:"COLUMN_AUTHOR_LOAD",
+        payload:params
+    });
+}

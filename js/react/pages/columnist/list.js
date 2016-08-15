@@ -7,17 +7,12 @@ import store from 'stores/columnistStore';
 
 export default class ColumnistList extends Component {
 
-    constructor(props){
-        super(props);
-        store.setColuminst(props.params.columnist);
-    }
 
-
-    render(){
-        return (
-            <List actions={actions} store={store} messageEmpty="Não existem colunistas cadastrados">
-                <ListEntry />
-            </List>
-        );
-    }
+	render() {
+		return (
+			<List actions={actions} store={store} messageEmpty="Não existem posts cadastrados">
+				<ListEntry />
+			</List>
+		);
+	}
 }

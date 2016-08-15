@@ -1,4 +1,4 @@
-header {
+header.top-menu {
   // background: #000;
   // border-bottom: 1px solid #aaaaaa;
   // float: left;
@@ -6,19 +6,21 @@ header {
   position: fixed;
   top: 0;
   z-index: 10;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 
   nav {
     float: left;
-    &.navbar{
-        margin-bottom: 0;
+    &.navbar {
+      margin-bottom: 0;
     }
     .nav-pills {
-      li {
-        a.active {
+      li.active {
+        a, a:focus {
           background-color: $menu_selected;
           color: #FFF;
         }
-        a.active:hover {
+        a:hover {
           background-color: $orange;
         }
       }
@@ -45,7 +47,7 @@ header {
     // width: 75%;
     height: 100%;
     overflow-y: auto;
-    background-color:  $background_menu;
+    background-color: $background_menu;
     ul {
       li {
         width: 100%;

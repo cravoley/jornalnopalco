@@ -10,7 +10,7 @@ export function clearFilter(){
 }
 
 export function clear(){
-    dispatcher.dispatch({type:"EVENTS_CLEAR"});    
+    dispatcher.dispatch({type:"EVENTS_CLEAR"});
 }
 
 export function filterByDate({date}){
@@ -41,5 +41,13 @@ export function filterByText(text){
     dispatcher.dispatch({
         type:"EVENTS_FILTER_TEXT",
         text,
+    });
+}
+
+
+export function getPost(params){
+    dispatcher.dispatch({
+        type:"EVENT_LOAD",
+        payload:params
     });
 }
