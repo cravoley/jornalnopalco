@@ -15,7 +15,7 @@ export default class EagoraList extends Component {
 	render() {
 		return (
 			<div className="newsList">
-				<List actions={actions} store={store} messageEmpty="Não existem noticias">
+				<List actions={actions} store={store} messageEmpty="Não existem vídeos">
 					<ListEntry />
 				</List>
 			</div>

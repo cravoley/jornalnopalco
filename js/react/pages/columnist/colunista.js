@@ -42,7 +42,7 @@ export default class Colunista extends React.Component {
 			<li>
 				<div className="animated fadeInUp row">
 					{img}
-					<div className={(img)?"col-xs-10":"col-xs12"}>
+					<div className={(img)?"col-xs-10":"col-xs-12"}>
 						<Link to={this.props.link}>
 							<h1>{name}</h1>
 						</Link>

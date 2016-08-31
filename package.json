@@ -17,6 +17,7 @@
     "gulp": "gulp",
     "webpack": "webpack -p --config webpack.prod.config",
     "build": "gulp prod && webpack -p --config webpack.prod.config",
+    "build_qa": "gulp prod && webpack -p --config webpack.qa.config",
     "bower": "bower",
     "shrinkwrap": "shrinkwrap"
   },

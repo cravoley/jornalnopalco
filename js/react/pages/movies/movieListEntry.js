@@ -25,7 +25,7 @@ export default class MovieEntry extends React.Component {
 			<li className="clearfix">
 				<div className="animated fadeInUp">
 					{img}
-					<div className={(img)?"col-xs-10 col-md-8":"col-xs12"}>
+					<div className={(img)?"col-xs-10 col-md-8":"col-xs-12"}>
 						<h1><Link to={this.props.link}>{this.props.title}</Link></h1>
 					</div>
 				</div>

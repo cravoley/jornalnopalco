@@ -25,6 +25,8 @@ export default class App extends React.Component {
 		let basePath = properties.relativeUrl || "/";
 		if (process.env.NODE_ENV == "production")
 			basePath = "/";
+		if (process.env.NODE_ENV == "qa")
+			basePath = "/qa";
 
 		this.route = {
 			path: basePath,
@@ -41,12 +43,12 @@ export default class App extends React.Component {
 				columnistRoutes,
 				columnistOpenRoutes,
 				searchRoute,
-				eagoraRoute
-				// {
+				eagoraRoute,
+				{
 				//     // fallback
-				//     path:"*",
-				//     indexRoute: { onEnter: (nextState, replace) => replace(properties.relativeUrl || "/") },
-				// }
+				    path:"*",
+				    indexRoute: { onEnter: (nextState, replace) => replace(properties.relativeUrl || "/") }
+				}
 			]
 		}
 	}

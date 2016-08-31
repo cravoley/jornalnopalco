@@ -25,7 +25,7 @@ export default class PostEntry extends React.Component {
 			<li>
 				<div className="animated fadeInUp row">
 					{img}
-					<div className={(img)?"col-xs-10 col-md-8":"col-xs12"}>
+					<div className={(img)?"col-xs-10 col-md-8":"col-xs-12"}>
 						<time dateTime={this.props.post_date}>
 							<Link to={this.props.link}>
 								{date}
