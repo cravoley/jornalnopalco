@@ -57,10 +57,10 @@ export default class EventListPage extends Component{
     render(){
         return (
             <div className="row">
-                <div className={"cols-sm-4 hidden-xs"}>
+                <div className={"col-xs-12"}>
                     <EventFilter places={this.state.places} filter={this.state.filter} loading={this.state.loading } />
                 </div>
-                <div className={"col-xs-12 col-sm-8"}>
+                <div className={"col-xs-12"}>
                     <EventList events={this.state.events} loading={this.state.loading} />
                     { this.state.loading && <Loading /> }
                     { !this.state.loading && this.state.hasMore && <Waypoint onEnter={this.load.bind(this)} />}

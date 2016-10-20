@@ -15,7 +15,7 @@
 	"tests"
   ],
   "dependencies": {
-  "animate":"git@github.com:daneden/animate.css.git#3.5.1",
+  "animate":"https://github.com/daneden/animate.css.git",
 	"jquery": "2.2.3",
 	"jquery-ui": "1.11.4",
 	"bootstrap": "3.3.6",

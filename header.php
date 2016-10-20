@@ -3,6 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Jornal No Palco</title>
+    <?php wp_head();?>
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">

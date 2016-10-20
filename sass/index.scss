@@ -54,6 +54,9 @@ a:hover {
   //font-weight: bold;
 }
 
+html{
+  margin-top: 0 !important;
+}
 body {
   font-family: $font_default;
   background-image: url('../../img/bg.png');
