@@ -53,12 +53,11 @@ export default class EventFilter extends Component {
 		if (date)
 			filteredDate = Moment(date).format("DD/MM/YYYY")
 		return (
-			<div className="row">
+			<div className="row event-filter">
 				<div className="col-xs-12">
-					<h3 className="text-uppercase text-center">Filtrar eventos</h3>
-					{(filter.text || filter.places.length > 0 || filter.selectedDate) && <button onClick={this.clearFilter}>Limpar filtros</button>}
+					<h3 className="text-center">Filtrar eventos</h3>
 				</div>
-				<div className="col-xs-4">
+				<div className="col-xs-12">
 					<div className="row">
 						<div className="col-xs-12">
 							<div className="input-group date datepicker">
@@ -68,7 +67,7 @@ export default class EventFilter extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="col-xs-4">
+				<div className="col-xs-12">
 					<div className="row">
 						<div className="col-xs-12">
 							<div className="input-group text">
@@ -78,10 +77,13 @@ export default class EventFilter extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="col-xs-4">
+				<div className="col-xs-12">
 					<div className="row filter">
 						<SelectPlaces places={places} loading={loading}></SelectPlaces>
 					</div>
+				</div>
+				<div className="col-xs-12">
+					{(filter.text || filter.places.length > 0 || filter.selectedDate) && <button onClick={this.clearFilter}>Limpar filtros</button>}
 				</div>
 			</div>
 		)

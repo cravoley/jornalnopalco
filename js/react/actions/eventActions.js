@@ -37,6 +37,15 @@ export function filterByPlace({place=""}){
 }
 
 
+
+export function filterByPlaces({places=[]}){
+    dispatcher.dispatch({
+        type:"EVENTS_FILTER_PLACES",
+        places,
+    });
+}
+
+
 export function filterByText(text){
     dispatcher.dispatch({
         type:"EVENTS_FILTER_TEXT",
